@@ -1,0 +1,4 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+logback-example,logback.example.service,LogService,23,47,3,5,5,15,3,7,0,4
+logback-example,logback.example.service,LogService.new Object() {...},5,35,0,0,0,1,0,1,0,1
+logback-example,logback.example,LogbackApplication,10,7,0,0,4,2,1,2,1,2
