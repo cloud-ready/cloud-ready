@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ApplicationWebSecurityConfigurerAdapter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spring-cloud-config-server</a> &gt; <a href="index.source.html" class="el_package">cn.home1.cloud.config.server.security</a> &gt; <span class="el_source">ApplicationWebSecurityConfigurerAdapter.java</span></div><h1>ApplicationWebSecurityConfigurerAdapter.java</h1><pre class="source lang-java linenums">package cn.home1.cloud.config.server.security;
+
+import static cn.home1.cloud.config.server.security.Role.ADMIN;
+import static cn.home1.cloud.config.server.security.Role.HOOK;
+import static org.springframework.boot.autoconfigure.security.SecurityProperties.ACCESS_OVERRIDE_ORDER;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.cloud.config.server.config.ConfigServerProperties;
+import org.springframework.cloud.config.server.environment.EnvironmentController;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+
+@ConditionalOnProperty(prefix = &quot;security.basic&quot;, name = &quot;enabled&quot;, havingValue = &quot;true&quot;)
+@Configuration
+@EnableWebSecurity
+@Order(ACCESS_OVERRIDE_ORDER)
+<span class="nc" id="L26">public class ApplicationWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {</span>
+
+  @Autowired
+  private ConfigSecurity configSecurity;
+
+  @Autowired
+  private ConfigServerProperties configServerProperties;
+
+  @Autowired
+  private EnvironmentController environmentController;
+
+  @Value(&quot;${management.context-path:}&quot;)
+  private String managementContextPath;
+
+  @Override
+  public void init(final WebSecurity web) throws Exception {
+<span class="nc" id="L42">    super.init(web);</span>
+<span class="nc" id="L43">  }</span>
+
+  @Override
+  protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
+<span class="nc" id="L47">    auth.userDetailsService(this.userDetailsService()).passwordEncoder(NoOpPasswordEncoder.getInstance());</span>
+<span class="nc" id="L48">  }</span>
+
+  @Override
+  protected void configure(final HttpSecurity http) throws Exception {
+<span class="nc" id="L52">    final String configServerPrefix = this.configServerProperties.getPrefix();</span>
+<span class="nc" id="L53">    final String loginEndpoint = configServerPrefix + &quot;/users/login&quot;;</span>
+<span class="nc" id="L54">    final String monitorEndpoint = configServerPrefix + &quot;/monitor&quot;;</span>
+
+<span class="nc" id="L56">    http //</span>
+<span class="nc" id="L57">        .csrf().disable() //</span>
+<span class="nc" id="L58">        .authorizeRequests() //</span>
+<span class="nc" id="L59">        .antMatchers(configServerPrefix + &quot;/&quot;).permitAll() //</span>
+<span class="nc" id="L60">        .antMatchers(configServerPrefix + &quot;/deployKeyPublic&quot;).permitAll() //</span>
+<span class="nc" id="L61">        .antMatchers(configServerPrefix + &quot;/decrypt&quot;).hasRole(ADMIN.toString()) //</span>
+<span class="nc" id="L62">        .antMatchers(configServerPrefix + &quot;/encrypt&quot;, monitorEndpoint).permitAll() //</span>
+<span class="nc" id="L63">        .antMatchers(configServerPrefix + &quot;/encryptParentPassword&quot;).hasRole(ADMIN.toString()) //</span>
+<span class="nc" id="L64">        .antMatchers(configServerPrefix + &quot;/monitor&quot;).hasAnyRole(ADMIN.toString(), HOOK.toString()) //</span>
+<span class="nc" id="L65">        .antMatchers(new String[]{ //</span>
+            configServerPrefix + &quot;/{application}/{profiles:.*[^-].*}&quot;, //
+            configServerPrefix + &quot;/{application}/{profiles}/{label:.*}&quot;, //
+            configServerPrefix + &quot;/{application}-{profiles}.json&quot;, //
+            configServerPrefix + &quot;/{label}/{application}-{profiles}.json&quot;, //
+            configServerPrefix + &quot;/{application}-{profiles}.properties&quot;, //
+            configServerPrefix + &quot;/{application}/{name}-{profiles}.properties&quot;, //
+            configServerPrefix + &quot;/{application}-{profiles}.yml&quot;, //
+            configServerPrefix + &quot;/{application}-{profiles}.yaml&quot;, //
+            configServerPrefix + &quot;/{label}/{application}-{profiles}.yml&quot;, //
+            configServerPrefix + &quot;/{label}/{application}-{profiles}.yaml&quot;, //
+            configServerPrefix + &quot;/{application}/{profiles}/{label}/**&quot;, //
+<span class="nc" id="L77">        }).access(&quot;@applicationConfigSecurity.checkAuthentication(#application,#profiles)&quot;)//</span>
+<span class="nc" id="L78">        .anyRequest().hasRole(ADMIN.toString()) //</span>
+<span class="nc" id="L79">        .and() //</span>
+<span class="nc" id="L80">        .httpBasic();</span>
+<span class="nc" id="L81">  }</span>
+
+  @Bean
+  public ApplicationConfigSecurity applicationConfigSecurity() {
+<span class="nc" id="L85">    return new ApplicationConfigSecurity();</span>
+  }
+
+  @Bean
+  public PrivilegedUserProperties privilegedUserProperties() {
+<span class="nc" id="L90">    return new PrivilegedUserProperties();</span>
+  }
+
+  @Bean
+  public GitFileConfigUserDetailsService userDetailsService() {
+<span class="nc" id="L95">    final GitFileConfigUserDetailsService userDetailsService = new GitFileConfigUserDetailsService();</span>
+<span class="nc" id="L96">    userDetailsService.setConfigSecurity(this.configSecurity);</span>
+<span class="nc" id="L97">    userDetailsService.setDefaultLabel(this.configServerProperties.getDefaultLabel());</span>
+<span class="nc" id="L98">    userDetailsService.setPrivilegedUserProperties(this.privilegedUserProperties());</span>
+<span class="nc" id="L99">    userDetailsService.setEnvironmentController(this.environmentController);</span>
+<span class="nc" id="L100">    return userDetailsService;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

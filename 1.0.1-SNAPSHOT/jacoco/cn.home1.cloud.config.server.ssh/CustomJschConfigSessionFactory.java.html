@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CustomJschConfigSessionFactory.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spring-cloud-config-server</a> &gt; <a href="index.source.html" class="el_package">cn.home1.cloud.config.server.ssh</a> &gt; <span class="el_source">CustomJschConfigSessionFactory.java</span></div><h1>CustomJschConfigSessionFactory.java</h1><pre class="source lang-java linenums">package cn.home1.cloud.config.server.ssh;
+
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.Session;
+
+import org.eclipse.jgit.transport.JschConfigSessionFactory;
+import org.eclipse.jgit.transport.OpenSshConfig;
+import org.eclipse.jgit.util.FS;
+
+/**
+ * A custom JschConfigSessionFactory load keys from given locations
+ *
+ * Created by zhanghaolun on 16/9/18.
+ */
+@Deprecated
+public class CustomJschConfigSessionFactory extends JschConfigSessionFactory {
+
+  private String[] identityKeyPaths;
+
+<span class="nc" id="L21">  public CustomJschConfigSessionFactory(final String... identityKeyPaths) {</span>
+<span class="nc" id="L22">    this.identityKeyPaths = identityKeyPaths;</span>
+<span class="nc" id="L23">  }</span>
+
+  @Override
+  protected void configure(final OpenSshConfig.Host hc, final Session session) {
+    // nothing special needed here.
+<span class="nc" id="L28">    session.setConfig(&quot;StrictHostKeyChecking&quot;, &quot;no&quot;);</span>
+<span class="nc" id="L29">  }</span>
+
+  @Override
+  protected JSch getJSch(final OpenSshConfig.Host hc, final FS fs) throws JSchException {
+<span class="nc" id="L33">    final JSch jsch = super.getJSch(hc, fs);</span>
+    // Clean out anything 'default' - any encrypted keys that are loaded by default before this will break.
+<span class="nc" id="L35">    jsch.removeAllIdentity();</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">    for (final String identKeyPath : this.identityKeyPaths) {</span>
+<span class="nc" id="L37">      jsch.addIdentity(identKeyPath);</span>
+    }
+<span class="nc" id="L39">    return jsch;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

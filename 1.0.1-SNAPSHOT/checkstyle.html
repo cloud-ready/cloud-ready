@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="Date-Revision-yyyymmdd" content="20180810" />
     <meta http-equiv="Content-Language" content="en" />
-    <title>spring-cloud-config &#x2013; Checkstyle Results</title>
+    <title>spring-cloud-config-server &#x2013; Checkstyle Results</title>
     <link rel="stylesheet" href="./css/apache-maven-fluido-1.7.min.css" />
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
@@ -28,28 +28,13 @@
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Parent Project <b class="caret"></b></a>
         <ul class="dropdown-menu">
-            <li><a href="../index.html" title="maven-build-java8">maven-build-java8</a></li>
+            <li><a href="../index.html" title="spring-cloud-config">spring-cloud-config</a></li>
         </ul>
       </li>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">DOCUMENTATION <b class="caret"></b></a>
         <ul class="dropdown-menu">
             <li><a href="README.html" title="README">README</a></li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-            <li><a href="spring-cloud-config-server/index.html" title="spring-cloud-config-server">spring-cloud-config-server</a></li>
-            <li><a href="#" title="-----">-----</a></li>
-            <li><a href="spring-cloud-config-monitor/index.html" title="spring-cloud-config-monitor">spring-cloud-config-monitor</a></li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Modules <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-            <li><a href="spring-cloud-config-server/index.html" title="spring-cloud-config-server">spring-cloud-config-server</a></li>
-            <li><a href="spring-cloud-config-monitor/index.html" title="spring-cloud-config-monitor">spring-cloud-config-monitor</a></li>
         </ul>
       </li>
       <li class="dropdown">
@@ -63,7 +48,6 @@
                   <li><a href="index.html" title="About">About</a></li>
                   <li><a href="project-summary.html" title="Summary">Summary</a></li>
                   <li><a href="issue-tracking.html" title="Issue Management">Issue Management</a></li>
-                  <li><a href="modules.html" title="Project Modules">Project Modules</a></li>
                   <li><a href="team-list.html" title="Team">Team</a></li>
                   <li><a href="source-repository.html" title="Source Code Management">Source Code Management</a></li>
                   <li><a href="license.html" title="Licenses">Licenses</a></li>
@@ -73,9 +57,15 @@
 <a href="project-reports.html" title="Project Reports">Project Reports</a>
               <ul class="dropdown-menu">
                   <li><a href="surefire-report.html" title="Surefire Report">Surefire Report</a></li>
+                  <li><a href="findbugs.html" title="FindBugs">FindBugs</a></li>
+                  <li><a href="jdepend-report.html" title="JDepend">JDepend</a></li>
                   <li><a href="checkstyle.html" title="Checkstyle">Checkstyle</a></li>
+                  <li><a href="apidocs/index.html" title="Javadoc">Javadoc</a></li>
                   <li><a href="xref/index.html" title="Source Xref">Source Xref</a></li>
                   <li><a href="xref-test/index.html" title="Test Source Xref">Test Source Xref</a></li>
+                  <li><a href="taglist.html" title="Tag List">Tag List</a></li>
+                  <li><a href="pmd.html" title="PMD">PMD</a></li>
+                  <li><a href="jacoco/index.html" title="JaCoCo">JaCoCo</a></li>
               </ul>
             </li>
         </ul>
@@ -87,7 +77,7 @@
     </div>
     <div class="container-fluid">
       <div id="banner">
-        <div class="pull-left"><div id="bannerLeft"><h2>spring-cloud-config</h2>
+        <div class="pull-left"><div id="bannerLeft"><h2>spring-cloud-config-server</h2>
 </div>
 </div>
         <div class="pull-right"></div>
@@ -106,24 +96,23 @@
           <div class="well sidebar-nav">
     <ul class="nav nav-list">
       <li class="nav-header">Parent Project</li>
-    <li><a href="../index.html" title="maven-build-java8"><span class="none"></span>maven-build-java8</a></li>
+    <li><a href="../index.html" title="spring-cloud-config"><span class="none"></span>spring-cloud-config</a></li>
       <li class="nav-header">DOCUMENTATION</li>
     <li><a href="README.html" title="README"><span class="none"></span>README</a></li>
-      <li class="nav-header">Projects</li>
-    <li><a href="spring-cloud-config-server/index.html" title="spring-cloud-config-server"><span class="none"></span>spring-cloud-config-server</a></li>
-    <li><a href="#" title="-----"><span class="none"></span>-----</a></li>
-    <li><a href="spring-cloud-config-monitor/index.html" title="spring-cloud-config-monitor"><span class="none"></span>spring-cloud-config-monitor</a></li>
-      <li class="nav-header">Modules</li>
-    <li><a href="spring-cloud-config-server/index.html" title="spring-cloud-config-server"><span class="none"></span>spring-cloud-config-server</a></li>
-    <li><a href="spring-cloud-config-monitor/index.html" title="spring-cloud-config-monitor"><span class="none"></span>spring-cloud-config-monitor</a></li>
       <li class="nav-header">Project Documentation</li>
     <li><a href="project-info.html" title="Project Information"><span class="icon-chevron-right"></span>Project Information</a></li>
     <li><a href="project-reports.html" title="Project Reports"><span class="icon-chevron-down"></span>Project Reports</a>
     <ul class="nav nav-list">
     <li><a href="surefire-report.html" title="Surefire Report"><span class="none"></span>Surefire Report</a></li>
+    <li><a href="findbugs.html" title="FindBugs"><span class="none"></span>FindBugs</a></li>
+    <li><a href="jdepend-report.html" title="JDepend"><span class="none"></span>JDepend</a></li>
     <li class="active"><a href="#"><span class="none"></span>Checkstyle</a></li>
+    <li><a href="apidocs/index.html" title="Javadoc"><span class="none"></span>Javadoc</a></li>
     <li><a href="xref/index.html" title="Source Xref"><span class="none"></span>Source Xref</a></li>
     <li><a href="xref-test/index.html" title="Test Source Xref"><span class="none"></span>Test Source Xref</a></li>
+    <li><a href="taglist.html" title="Tag List"><span class="none"></span>Tag List</a></li>
+    <li><a href="pmd.html" title="PMD"><span class="none"></span>PMD</a></li>
+    <li><a href="jacoco/index.html" title="JaCoCo"><span class="none"></span>JaCoCo</a></li>
     </ul>
 </li>
 </ul>
@@ -150,9 +139,9 @@
 <th><img src="images/icon_warning_sml.gif" alt="" />&#160;Warnings</th>
 <th><img src="images/icon_error_sml.gif" alt="" />&#160;Errors</th></tr>
 <tr class="b">
+<td>13</td>
 <td>0</td>
-<td>0</td>
-<td>0</td>
+<td>55</td>
 <td>0</td></tr></table></div>
 <div class="section">
 <h2><a name="Files"></a>Files</h2>
@@ -161,17 +150,589 @@
 <th>File</th>
 <th><img src="images/icon_info_sml.gif" alt="" />&#160;I</th>
 <th><img src="images/icon_warning_sml.gif" alt="" />&#160;W</th>
-<th><img src="images/icon_error_sml.gif" alt="" />&#160;E</th></tr></table></div>
+<th><img src="images/icon_error_sml.gif" alt="" />&#160;E</th></tr>
+<tr class="b">
+<td><a href="#cn.home1.cloud.config.server.ConfigServer.java">cn/home1/cloud/config/server/ConfigServer.java</a></td>
+<td>0</td>
+<td>4</td>
+<td>0</td></tr>
+<tr class="a">
+<td><a href="#cn.home1.cloud.config.server.environment.GitParentSupportConfiguration.java">cn/home1/cloud/config/server/environment/GitParentSupportConfiguration.java</a></td>
+<td>0</td>
+<td>1</td>
+<td>0</td></tr>
+<tr class="b">
+<td><a href="#cn.home1.cloud.config.server.environment.GitParentSupportMultipleJGitEnvironmentRepository.java">cn/home1/cloud/config/server/environment/GitParentSupportMultipleJGitEnvironmentRepository.java</a></td>
+<td>0</td>
+<td>2</td>
+<td>0</td></tr>
+<tr class="a">
+<td><a href="#cn.home1.cloud.config.server.security.ApplicationConfigSecurity.java">cn/home1/cloud/config/server/security/ApplicationConfigSecurity.java</a></td>
+<td>0</td>
+<td>4</td>
+<td>0</td></tr>
+<tr class="b">
+<td><a href="#cn.home1.cloud.config.server.security.ApplicationWebSecurityConfigurerAdapter.java">cn/home1/cloud/config/server/security/ApplicationWebSecurityConfigurerAdapter.java</a></td>
+<td>0</td>
+<td>1</td>
+<td>0</td></tr>
+<tr class="a">
+<td><a href="#cn.home1.cloud.config.server.security.ConfigSecurity.java">cn/home1/cloud/config/server/security/ConfigSecurity.java</a></td>
+<td>0</td>
+<td>17</td>
+<td>0</td></tr>
+<tr class="b">
+<td><a href="#cn.home1.cloud.config.server.security.GitFileConfigUserDetailsService.java">cn/home1/cloud/config/server/security/GitFileConfigUserDetailsService.java</a></td>
+<td>0</td>
+<td>5</td>
+<td>0</td></tr>
+<tr class="a">
+<td><a href="#cn.home1.cloud.config.server.security.PrivilegedUserProperties.java">cn/home1/cloud/config/server/security/PrivilegedUserProperties.java</a></td>
+<td>0</td>
+<td>3</td>
+<td>0</td></tr>
+<tr class="b">
+<td><a href="#cn.home1.cloud.config.server.security.Role.java">cn/home1/cloud/config/server/security/Role.java</a></td>
+<td>0</td>
+<td>4</td>
+<td>0</td></tr>
+<tr class="a">
+<td><a href="#cn.home1.cloud.config.server.ssh.CustomJschConfigSessionFactory.java">cn/home1/cloud/config/server/ssh/CustomJschConfigSessionFactory.java</a></td>
+<td>0</td>
+<td>1</td>
+<td>0</td></tr>
+<tr class="b">
+<td><a href="#cn.home1.cloud.config.server.ssh.DeployKey.java">cn/home1/cloud/config/server/ssh/DeployKey.java</a></td>
+<td>0</td>
+<td>4</td>
+<td>0</td></tr>
+<tr class="a">
+<td><a href="#cn.home1.cloud.config.server.util.EnvironmentUtils.java">cn/home1/cloud/config/server/util/EnvironmentUtils.java</a></td>
+<td>0</td>
+<td>6</td>
+<td>0</td></tr>
+<tr class="b">
+<td><a href="#cn.home1.cloud.config.server.util.ResourceUtils.java">cn/home1/cloud/config/server/util/ResourceUtils.java</a></td>
+<td>0</td>
+<td>3</td>
+<td>0</td></tr></table></div>
 <div class="section">
 <h2><a name="Rules"></a>Rules</h2>
 <table border="0" class="table table-striped">
-<tr class="b">
+<tr class="a">
 <th>Category</th>
 <th>Rule</th>
 <th>Violations</th>
-<th>Severity</th></tr></table></div>
+<th>Severity</th></tr>
+<tr class="b">
+<td>coding</td>
+<td><a class="externalLink" href="http://checkstyle.sourceforge.net/config_coding.html#OverloadMethodsDeclarationOrder">OverloadMethodsDeclarationOrder</a></td>
+<td>1</td>
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td></tr>
+<tr class="a">
+<td>imports</td>
+<td><a class="externalLink" href="http://checkstyle.sourceforge.net/config_imports.html#CustomImportOrder">CustomImportOrder</a>
+<ul>
+<li>separateLineBetweenGroups: <tt>&quot;true&quot;</tt></li>
+<li>sortImportsInGroupAlphabetically: <tt>&quot;true&quot;</tt></li>
+<li>customImportOrderRules: <tt>&quot;STATIC###THIRD_PARTY_PACKAGE&quot;</tt></li></ul></td>
+<td>27</td>
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td></tr>
+<tr class="b">
+<td>javadoc</td>
+<td><a class="externalLink" href="http://checkstyle.sourceforge.net/config_javadoc.html#JavadocMethod">JavadocMethod</a>
+<ul>
+<li>scope: <tt>&quot;public&quot;</tt></li>
+<li>allowMissingThrowsTags: <tt>&quot;true&quot;</tt></li>
+<li>allowThrowsTagsForSubclasses: <tt>&quot;true&quot;</tt></li>
+<li>allowMissingReturnTag: <tt>&quot;true&quot;</tt></li>
+<li>allowMissingParamTags: <tt>&quot;true&quot;</tt></li>
+<li>minLineCount: <tt>&quot;2&quot;</tt></li>
+<li>allowedAnnotations: <tt>&quot;Override, Test&quot;</tt></li></ul></td>
+<td>7</td>
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td></tr>
+<tr class="a">
+<td></td>
+<td><a class="externalLink" href="http://checkstyle.sourceforge.net/config_javadoc.html#JavadocParagraph">JavadocParagraph</a></td>
+<td>1</td>
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td></tr>
+<tr class="b">
+<td></td>
+<td><a class="externalLink" href="http://checkstyle.sourceforge.net/config_javadoc.html#SummaryJavadoc">SummaryJavadoc</a>
+<ul>
+<li>forbiddenSummaryFragments: <tt>&quot;^@return the *|^This method returns |^A [{]@code [a-zA-Z0-9]+[}]( is a )&quot;</tt></li></ul></td>
+<td>10</td>
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td></tr>
+<tr class="a">
+<td>sizes</td>
+<td><a class="externalLink" href="http://checkstyle.sourceforge.net/config_sizes.html#LineLength">LineLength</a>
+<ul>
+<li>max: <tt>&quot;120&quot;</tt></li>
+<li>ignorePattern: <tt>&quot;^package.*|^import.*|a href|href|http://|https://|ftp://&quot;</tt></li></ul></td>
+<td>6</td>
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td></tr>
+<tr class="b">
+<td>whitespace</td>
+<td><a class="externalLink" href="http://checkstyle.sourceforge.net/config_whitespace.html#OperatorWrap">OperatorWrap</a>
+<ul>
+<li>tokens: <tt>&quot;BAND, BOR, BSR, BXOR, DIV, EQUAL, GE, GT, LAND, LE, LITERAL_INSTANCEOF, LOR,                     LT, MINUS, MOD, NOT_EQUAL, PLUS, QUESTION, SL, SR, STAR, METHOD_REF &quot;</tt></li>
+<li>option: <tt>&quot;NL&quot;</tt></li></ul></td>
+<td>2</td>
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td></tr>
+<tr class="a">
+<td></td>
+<td><a class="externalLink" href="http://checkstyle.sourceforge.net/config_whitespace.html#ParenPad">ParenPad</a></td>
+<td>1</td>
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td></tr></table></div>
 <div class="section">
-<h2><a name="Details"></a>Details</h2></div>
+<h2><a name="Details"></a>Details</h2>
+<div class="section">
+<h3 id="cn.home1.cloud.config.server.ConfigServer.java">cn/home1/cloud/config/server/ConfigServer.java</h3>
+<table border="0" class="table table-striped">
+<tr class="b">
+<th>Severity</th>
+<th>Category</th>
+<th>Rule</th>
+<th>Message</th>
+<th>Line</th></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>imports</td>
+<td>CustomImportOrder</td>
+<td>Wrong lexicographical order for 'java.io.File' import. Should be before 'org.springframework.web.bind.annotation.RestController'.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/ConfigServer.html#L39">39</a></td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>javadoc</td>
+<td>SummaryJavadoc</td>
+<td>First sentence of Javadoc is missing an ending period.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/ConfigServer.html#L41">41</a></td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>javadoc</td>
+<td>SummaryJavadoc</td>
+<td>First sentence of Javadoc is missing an ending period.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/ConfigServer.html#L88">88</a></td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>javadoc</td>
+<td>JavadocMethod</td>
+<td>Missing a Javadoc comment.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/ConfigServer.html#L125">125</a></td></tr></table></div>
+<div class="section">
+<h3 id="cn.home1.cloud.config.server.environment.GitParentSupportConfiguration.java">cn/home1/cloud/config/server/environment/GitParentSupportConfiguration.java</h3>
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Severity</th>
+<th>Category</th>
+<th>Rule</th>
+<th>Message</th>
+<th>Line</th></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>javadoc</td>
+<td>JavadocMethod</td>
+<td>Missing a Javadoc comment.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/environment/GitParentSupportConfiguration.html#L46">46</a></td></tr></table></div>
+<div class="section">
+<h3 id="cn.home1.cloud.config.server.environment.GitParentSupportMultipleJGitEnvironmentRepository.java">cn/home1/cloud/config/server/environment/GitParentSupportMultipleJGitEnvironmentRepository.java</h3>
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Severity</th>
+<th>Category</th>
+<th>Rule</th>
+<th>Message</th>
+<th>Line</th></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>imports</td>
+<td>CustomImportOrder</td>
+<td>Wrong lexicographical order for 'java.util.Set' import. Should be before 'org.springframework.security.authentication.BadCredentialsException'.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/environment/GitParentSupportMultipleJGitEnvironmentRepository.html#L19">19</a></td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>sizes</td>
+<td>LineLength</td>
+<td>Line is longer than 120 characters (found 147).</td>
+<td><a href="./xref/cn/home1/cloud/config/server/environment/GitParentSupportMultipleJGitEnvironmentRepository.html#L49">49</a></td></tr></table></div>
+<div class="section">
+<h3 id="cn.home1.cloud.config.server.security.ApplicationConfigSecurity.java">cn/home1/cloud/config/server/security/ApplicationConfigSecurity.java</h3>
+<table border="0" class="table table-striped">
+<tr class="b">
+<th>Severity</th>
+<th>Category</th>
+<th>Rule</th>
+<th>Message</th>
+<th>Line</th></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>imports</td>
+<td>CustomImportOrder</td>
+<td>Wrong lexicographical order for 'java.util.Collection' import. Should be before 'org.springframework.security.core.context.SecurityContextHolder'.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/ApplicationConfigSecurity.html#L16">16</a></td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>imports</td>
+<td>CustomImportOrder</td>
+<td>Wrong lexicographical order for 'java.util.Optional' import. Should be before 'org.springframework.security.core.context.SecurityContextHolder'.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/ApplicationConfigSecurity.html#L17">17</a></td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>imports</td>
+<td>CustomImportOrder</td>
+<td>Wrong lexicographical order for 'java.util.regex.Pattern' import. Should be before 'org.springframework.security.core.context.SecurityContextHolder'.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/ApplicationConfigSecurity.html#L18">18</a></td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>javadoc</td>
+<td>SummaryJavadoc</td>
+<td>First sentence of Javadoc is missing an ending period.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/ApplicationConfigSecurity.html#L32">32</a></td></tr></table></div>
+<div class="section">
+<h3 id="cn.home1.cloud.config.server.security.ApplicationWebSecurityConfigurerAdapter.java">cn/home1/cloud/config/server/security/ApplicationWebSecurityConfigurerAdapter.java</h3>
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Severity</th>
+<th>Category</th>
+<th>Rule</th>
+<th>Message</th>
+<th>Line</th></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>javadoc</td>
+<td>JavadocMethod</td>
+<td>Missing a Javadoc comment.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/ApplicationWebSecurityConfigurerAdapter.html#L93">93</a></td></tr></table></div>
+<div class="section">
+<h3 id="cn.home1.cloud.config.server.security.ConfigSecurity.java">cn/home1/cloud/config/server/security/ConfigSecurity.java</h3>
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Severity</th>
+<th>Category</th>
+<th>Rule</th>
+<th>Message</th>
+<th>Line</th></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>imports</td>
+<td>CustomImportOrder</td>
+<td>Wrong lexicographical order for 'com.auth0.jwt.JWT' import. Should be before 'com.google.common.collect.ImmutableMap'.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/ConfigSecurity.html#L12">12</a></td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>imports</td>
+<td>CustomImportOrder</td>
+<td>Wrong lexicographical order for 'com.auth0.jwt.JWTVerifier' import. Should be before 'com.google.common.collect.ImmutableMap'.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/ConfigSecurity.html#L13">13</a></td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>imports</td>
+<td>CustomImportOrder</td>
+<td>Wrong lexicographical order for 'com.auth0.jwt.algorithms.Algorithm' import. Should be before 'com.google.common.collect.ImmutableMap'.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/ConfigSecurity.html#L14">14</a></td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>imports</td>
+<td>CustomImportOrder</td>
+<td>Wrong lexicographical order for 'java.security.SecureRandom' import. Should be before 'org.springframework.security.crypto.password.PasswordEncoder'.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/ConfigSecurity.html#L27">27</a></td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>imports</td>
+<td>CustomImportOrder</td>
+<td>Wrong lexicographical order for 'java.util.Iterator' import. Should be before 'org.springframework.security.crypto.password.PasswordEncoder'.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/ConfigSecurity.html#L28">28</a></td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>imports</td>
+<td>CustomImportOrder</td>
+<td>Wrong lexicographical order for 'java.util.regex.Pattern' import. Should be before 'org.springframework.security.crypto.password.PasswordEncoder'.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/ConfigSecurity.html#L29">29</a></td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>imports</td>
+<td>CustomImportOrder</td>
+<td>Wrong lexicographical order for 'javax.annotation.PostConstruct' import. Should be before 'org.springframework.security.crypto.password.PasswordEncoder'.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/ConfigSecurity.html#L31">31</a></td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>sizes</td>
+<td>LineLength</td>
+<td>Line is longer than 120 characters (found 124).</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/ConfigSecurity.html#L67">67</a></td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>javadoc</td>
+<td>JavadocMethod</td>
+<td>Missing a Javadoc comment.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/ConfigSecurity.html#L74">74</a></td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>javadoc</td>
+<td>SummaryJavadoc</td>
+<td>First sentence of Javadoc is missing an ending period.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/ConfigSecurity.html#L83">83</a></td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>sizes</td>
+<td>LineLength</td>
+<td>Line is longer than 120 characters (found 126).</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/ConfigSecurity.html#L91">91</a></td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>sizes</td>
+<td>LineLength</td>
+<td>Line is longer than 120 characters (found 132).</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/ConfigSecurity.html#L108">108</a></td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>sizes</td>
+<td>LineLength</td>
+<td>Line is longer than 120 characters (found 124).</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/ConfigSecurity.html#L120">120</a></td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>javadoc</td>
+<td>SummaryJavadoc</td>
+<td>First sentence of Javadoc is missing an ending period.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/ConfigSecurity.html#L125">125</a></td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>sizes</td>
+<td>LineLength</td>
+<td>Line is longer than 120 characters (found 154).</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/ConfigSecurity.html#L134">134</a></td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>whitespace</td>
+<td>OperatorWrap</td>
+<td>'&amp;&amp;' should be on a new line.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/ConfigSecurity.html#L158">158</a></td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>whitespace</td>
+<td>OperatorWrap</td>
+<td>'&amp;&amp;' should be on a new line.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/ConfigSecurity.html#L159">159</a></td></tr></table></div>
+<div class="section">
+<h3 id="cn.home1.cloud.config.server.security.GitFileConfigUserDetailsService.java">cn/home1/cloud/config/server/security/GitFileConfigUserDetailsService.java</h3>
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Severity</th>
+<th>Category</th>
+<th>Rule</th>
+<th>Message</th>
+<th>Line</th></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>imports</td>
+<td>CustomImportOrder</td>
+<td>Wrong lexicographical order for 'java.util.Collection' import. Should be before 'org.springframework.security.core.userdetails.UsernameNotFoundException'.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/GitFileConfigUserDetailsService.html#L24">24</a></td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>imports</td>
+<td>CustomImportOrder</td>
+<td>Wrong lexicographical order for 'java.util.Iterator' import. Should be before 'org.springframework.security.core.userdetails.UsernameNotFoundException'.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/GitFileConfigUserDetailsService.html#L25">25</a></td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>imports</td>
+<td>CustomImportOrder</td>
+<td>Wrong lexicographical order for 'java.util.Optional' import. Should be before 'org.springframework.security.core.userdetails.UsernameNotFoundException'.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/GitFileConfigUserDetailsService.html#L26">26</a></td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>imports</td>
+<td>CustomImportOrder</td>
+<td>Wrong lexicographical order for 'java.util.regex.Pattern' import. Should be before 'org.springframework.security.core.userdetails.UsernameNotFoundException'.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/GitFileConfigUserDetailsService.html#L27">27</a></td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>whitespace</td>
+<td>ParenPad</td>
+<td>'(' is followed by whitespace.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/GitFileConfigUserDetailsService.html#L42">42</a></td></tr></table></div>
+<div class="section">
+<h3 id="cn.home1.cloud.config.server.security.PrivilegedUserProperties.java">cn/home1/cloud/config/server/security/PrivilegedUserProperties.java</h3>
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Severity</th>
+<th>Category</th>
+<th>Rule</th>
+<th>Message</th>
+<th>Line</th></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>imports</td>
+<td>CustomImportOrder</td>
+<td>Wrong lexicographical order for 'java.util.List' import. Should be before 'org.springframework.boot.autoconfigure.security.SecurityProperties'.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/PrivilegedUserProperties.html#L14">14</a></td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>imports</td>
+<td>CustomImportOrder</td>
+<td>Wrong lexicographical order for 'java.util.UUID' import. Should be before 'org.springframework.boot.autoconfigure.security.SecurityProperties'.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/PrivilegedUserProperties.html#L15">15</a></td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>imports</td>
+<td>CustomImportOrder</td>
+<td>Wrong lexicographical order for 'javax.annotation.PostConstruct' import. Should be before 'org.springframework.boot.autoconfigure.security.SecurityProperties'.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/PrivilegedUserProperties.html#L17">17</a></td></tr></table></div>
+<div class="section">
+<h3 id="cn.home1.cloud.config.server.security.Role.java">cn/home1/cloud/config/server/security/Role.java</h3>
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Severity</th>
+<th>Category</th>
+<th>Rule</th>
+<th>Message</th>
+<th>Line</th></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>javadoc</td>
+<td>SummaryJavadoc</td>
+<td>First sentence of Javadoc is missing an ending period.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/Role.html#L4">4</a></td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>javadoc</td>
+<td>SummaryJavadoc</td>
+<td>First sentence of Javadoc is missing an ending period.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/Role.html#L8">8</a></td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>javadoc</td>
+<td>SummaryJavadoc</td>
+<td>First sentence of Javadoc is missing an ending period.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/Role.html#L12">12</a></td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>javadoc</td>
+<td>SummaryJavadoc</td>
+<td>First sentence of Javadoc is missing an ending period.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/Role.html#L16">16</a></td></tr></table></div>
+<div class="section">
+<h3 id="cn.home1.cloud.config.server.ssh.CustomJschConfigSessionFactory.java">cn/home1/cloud/config/server/ssh/CustomJschConfigSessionFactory.java</h3>
+<table border="0" class="table table-striped">
+<tr class="b">
+<th>Severity</th>
+<th>Category</th>
+<th>Rule</th>
+<th>Message</th>
+<th>Line</th></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>javadoc</td>
+<td>JavadocParagraph</td>
+<td>Empty line should be followed by &lt;p&gt; tag on the next line.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/ssh/CustomJschConfigSessionFactory.html#L13">13</a></td></tr></table></div>
+<div class="section">
+<h3 id="cn.home1.cloud.config.server.ssh.DeployKey.java">cn/home1/cloud/config/server/ssh/DeployKey.java</h3>
+<table border="0" class="table table-striped">
+<tr class="b">
+<th>Severity</th>
+<th>Category</th>
+<th>Rule</th>
+<th>Message</th>
+<th>Line</th></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>imports</td>
+<td>CustomImportOrder</td>
+<td>Wrong lexicographical order for 'java.io.File' import. Should be before 'org.springframework.cloud.config.server.ssh.SshUriProperties'.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/ssh/DeployKey.html#L14">14</a></td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>imports</td>
+<td>CustomImportOrder</td>
+<td>Wrong lexicographical order for 'java.io.FileReader' import. Should be before 'org.springframework.cloud.config.server.ssh.SshUriProperties'.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/ssh/DeployKey.html#L15">15</a></td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>javadoc</td>
+<td>JavadocMethod</td>
+<td>Missing a Javadoc comment.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/ssh/DeployKey.html#L26">26</a></td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>coding</td>
+<td>OverloadMethodsDeclarationOrder</td>
+<td>Overload methods should not be split. Previous overloaded method located at line '51'.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/ssh/DeployKey.html#L64">64</a></td></tr></table></div>
+<div class="section">
+<h3 id="cn.home1.cloud.config.server.util.EnvironmentUtils.java">cn/home1/cloud/config/server/util/EnvironmentUtils.java</h3>
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Severity</th>
+<th>Category</th>
+<th>Rule</th>
+<th>Message</th>
+<th>Line</th></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>imports</td>
+<td>CustomImportOrder</td>
+<td>Wrong lexicographical order for 'java.util.List' import. Should be before 'org.springframework.cloud.config.environment.PropertySource'.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/util/EnvironmentUtils.html#L10">10</a></td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>imports</td>
+<td>CustomImportOrder</td>
+<td>Wrong lexicographical order for 'java.util.Map' import. Should be before 'org.springframework.cloud.config.environment.PropertySource'.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/util/EnvironmentUtils.html#L11">11</a></td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>imports</td>
+<td>CustomImportOrder</td>
+<td>Wrong lexicographical order for 'java.util.regex.Matcher' import. Should be before 'org.springframework.cloud.config.environment.PropertySource'.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/util/EnvironmentUtils.html#L12">12</a></td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>imports</td>
+<td>CustomImportOrder</td>
+<td>Wrong lexicographical order for 'java.util.regex.Pattern' import. Should be before 'org.springframework.cloud.config.environment.PropertySource'.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/util/EnvironmentUtils.html#L13">13</a></td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>javadoc</td>
+<td>JavadocMethod</td>
+<td>Missing a Javadoc comment.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/util/EnvironmentUtils.html#L18">18</a></td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>javadoc</td>
+<td>JavadocMethod</td>
+<td>Missing a Javadoc comment.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/util/EnvironmentUtils.html#L63">63</a></td></tr></table></div>
+<div class="section">
+<h3 id="cn.home1.cloud.config.server.util.ResourceUtils.java">cn/home1/cloud/config/server/util/ResourceUtils.java</h3>
+<table border="0" class="table table-striped">
+<tr class="b">
+<th>Severity</th>
+<th>Category</th>
+<th>Rule</th>
+<th>Message</th>
+<th>Line</th></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>imports</td>
+<td>CustomImportOrder</td>
+<td>Wrong lexicographical order for 'java.io.File' import. Should be before 'org.apache.commons.lang3.StringUtils'.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/util/ResourceUtils.html#L15">15</a></td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>imports</td>
+<td>CustomImportOrder</td>
+<td>Wrong lexicographical order for 'java.io.InputStream' import. Should be before 'org.apache.commons.lang3.StringUtils'.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/util/ResourceUtils.html#L16">16</a></td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>javadoc</td>
+<td>SummaryJavadoc</td>
+<td>First sentence of Javadoc is missing an ending period.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/util/ResourceUtils.html#L21">21</a></td></tr></table></div></div>
         </div>
       </div>
     </div>

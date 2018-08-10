@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GitParentSupportMultipleJGitEnvironmentRepository.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Combined</a> &gt; <a href="index.source.html" class="el_package">cn.home1.cloud.config.server.environment</a> &gt; <span class="el_source">GitParentSupportMultipleJGitEnvironmentRepository.java</span></div><h1>GitParentSupportMultipleJGitEnvironmentRepository.java</h1><pre class="source lang-java linenums">package cn.home1.cloud.config.server.environment;
+
+import static com.google.common.collect.Sets.newLinkedHashSet;
+import static org.apache.commons.lang3.StringUtils.isBlank;
+import static org.apache.commons.lang3.StringUtils.isNotBlank;
+
+import cn.home1.cloud.config.server.security.ConfigSecurity;
+import cn.home1.cloud.config.server.util.EnvironmentUtils;
+
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.cloud.config.environment.Environment;
+import org.springframework.cloud.config.server.environment.MultipleJGitEnvironmentRepository;
+import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.security.authentication.BadCredentialsException;
+
+import java.util.Set;
+
+@ConfigurationProperties(&quot;spring.cloud.config.server.git&quot;)
+<span class="nc" id="L22">@Slf4j</span>
+public class GitParentSupportMultipleJGitEnvironmentRepository extends MultipleJGitEnvironmentRepository {
+
+<span class="nc" id="L25">  @Setter</span>
+  private ConfigSecurity configSecurity;
+
+  public GitParentSupportMultipleJGitEnvironmentRepository(final ConfigurableEnvironment environment) {
+<span class="nc" id="L29">    super(environment);</span>
+<span class="nc" id="L30">  }</span>
+
+  @Override
+  public Environment findOne(final String application, final String profile, final String label) {
+<span class="nc" id="L34">    final Environment currentApplicationEnv = super.findOne(application, profile, label);</span>
+
+    // load parents
+<span class="nc" id="L37">    final Set&lt;String&gt; history = newLinkedHashSet();</span>
+<span class="nc" id="L38">    history.add(EnvironmentUtils.getApplicationName(currentApplicationEnv));</span>
+
+<span class="nc" id="L40">    for (Environment parentEnv, applicationEnv = currentApplicationEnv; //</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">         (parentEnv = getParentEnvironment(applicationEnv, label)) != null; //</span>
+<span class="nc" id="L42">         applicationEnv = parentEnv) {</span>
+
+<span class="nc" id="L44">      final String parentApplication = EnvironmentUtils.getParentApplication(applicationEnv);</span>
+
+<span class="nc" id="L46">      final String expectedParentPassword = EnvironmentUtils.getConfigPassword(parentEnv);</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">      if (isNotBlank(expectedParentPassword)) {</span>
+<span class="nc" id="L48">        final String token = EnvironmentUtils.getParentConfigPassword(applicationEnv);</span>
+<span class="nc" id="L49">        final Boolean hasParentPrivilege = this.configSecurity.verifyParentPassword(application, parentApplication, token, expectedParentPassword);</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">        if (!hasParentPrivilege) {</span>
+<span class="nc" id="L51">          throw new BadCredentialsException(&quot;Invalid access to parent config '&quot; + parentApplication + &quot;'.&quot;);</span>
+        }
+      }
+
+<span class="nc bnc" id="L55" title="All 2 branches missed.">      if (history.contains(parentApplication)) {</span>
+<span class="nc" id="L56">        log.warn(&quot;circular reference detected! ignore existed parent. application:{}, circular parentApplication:{}&quot;,</span>
+            application, parentApplication);
+<span class="nc" id="L58">        break;</span>
+      } else {
+<span class="nc" id="L60">        history.add(parentApplication);</span>
+      }
+
+      // application config first.
+      // PropertySources[n] will override (cover) the value in PropertySources[n+1] under same key.
+<span class="nc" id="L65">      currentApplicationEnv.getPropertySources().addAll(parentEnv.getPropertySources());</span>
+    }
+
+<span class="nc" id="L68">    return currentApplicationEnv;</span>
+  }
+
+
+  private Environment getParentEnvironment(final Environment environment, final String label) {
+<span class="nc" id="L73">    final String parentApplication = EnvironmentUtils.getParentApplication(environment);</span>
+<span class="nc bnc" id="L74" title="All 4 branches missed.">    if (parentApplication == null || isBlank(parentApplication)) {</span>
+<span class="nc" id="L75">      return null;</span>
+    }
+<span class="nc" id="L77">    final String parentLabel = EnvironmentUtils.getParentLabel(environment, label);</span>
+
+<span class="nc" id="L79">    Environment result = null;</span>
+
+<span class="nc" id="L81">    String[] profiles = environment.getProfiles();</span>
+<span class="nc bnc" id="L82" title="All 4 branches missed.">    if (profiles == null || profiles.length == 0) {</span>
+<span class="nc" id="L83">      profiles = new String[]{&quot;default&quot;};</span>
+    }
+
+<span class="nc bnc" id="L86" title="All 2 branches missed.">    for (final String profile : profiles) {</span>
+      Environment found;
+      try {
+<span class="nc" id="L89">        found = super.findOne(parentApplication, profile, parentLabel);</span>
+<span class="nc" id="L90">      } catch (final Exception exception) {</span>
+<span class="nc" id="L91">        log.warn(&quot;error fetch parent exception! parentApplication:{}, profile:{}, parentLabel:{}&quot;,</span>
+            parentApplication, profile, parentLabel, exception);
+<span class="nc" id="L93">        throw exception;</span>
+<span class="nc" id="L94">      }</span>
+
+<span class="nc bnc" id="L96" title="All 2 branches missed.">      if (result == null) {</span>
+<span class="nc" id="L97">        result = found;</span>
+      } else {
+<span class="nc" id="L99">        result.getPropertySources().addAll(found.getPropertySources());</span>
+      }
+    }
+<span class="nc" id="L102">    return result;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>
