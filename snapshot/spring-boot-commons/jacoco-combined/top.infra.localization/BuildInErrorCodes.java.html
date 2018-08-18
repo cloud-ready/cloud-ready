@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BuildInErrorCodes.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Combined</a> &gt; <a href="index.source.html" class="el_package">top.infra.localization</a> &gt; <span class="el_source">BuildInErrorCodes.java</span></div><h1>BuildInErrorCodes.java</h1><pre class="source lang-java linenums">package top.infra.localization;
+
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.FORBIDDEN;
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
+import static org.springframework.http.HttpStatus.TOO_MANY_REQUESTS;
+
+import org.springframework.http.HttpStatus;
+
+import top.infra.core.ErrorCode;
+import top.infra.core.ErrorMessage;
+
+/**
+ * Created by zhuowan on 2016/11/20 22:56.
+ * Description:
+ */
+<span class="nc" id="L17">public enum BuildInErrorCodes implements ErrorCode {</span>
+
+<span class="nc" id="L19">  AUTHORIZATION_FAILED(BuildInErrorMessages.AUTHORIZATION_FAILED, FORBIDDEN.value()), //</span>
+<span class="nc" id="L20">  ILLEGAL_REQUEST(BuildInErrorMessages.ILLEGAL_REQUEST, BAD_REQUEST.value()), //</span>
+<span class="nc" id="L21">  OK(BuildInErrorMessages.OK, HttpStatus.OK.value()), //</span>
+<span class="nc" id="L22">  RATE_LIMITATION_REACHED(BuildInErrorMessages.RATE_LIMITATION_REACHED, TOO_MANY_REQUESTS.value()), //</span>
+<span class="nc" id="L23">  SERVER_ERROR(BuildInErrorMessages.SERVER_ERROR, INTERNAL_SERVER_ERROR.value());</span>
+
+  private final ErrorMessage message;
+  private final int value;
+
+<span class="nc" id="L28">  BuildInErrorCodes(final ErrorMessage message, final int value) {</span>
+<span class="nc" id="L29">    this.message = message;</span>
+<span class="nc" id="L30">    this.value = value;</span>
+<span class="nc" id="L31">  }</span>
+
+  @Override
+  public String getName() {
+<span class="nc" id="L35">    return this.name();</span>
+  }
+
+  @Override
+  public int getValue() {
+<span class="nc" id="L40">    return this.value;</span>
+  }
+
+  @Override
+  public ErrorMessage getMessage() {
+<span class="nc" id="L45">    return this.message;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

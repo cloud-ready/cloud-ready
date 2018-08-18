@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LocalizedMessages.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spring-boot-commons</a> &gt; <a href="index.source.html" class="el_package">top.infra.localization</a> &gt; <span class="el_source">LocalizedMessages.java</span></div><h1>LocalizedMessages.java</h1><pre class="source lang-java linenums">package top.infra.localization;
+
+import org.reflections.Reflections;
+import org.springframework.context.i18n.LocaleContextHolder;
+
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+
+import top.infra.core.ErrorMessage;
+
+/**
+ * Created by zhuowan on 2018/3/30 18:04.
+ * Description:
+ */
+<span class="nc" id="L17">public class LocalizedMessages {</span>
+
+  private transient static final Map&lt;MessageLocale, Map&lt;String, String&gt;&gt; messageCache;
+<span class="nc" id="L20">  private static boolean initialized = false;</span>
+
+  static {
+<span class="nc" id="L23">    messageCache = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L24">    init();</span>
+<span class="nc" id="L25">  }</span>
+
+  /**
+   * 1. 第一步加载所有的locales及所有的messages
+   * 2. 获取message优先级：
+   * priority 1: Forced 强制加载的类型message
+   * priority 2: 指定类型的message类型
+   * priority 3: 默认的message类型 （目前把US当作默认类型）
+   * priority 4: 抛出异常
+   */
+  public static String getMessageByLocale(final ErrorMessage message, final Locale locale) {
+<span class="nc" id="L36">    String resultMsg = getMessageByLocaleAndMessage(message, getLocale(locale));</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">    if (resultMsg != null) {</span>
+<span class="nc" id="L38">      return resultMsg;</span>
+    }
+<span class="nc" id="L40">    throw new RuntimeException(&quot;Invalid common locale message usage&quot;);</span>
+  }
+
+  /**
+   * 初始化所有message信息
+   */
+  private static void init() {
+<span class="nc bnc" id="L47" title="All 2 branches missed.">    if (!initialized) {</span>
+<span class="nc" id="L48">      final Reflections reflections = new Reflections();</span>
+<span class="nc" id="L49">      final Set&lt;Class&lt;?&gt;&gt; bundles = reflections.getTypesAnnotatedWith(LocalizedMessageBundle.class);</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">      for (final MessageLocale locale : MessageLocale.values()) { // all locales</span>
+<span class="nc" id="L51">        final Map&lt;String, String&gt; enumConstants = new HashMap&lt;&gt;();</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">        for (final Class bundle : bundles) {</span>
+<span class="nc" id="L53">          final LocalizedMessageBundle annotation = (LocalizedMessageBundle) bundle.getAnnotation(LocalizedMessageBundle.class);</span>
+<span class="nc" id="L54">          final MessageLocale bundleLocale = annotation.value();</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">          if (locale == bundleLocale) {</span>
+<span class="nc" id="L56">            arrayToMap(enumConstants, bundle.getEnumConstants());</span>
+          }
+<span class="nc" id="L58">        }</span>
+<span class="nc" id="L59">        messageCache.putIfAbsent(locale, enumConstants);</span>
+      }
+<span class="nc" id="L61">      initialized = true;</span>
+    }
+<span class="nc" id="L63">  }</span>
+
+  private static void arrayToMap(final Map&lt;String, String&gt; map, final Object[] enums) {
+<span class="nc bnc" id="L66" title="All 4 branches missed.">    if (map != null &amp;&amp; enums != null) {</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">      for (final Object enu : enums) {</span>
+<span class="nc" id="L68">        final ErrorMessage message = (ErrorMessage) enu;</span>
+<span class="nc" id="L69">        map.putIfAbsent(message.getName(), message.getText());</span>
+      }
+    }
+<span class="nc" id="L72">  }</span>
+
+  private static MessageLocale getLocale(final Locale locale) {
+<span class="nc bnc" id="L75" title="All 2 branches missed.">    final String country = locale != null ? locale.getCountry() : LocaleContextHolder.getLocale().getCountry();</span>
+<span class="nc" id="L76">    return MessageLocale.of(country);</span>
+  }
+
+  private static String getMessageByLocaleAndMessage(ErrorMessage message, MessageLocale messageLocale) {
+    //priority 1 Forced messageLocale Message
+<span class="nc" id="L81">    String finalMessage = messageCache.get(MessageLocale.FORCED).get(message.getName());</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">    if (finalMessage == null) {</span>
+      //priority 2 Specific messageLocale message
+<span class="nc" id="L84">      finalMessage = messageCache.get(messageLocale).get(message.getName());</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">      if (finalMessage == null) {</span>
+        //priority 3 Default message
+<span class="nc" id="L87">        finalMessage = messageCache.get(MessageLocale.DEFAULT).get(message.getName());</span>
+      }
+    }
+<span class="nc" id="L90">    return finalMessage;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

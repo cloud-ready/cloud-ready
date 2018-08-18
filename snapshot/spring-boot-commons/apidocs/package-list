@@ -1,1 +1,3 @@
-top.infra.cloudready.boot
+top.infra.core
+top.infra.localization
+top.infra.web.servlet.handler

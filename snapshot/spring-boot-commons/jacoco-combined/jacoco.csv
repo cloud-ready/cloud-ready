@@ -1,4 +1,11 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-Combined,top.infra.cloudready.boot,OrderedHandlerInterceptorWebMvcConfigureAdapter,4,26,0,0,0,8,1,4,1,4
-Combined,top.infra.cloudready.boot,OrderedHandlerInterceptorAdapter,0,3,0,0,0,1,0,1,0,1
-Combined,top.infra.cloudready.boot,OrderedHandlerInterceptor,106,15,16,0,2,3,15,3,7,3
+Combined,top.infra.localization,BuildInErrorMessages,95,0,0,0,13,0,4,0,4,0
+Combined,top.infra.localization,BuildInErrorCodes,89,0,0,0,13,0,5,0,5,0
+Combined,top.infra.localization,LocalizedMessages,166,0,22,0,36,0,18,0,7,0
+Combined,top.infra.localization,MessageLocale,80,0,0,0,13,0,4,0,4,0
+Combined,top.infra.web.servlet.handler,OrderedHandlerInterceptor,106,15,16,0,2,3,15,3,7,3
+Combined,top.infra.web.servlet.handler,OrderedHandlerInterceptorWebMvcConfigureAdapter,4,26,0,0,0,8,1,4,1,4
+Combined,top.infra.web.servlet.handler,OrderedHandlerInterceptorAdapter,0,3,0,0,0,1,0,1,0,1
+Combined,top.infra.core,ErrorCode,5,0,0,0,1,0,1,0,1,0
+Combined,top.infra.core,ExpectedExceptionWithCode,46,0,6,0,10,0,7,0,4,0
+Combined,top.infra.core,ExpectedException,23,0,0,0,10,0,5,0,5,0

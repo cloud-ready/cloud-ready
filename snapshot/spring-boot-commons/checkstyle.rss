@@ -25,9 +25,9 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2018</copyright>
     <item>
-      <title>File: 2,
+      <title>File: 7,
              Errors: 0,
-             Warnings: 4,
+             Warnings: 27,
              Infos: 0
       </title>
             <link>https://github.com/ci-and-cd/maven-build/spring-boot-commons/checkstyle.html</link>
@@ -46,7 +46,35 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="https://github.com/ci-and-cd/maven-build/spring-boot-commons/checkstyle.html#top.infra.cloudready.boot.OrderedHandlerInterceptorWebMvcConfigureAdapter.java">top/infra/cloudready/boot/OrderedHandlerInterceptorWebMvcConfigureAdapter.java</a>
+                  <a href="https://github.com/ci-and-cd/maven-build/spring-boot-commons/checkstyle.html#top.infra.localization.LocalizedMessageBundle.java">top/infra/localization/LocalizedMessageBundle.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  7
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/ci-and-cd/maven-build/spring-boot-commons/checkstyle.html#top.infra.localization.LocalizedMessages.java">top/infra/localization/LocalizedMessages.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  7
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/ci-and-cd/maven-build/spring-boot-commons/checkstyle.html#top.infra.web.servlet.handler.OrderedHandlerInterceptor.java">top/infra/web/servlet/handler/OrderedHandlerInterceptor.java</a>
                 </td>
                 <td>
                   0
@@ -60,13 +88,55 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/ci-and-cd/maven-build/spring-boot-commons/checkstyle.html#top.infra.cloudready.boot.OrderedHandlerInterceptor.java">top/infra/cloudready/boot/OrderedHandlerInterceptor.java</a>
+                  <a href="https://github.com/ci-and-cd/maven-build/spring-boot-commons/checkstyle.html#top.infra.core.ExpectedExceptionWithCode.java">top/infra/core/ExpectedExceptionWithCode.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/ci-and-cd/maven-build/spring-boot-commons/checkstyle.html#top.infra.web.servlet.handler.OrderedHandlerInterceptorWebMvcConfigureAdapter.java">top/infra/web/servlet/handler/OrderedHandlerInterceptorWebMvcConfigureAdapter.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
                   2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/ci-and-cd/maven-build/spring-boot-commons/checkstyle.html#top.infra.localization.MessageLocale.java">top/infra/localization/MessageLocale.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/ci-and-cd/maven-build/spring-boot-commons/checkstyle.html#top.infra.core.ExpectedException.java">top/infra/core/ExpectedException.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
                 </td>
                 <td>
                   0
