@@ -35,7 +35,7 @@
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>  
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>    @Override
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> afterCompletion(<strong class="jxr_keyword">final</strong> HttpServletRequest req, <strong class="jxr_keyword">final</strong> HttpServletResponse resp, <strong class="jxr_keyword">final</strong> Object o, <strong class="jxr_keyword">final</strong> Exception ex) <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>      log.info(<span class="jxr_string">"afterCompletion"</span>, <strong class="jxr_keyword">this</strong>.count.incrementAndGet());
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>      log.info(<span class="jxr_string">"afterCompletion {}"</span>, <strong class="jxr_keyword">this</strong>.count.incrementAndGet());
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>    }
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>  
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>    @Override
