@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GenericContainerInitializer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Combined</a> &gt; <a href="index.source.html" class="el_package">top.infra.test.containers</a> &gt; <span class="el_source">GenericContainerInitializer.java</span></div><h1>GenericContainerInitializer.java</h1><pre class="source lang-java linenums">package top.infra.test.containers;
+
+import com.google.common.collect.Maps;
+
+import lombok.SneakyThrows;
+
+import org.springframework.context.ApplicationContextInitializer;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.testcontainers.containers.GenericContainer;
+
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.function.BiFunction;
+
+<span class="fc" id="L15">public class GenericContainerInitializer implements ApplicationContextInitializer&lt;ConfigurableApplicationContext&gt; {</span>
+
+<span class="fc" id="L17">  private static final Map&lt;GenericContainer, BiFunction&lt;GenericContainer, ConfigurableApplicationContext, Void&gt;&gt; containers = Maps.newLinkedHashMap();</span>
+
+  public static void onInitialize(
+      final GenericContainer container, //
+      final BiFunction&lt;GenericContainer, ConfigurableApplicationContext, Void&gt; callback //
+  ) {
+<span class="fc" id="L23">    containers.put(container, callback);</span>
+<span class="fc" id="L24">  }</span>
+
+<span class="pc" id="L26">  @SneakyThrows</span>
+  @Override
+  public void initialize(final ConfigurableApplicationContext applicationContext) {
+    for (final Entry&lt;GenericContainer, BiFunction&lt;GenericContainer, ConfigurableApplicationContext, Void&gt;&gt; entry :
+<span class="fc bfc" id="L30" title="All 2 branches covered.">        containers.entrySet()) {</span>
+<span class="fc" id="L31">      final GenericContainer container = entry.getKey();</span>
+<span class="pc bpc" id="L32" title="1 of 2 branches missed.">      if (container.getContainerId() != null) {</span>
+<span class="fc" id="L33">        final BiFunction&lt;GenericContainer, ConfigurableApplicationContext, Void&gt; callback = entry.getValue();</span>
+<span class="fc" id="L34">        callback.apply(container, applicationContext);</span>
+      }
+<span class="fc" id="L36">    }</span>
+<span class="fc" id="L37">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>
