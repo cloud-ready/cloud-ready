@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GitFileConfigUserDetailsService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spring-cloud-config-server</a> &gt; <a href="index.source.html" class="el_package">cn.home1.cloud.config.server.security</a> &gt; <span class="el_source">GitFileConfigUserDetailsService.java</span></div><h1>GitFileConfigUserDetailsService.java</h1><pre class="source lang-java linenums">package cn.home1.cloud.config.server.security;
+
+import static cn.home1.cloud.config.server.util.Consts.DOT_ENV;
+import static cn.home1.cloud.config.server.util.Consts.PRIVILEGE_ENV_PROFILE_;
+import static cn.home1.cloud.config.server.util.Consts.PRIVILEGE_ENV_PROFILE_WILDCARD;
+import static cn.home1.cloud.config.server.util.EnvironmentUtils.getConfigPassword;
+import static java.util.stream.Collectors.toList;
+
+import com.google.common.collect.ImmutableList;
+
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.cloud.config.environment.Environment;
+import org.springframework.cloud.config.server.environment.EnvironmentController;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Optional;
+import java.util.regex.Pattern;
+
+/**
+ * config-server-client use the password configured in GIT. the user name must be the app name.
+ */
+<span class="nc" id="L32">@Slf4j</span>
+<span class="nc" id="L33">public class GitFileConfigUserDetailsService implements UserDetailsService {</span>
+
+<span class="nc" id="L35">    private static final Pattern PATTERN_AT = Pattern.compile(&quot;@&quot;);</span>
+
+<span class="nc" id="L37">    private static final Collection&lt;? extends GrantedAuthority&gt; ANONYMOUS_AUTHORITY = ImmutableList.of();</span>
+
+<span class="nc" id="L39">    private static final Collection&lt;? extends GrantedAuthority&gt; HOOK_AUTHORITY =</span>
+<span class="nc" id="L40">        ImmutableList.of(new SimpleGrantedAuthority(&quot;ROLE_&quot; + Role.HOOK.toString()));</span>
+
+<span class="nc" id="L42">    private static final GrantedAuthority USER_AUTHORITY = new SimpleGrantedAuthority( //</span>
+<span class="nc" id="L43">        &quot;ROLE_&quot; + Role.USER.toString());</span>
+
+<span class="nc" id="L45">    @Setter</span>
+    private ConfigSecurity configSecurity;
+
+<span class="nc" id="L48">    @Setter</span>
+    private String defaultLabel;
+
+<span class="nc" id="L51">    @Setter</span>
+    private EnvironmentController environmentController;
+
+<span class="nc" id="L54">    @Setter</span>
+    private PrivilegedUserProperties privilegedUserProperties;
+
+    @Override
+    public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
+<span class="nc bnc" id="L59" title="All 2 branches missed.">        if (username == null) {</span>
+<span class="nc" id="L60">            return new User(&quot;anonymous&quot;, &quot;&quot;, ANONYMOUS_AUTHORITY);</span>
+        }
+
+<span class="nc bnc" id="L63" title="All 2 branches missed.">        if (username.equals(this.privilegedUserProperties.getAdminName())) {</span>
+<span class="nc" id="L64">            final Collection&lt;? extends GrantedAuthority&gt; adminAuthority = this.privilegedUserProperties.getAdminRoles() //</span>
+<span class="nc" id="L65">                .stream().map(role -&gt; new SimpleGrantedAuthority(&quot;ROLE_&quot; + role)).collect(toList());</span>
+<span class="nc" id="L66">            return new User(username, this.privilegedUserProperties.getAdminPassword(), adminAuthority);</span>
+        }
+
+<span class="nc bnc" id="L69" title="All 2 branches missed.">        if (username.equals(this.privilegedUserProperties.getHookName())) {</span>
+<span class="nc" id="L70">            return new User(username, this.privilegedUserProperties.getHookPassword(), HOOK_AUTHORITY);</span>
+        }
+
+        // username is `spring.application.name` or `spring.application.name@{profile.env}`
+        final String application;
+        final String profileToAuth;
+        final Optional&lt;GrantedAuthority&gt; privilege; // privilege of environment profile: can be specific one, none or anyone
+<span class="nc bnc" id="L77" title="All 4 branches missed.">        if (username.contains(&quot;@&quot;) &amp;&amp; username.endsWith(DOT_ENV)) {</span>
+<span class="nc" id="L78">            final Iterator&lt;String&gt; parts = PATTERN_AT.splitAsStream(username).iterator();</span>
+<span class="nc" id="L79">            application = parts.next();</span>
+<span class="nc" id="L80">            profileToAuth = parts.next();</span>
+<span class="nc" id="L81">            privilege = Optional.of(new SimpleGrantedAuthority(PRIVILEGE_ENV_PROFILE_ + profileToAuth));</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">        } else if (username.endsWith(&quot;@default&quot;)) {</span>
+<span class="nc" id="L83">            final Iterator&lt;String&gt; parts = PATTERN_AT.splitAsStream(username).iterator();</span>
+<span class="nc" id="L84">            application = parts.next();</span>
+<span class="nc" id="L85">            profileToAuth = parts.next();</span>
+<span class="nc" id="L86">            privilege = Optional.empty();</span>
+<span class="nc" id="L87">        } else {</span>
+<span class="nc" id="L88">            application = username;</span>
+<span class="nc" id="L89">            profileToAuth = &quot;default&quot;;</span>
+<span class="nc" id="L90">            privilege = Optional.of(new SimpleGrantedAuthority(PRIVILEGE_ENV_PROFILE_WILDCARD));</span>
+        }
+<span class="nc bnc" id="L92" title="All 2 branches missed.">        final Collection&lt;GrantedAuthority&gt; authorities = privilege.isPresent() ? //</span>
+<span class="nc" id="L93">            ImmutableList.of(USER_AUTHORITY, privilege.get()) : ImmutableList.of(USER_AUTHORITY);</span>
+
+
+<span class="nc" id="L96">        final String expectedPassword = this.findExpectedPassword(application, profileToAuth);</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">        if (expectedPassword == null) {</span>
+<span class="nc" id="L98">            throw new BadCredentialsException(</span>
+                &quot;can not find 'spring.cloud.config.password' application: &quot; + application + &quot;, profile: &quot; + profileToAuth);
+        }
+<span class="nc" id="L101">        final String rawExpectedPassword = this.configSecurity.decryptProperty(expectedPassword);</span>
+
+<span class="nc" id="L103">        return new User(application, rawExpectedPassword, authorities);</span>
+    }
+
+    String findExpectedPassword(final String application, final String profile) {
+        final String result;
+
+<span class="nc bnc" id="L109" title="All 2 branches missed.">        if (this.defaultLabel != null) {</span>
+<span class="nc" id="L110">            final String found = this.findExpectedPassword(application, profile, this.defaultLabel);</span>
+<span class="nc bnc" id="L111" title="All 2 branches missed.">            result = found != null ? found : this.findExpectedPassword(application, profile, null);</span>
+<span class="nc" id="L112">        } else {</span>
+<span class="nc" id="L113">            result = this.findExpectedPassword(application, profile, null);</span>
+        }
+
+<span class="nc" id="L116">        return result;</span>
+    }
+
+    String findExpectedPassword(final String application, final String profile, final String label) {
+        final Environment environment;
+
+        try {
+<span class="nc" id="L123">            environment = this.environmentController.labelled(application, profile, label);</span>
+<span class="nc" id="L124">        } catch (final Exception exception) {</span>
+<span class="nc" id="L125">            log.warn(&quot;error on loadUserByUsername from git configuration file, username: {}&quot;, //</span>
+                application, exception);
+<span class="nc" id="L127">            throw exception;</span>
+<span class="nc" id="L128">        }</span>
+
+<span class="nc bnc" id="L130" title="All 2 branches missed.">        if (environment == null) {</span>
+<span class="nc" id="L131">            throw new UsernameNotFoundException(&quot;can not find the project by username: &quot; + application);</span>
+        }
+
+<span class="nc" id="L134">        return getConfigPassword(environment);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

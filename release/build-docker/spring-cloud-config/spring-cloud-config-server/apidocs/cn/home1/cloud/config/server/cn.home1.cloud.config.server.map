@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./ConfigServer.html" title="cn.home1.cloud.config.server.ConfigServer" alt="" coords="15,11,651,157"/>
+<area shape="rect" id="node1" href="./ConfigServer.html" title="&lt;TABLE&gt;" alt="" coords="5,5,662,163"/>
+<area shape="rect" id="node2_1" href="./ConfigServer.HealthIndicatorConfiguration.html" title="cn.home1.cloud.config.server.ConfigServer.HealthIndicatorConfiguration" alt="" coords="697,37,1279,131"/>
+<area shape="rect" id="node2" href="./ConfigServer.HealthIndicatorConfiguration.html" title="&lt;TABLE&gt;" alt="" coords="686,31,1290,137"/>
+<area shape="rect" id="node3_2" href="./ConfigServer.ConfigServerConfiguration.html" title="cn.home1.cloud.config.server.ConfigServer.ConfigServerConfiguration" alt="" coords="1325,37,1953,131"/>
+<area shape="rect" id="node3" href="./ConfigServer.ConfigServerConfiguration.html" title="&lt;TABLE&gt;" alt="" coords="1314,31,1963,137"/>
+</map>
