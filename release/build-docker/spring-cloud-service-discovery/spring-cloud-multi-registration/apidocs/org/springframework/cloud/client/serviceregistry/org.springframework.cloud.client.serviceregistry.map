@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./AutoMultiServiceRegistrationAutoConfiguration.html" title="org.springframework.cloud.client.serviceregistry.AutoMultiServiceRegistrationAutoConfiguration" alt="" coords="15,11,329,106"/>
+<area shape="rect" id="node1" href="./AutoMultiServiceRegistrationAutoConfiguration.html" title="&lt;TABLE&gt;" alt="" coords="5,6,339,111"/>
+<area shape="rect" id="node2_1" href="./MultiServiceRegistryAutoConfiguration.html" title="org.springframework.cloud.client.serviceregistry.MultiServiceRegistryAutoConfiguration" alt="" coords="374,20,639,97"/>
+<area shape="rect" id="node2" href="./MultiServiceRegistryAutoConfiguration.html" title="&lt;TABLE&gt;" alt="" coords="363,15,650,103"/>
+<area shape="rect" id="node3_2" href="./MultiServiceRegistryAutoConfiguration.MultiServiceRegistryEndpointConfiguration.html" title="org.springframework.cloud.client.serviceregistry.MultiServiceRegistryAutoConfiguration.MultiServiceRegistryEndpointConfiguration" alt="" coords="685,11,1310,106"/>
+<area shape="rect" id="node3" href="./MultiServiceRegistryAutoConfiguration.MultiServiceRegistryEndpointConfiguration.html" title="&lt;TABLE&gt;" alt="" coords="674,6,1321,111"/>
+<area shape="rect" id="node4_3" href="./AutoMultiServiceRegistrationConfiguration.html" title="org.springframework.cloud.client.serviceregistry.AutoMultiServiceRegistrationConfiguration" alt="" coords="1355,20,1642,97"/>
+<area shape="rect" id="node4" href="./AutoMultiServiceRegistrationConfiguration.html" title="&lt;TABLE&gt;" alt="" coords="1345,15,1653,103"/>
+</map>
