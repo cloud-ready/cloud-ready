@@ -12,19 +12,19 @@ import java.util.List;
  */
 <span class="fc" id="L13">public abstract class OrderedHandlerInterceptorWebMvcConfigureAdapter extends WebMvcConfigurerAdapter {</span>
 
-  private static Comparator&lt;OrderedHandlerInterceptor&lt;?&gt;&gt; comparator() {
-<span class="pc" id="L16">    return Comparator.comparingInt(i -&gt; i.getInterceptor().getOrder());</span>
-  }
+    private static Comparator&lt;OrderedHandlerInterceptor&lt;?&gt;&gt; comparator() {
+<span class="pc" id="L16">        return Comparator.comparingInt(i -&gt; i.getInterceptor().getOrder());</span>
+    }
 
-  public abstract List&lt;OrderedHandlerInterceptor&lt;?&gt;&gt; addOrderedInterceptors();
+    public abstract List&lt;OrderedHandlerInterceptor&lt;?&gt;&gt; addOrderedInterceptors();
 
-  @Override
-  public void addInterceptors(final InterceptorRegistry registry) {
-<span class="fc" id="L23">    final List&lt;OrderedHandlerInterceptor&lt;?&gt;&gt; interceptors = this.addOrderedInterceptors();</span>
-<span class="fc" id="L24">    interceptors</span>
-<span class="fc" id="L25">        .stream()</span>
-<span class="fc" id="L26">        .sorted(comparator())</span>
-<span class="fc" id="L27">        .forEach(i -&gt; registry.addInterceptor(i.getInterceptor()).addPathPatterns(i.getPatterns()));</span>
-<span class="fc" id="L28">  }</span>
+    @Override
+    public void addInterceptors(final InterceptorRegistry registry) {
+<span class="fc" id="L23">        final List&lt;OrderedHandlerInterceptor&lt;?&gt;&gt; interceptors = this.addOrderedInterceptors();</span>
+<span class="fc" id="L24">        interceptors</span>
+<span class="fc" id="L25">            .stream()</span>
+<span class="fc" id="L26">            .sorted(comparator())</span>
+<span class="fc" id="L27">            .forEach(i -&gt; registry.addInterceptor(i.getInterceptor()).addPathPatterns(i.getPatterns()));</span>
+<span class="fc" id="L28">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

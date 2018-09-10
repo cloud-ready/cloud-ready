@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.Collection;
 
 
 /**
@@ -13,19 +12,19 @@ import java.util.Collection;
  *
  * @param &lt;T&gt; Interceptor type
  */
-<span class="nc bnc" id="L16" title="All 16 branches missed.">@Data</span>
-<span class="nc" id="L17">@NoArgsConstructor</span>
-<span class="fc" id="L18">@AllArgsConstructor</span>
+<span class="nc bnc" id="L15" title="All 16 branches missed.">@Data</span>
+<span class="nc" id="L16">@NoArgsConstructor</span>
+<span class="fc" id="L17">@AllArgsConstructor</span>
 public class OrderedHandlerInterceptor&lt;T extends OrderedHandlerInterceptorAdapter&gt; implements Serializable {
 
-  /**
-   * ordered interceptor
-   */
-<span class="fc" id="L24">  private T interceptor;</span>
+    /**
+     * ordered interceptor
+     */
+<span class="fc" id="L23">    private T interceptor;</span>
 
-  /**
-   * Add URL patterns to which the registered interceptor should apply to.
-   */
-<span class="fc" id="L29">  private String[] patterns;</span>
+    /**
+     * Add URL patterns to which the registered interceptor should apply to.
+     */
+<span class="fc" id="L28">    private String[] patterns;</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>
