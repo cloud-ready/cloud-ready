@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ConfigSecurity.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Combined</a> &gt; <a href="index.source.html" class="el_package">cn.home1.cloud.config.server.security</a> &gt; <span class="el_source">ConfigSecurity.java</span></div><h1>ConfigSecurity.java</h1><pre class="source lang-java linenums">package cn.home1.cloud.config.server.security;
+
+import static com.google.common.base.Preconditions.checkArgument;
+import static java.lang.Boolean.FALSE;
+import static org.apache.commons.lang3.RandomStringUtils.random;
+import static org.apache.commons.lang3.StringUtils.isNotBlank;
+import static org.apache.commons.lang3.StringUtils.isNotEmpty;
+import static org.joda.time.DateTime.now;
+
+import com.google.common.collect.ImmutableMap;
+
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
+
+import lombok.Setter;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.config.server.encryption.TextEncryptorLocator;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.encrypt.TextEncryptor;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.security.SecureRandom;
+import java.util.Iterator;
+import java.util.regex.Pattern;
+
+import javax.annotation.PostConstruct;
+
+<span class="fc" id="L33">@Slf4j</span>
+public class ConfigSecurity {
+
+  private static final int BCRYPT_STRENGTH = -1;
+
+<span class="fc" id="L38">  private static final Pattern CONCAT_PATTERN = Pattern.compile(&quot;:&quot;);</span>
+
+  private static final String TOKEN_CLAIM = &quot;encrypted&quot;;
+  private static final int TOKEN_EXPIRE_DAYS = 365 * 5;
+  private static final String TOKEN_ISSUER = &quot;config-server&quot;;
+  static final String TOKEN_PREFIX = &quot;{token}&quot;;
+
+  private final PasswordEncoder passwordEncoder;
+
+<span class="fc" id="L47">  @Setter</span>
+  private TextEncryptor encryptor;
+
+  private Algorithm hmacAlgorithm;
+
+<span class="fc" id="L52">  @Setter</span>
+  @Value(&quot;${spring.cloud.config.encrypt.hmac-secret:secret}&quot;)
+  private String hmacSecret;
+
+  private JWTVerifier hmacVerifier;
+
+<span class="fc" id="L58">  @Setter</span>
+  @Value(&quot;${security.basic.enabled:true}&quot;)
+  private Boolean securityEnabled;
+
+<span class="fc" id="L62">  public ConfigSecurity() {</span>
+<span class="fc" id="L63">    this.passwordEncoder = new BCryptPasswordEncoder(BCRYPT_STRENGTH);</span>
+<span class="fc" id="L64">  }</span>
+
+  /**
+   * By default, this is a {@link org.springframework.cloud.config.server.encryption.KeyStoreTextEncryptorLocator} instance.
+   */
+  @Autowired
+  public void setEncryptorLocator(final TextEncryptorLocator encryptorLocator) {
+<span class="nc" id="L71">    this.encryptor = encryptorLocator.locate(ImmutableMap.of());</span>
+<span class="nc" id="L72">  }</span>
+
+  @PostConstruct
+<span class="pc" id="L75">  @SneakyThrows</span>
+  public void init() {
+<span class="fc" id="L77">    this.hmacAlgorithm = Algorithm.HMAC256(this.hmacSecret);</span>
+<span class="fc" id="L78">    this.hmacVerifier = JWT.require(this.hmacAlgorithm)</span>
+<span class="fc" id="L79">        .withIssuer(TOKEN_ISSUER)</span>
+<span class="fc" id="L80">        .build(); //Reusable verifier instance</span>
+<span class="fc" id="L81">  }</span>
+
+  /**
+   * Generate a password (token) valid only for given application to access a given parent
+   *
+   * @param application       from child config
+   * @param parentApplication from child config
+   * @param parentPassword    from child config
+   * @return token valid for application only
+   */
+  public String encryptParentPassword(final String application, final String parentApplication, final String parentPassword) {
+    //if (!this.securityEnabled) {
+    //  return &quot;&quot;;
+    //}
+
+<span class="fc" id="L96">    checkArgument(isNotBlank(application), &quot;blank application&quot;);</span>
+<span class="fc" id="L97">    checkArgument(isNotBlank(application), &quot;blank parentApplication&quot;);</span>
+<span class="fc" id="L98">    checkArgument(isNotBlank(application), &quot;blank parentPassword&quot;);</span>
+
+    // digest/hash
+    // random string (length 16)
+<span class="fc" id="L102">    final String randomString = random(16, 0, 0, true, true, null, new SecureRandom());</span>
+<span class="fc" id="L103">    final String encodedApplication = this.passwordEncoder.encode(application);</span>
+<span class="fc" id="L104">    final String encodedParentApplication = this.passwordEncoder.encode(parentApplication);</span>
+<span class="fc" id="L105">    final String encodedParentPassword = this.passwordEncoder.encode(parentPassword);</span>
+
+    // concat
+<span class="fc" id="L108">    final String plainText = randomString + &quot;:&quot; + encodedApplication + &quot;:&quot; + encodedParentApplication + &quot;:&quot; + encodedParentPassword;</span>
+
+    // encrypt
+<span class="fc" id="L111">    final String encrypted = this.encryptor.encrypt(plainText);</span>
+
+    // sign
+<span class="fc" id="L114">    final String token = JWT.create()</span>
+<span class="fc" id="L115">        .withIssuer(TOKEN_ISSUER)</span>
+<span class="fc" id="L116">        .withClaim(TOKEN_CLAIM, encrypted)</span>
+<span class="fc" id="L117">        .withExpiresAt(now().plusDays(TOKEN_EXPIRE_DAYS).toDate())</span>
+<span class="fc" id="L118">        .sign(this.hmacAlgorithm);</span>
+
+<span class="fc" id="L120">    log.info(&quot;Granted parent ({}) config access for application '{}', token: '{}'.&quot;, parentApplication, application, token);</span>
+
+<span class="fc" id="L122">    return TOKEN_PREFIX + token;</span>
+  }
+
+  /**
+   * Verify privilege
+   *
+   * @param application            from context (URL path)
+   * @param parentApplication      from child config
+   * @param token                  from child config
+   * @param expectedParentPassword from parent config (may need to decrypt before verify)
+   * @return whether token, application in token and password in token valid
+   */
+  public Boolean verifyParentPassword(final String application, final String parentApplication, final String token, final String expectedParentPassword) {
+    final Boolean result;
+<span class="pc bpc" id="L136" title="1 of 2 branches missed.">    if (!this.securityEnabled) {</span>
+<span class="nc bnc" id="L137" title="All 4 branches missed.">      result = isNotEmpty(application) &amp;&amp; isNotEmpty(parentApplication);</span>
+    } else {
+<span class="fc" id="L139">      final String rawParentPassword = this.decryptProperty(expectedParentPassword);</span>
+
+<span class="fc bfc" id="L141" title="All 4 branches covered.">      if (isNotEmpty(application) &amp;&amp; isNotEmpty(token)) {</span>
+<span class="fc bfc" id="L142" title="All 2 branches covered.">        if (token.startsWith(TOKEN_PREFIX)) {</span>
+<span class="fc" id="L143">          final String rawToken = token.replace(TOKEN_PREFIX, &quot;&quot;);</span>
+          // verify signature
+<span class="fc" id="L145">          final String encrypted = this.hmacVerifier.verify(rawToken).getClaim(TOKEN_CLAIM).asString();</span>
+
+          // decrypt
+<span class="fc" id="L148">          final String plainText = this.encryptor.decrypt(encrypted);</span>
+
+          // split
+<span class="fc" id="L151">          final Iterator&lt;String&gt; parts = CONCAT_PATTERN.splitAsStream(plainText).iterator();</span>
+<span class="fc" id="L152">          final String random = parts.next();</span>
+<span class="fc" id="L153">          final String encodedApplication = parts.next();</span>
+<span class="fc" id="L154">          final String encodedParentApplication = parts.next();</span>
+<span class="fc" id="L155">          final String encodedParentPassword = parts.next();</span>
+
+          try {
+<span class="fc bfc" id="L158" title="All 2 branches covered.">            result = this.passwordEncoder.matches(application, encodedApplication) &amp;&amp;</span>
+<span class="fc bfc" id="L159" title="All 2 branches covered.">                this.passwordEncoder.matches(parentApplication, encodedParentApplication) &amp;&amp;</span>
+<span class="fc bfc" id="L160" title="All 2 branches covered.">                this.passwordEncoder.matches(rawParentPassword, encodedParentPassword);</span>
+<span class="fc" id="L161">          } catch (final Exception ignored) {</span>
+<span class="fc" id="L162">            return FALSE;</span>
+<span class="fc" id="L163">          }</span>
+<span class="fc" id="L164">        } else {</span>
+<span class="fc" id="L165">          final String rawToken = this.decryptProperty(token);</span>
+<span class="fc" id="L166">          result = this.isPasswordMatch(rawParentPassword, rawToken);</span>
+<span class="fc" id="L167">        }</span>
+      } else {
+<span class="fc bfc" id="L169" title="All 4 branches covered.">        if (isNotEmpty(application) &amp;&amp; isNotEmpty(parentApplication)) {</span>
+<span class="fc" id="L170">          result = this.isPasswordMatch(rawParentPassword, token);</span>
+        } else {
+<span class="fc" id="L172">          result = FALSE;</span>
+        }
+      }
+    }
+<span class="fc" id="L176">    return result;</span>
+  }
+
+  Boolean isPasswordMatch(final String expected, final String actual) {
+<span class="fc bfc" id="L180" title="All 4 branches covered.">    return (expected != null ? expected : &quot;&quot;).equals(actual != null ? actual : &quot;&quot;);</span>
+  }
+
+  String decryptProperty(final String value) {
+<span class="fc" id="L184">    return decryptProperty(value, this.encryptor);</span>
+  }
+
+  static String decryptProperty(final String value, final TextEncryptor encryptor) {
+    final String result;
+<span class="fc bfc" id="L189" title="All 4 branches covered.">    if (isNotBlank(value) &amp;&amp; value.startsWith(&quot;{cipher}&quot;)) {</span>
+<span class="fc" id="L190">      final String base64 = value.replaceAll(&quot;\\{[^}]+\\}&quot;, &quot;&quot;);</span>
+<span class="fc" id="L191">      result = encryptor.decrypt(base64);</span>
+<span class="fc" id="L192">    } else {</span>
+<span class="fc" id="L193">      result = value;</span>
+    }
+<span class="fc" id="L195">    return result;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>
