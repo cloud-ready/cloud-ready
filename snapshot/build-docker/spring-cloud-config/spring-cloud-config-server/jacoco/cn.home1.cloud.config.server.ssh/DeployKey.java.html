@@ -17,52 +17,52 @@ import java.io.FileReader;
 <span class="nc" id="L17">@Slf4j</span>
 public class DeployKey {
 
-  private final String privateKeyLocation;
+    private final String privateKeyLocation;
 
-<span class="nc" id="L22">  public DeployKey(final String privateKeyLocation) {</span>
-<span class="nc" id="L23">    this.privateKeyLocation = privateKeyLocation;</span>
-<span class="nc" id="L24">  }</span>
+<span class="nc" id="L22">    public DeployKey(final String privateKeyLocation) {</span>
+<span class="nc" id="L23">        this.privateKeyLocation = privateKeyLocation;</span>
+<span class="nc" id="L24">    }</span>
 
-  public void setUp(final SshUriProperties sshUriProperties) {
-<span class="nc" id="L27">    final String privateKey = this.getPrivateKey();</span>
-
-    // setup ssh client
-<span class="nc bnc" id="L30" title="All 2 branches missed.">    if (sshUriProperties == null) {</span>
-      // setup SshSessionFactory as early as possible, requires @Order(HIGHEST_PRECEDENCE) on Configuration
-      //SshSessionFactory.setInstance(new CustomJschConfigSessionFactory(file));
-
-<span class="nc" id="L34">      System.setProperty(&quot;spring.cloud.config.server.git.private-key&quot;, privateKey);</span>
-<span class="nc" id="L35">      System.setProperty(&quot;spring.cloud.config.server.git.ignore-local-ssh-settings&quot;, &quot;true&quot;);</span>
-    } else {
-<span class="nc" id="L37">      log.info(&quot;ssh uri properties privateKey is not blank: {}&quot;, isNotBlank(sshUriProperties.getPrivateKey()));</span>
-<span class="nc" id="L38">      log.info(&quot;ssh uri properties is ignore local ssh settings: {}&quot;, sshUriProperties.isIgnoreLocalSshSettings());</span>
-<span class="nc" id="L39">      log.info(&quot;ssh uri properties is strict host key checking: {}&quot;, sshUriProperties.isStrictHostKeyChecking());</span>
-
-<span class="nc" id="L41">      sshUriProperties.setPrivateKey(privateKey);</span>
-<span class="nc" id="L42">      sshUriProperties.setIgnoreLocalSshSettings(true);</span>
+    public static String getPrivateKeyPath(final String privateKeyLocation) {
+<span class="nc" id="L27">        return ResourceUtils.findResourceFile(privateKeyLocation, Consts.DATA_DIRECTORY);</span>
     }
-<span class="nc" id="L44">  }</span>
 
-<span class="nc" id="L46">  @SneakyThrows</span>
-  public String getPrivateKey() {
-<span class="nc" id="L48">    return copyToString(new FileReader(new File(this.getPrivateKeyPath())));</span>
-  }
+    public void setUp(final SshUriProperties sshUriProperties) {
+<span class="nc" id="L31">        final String privateKey = this.getPrivateKey();</span>
 
-  public String getPrivateKeyPath() {
-<span class="nc" id="L52">    return getPrivateKeyPath(this.privateKeyLocation);</span>
-  }
+        // setup ssh client
+<span class="nc bnc" id="L34" title="All 2 branches missed.">        if (sshUriProperties == null) {</span>
+            // setup SshSessionFactory as early as possible, requires @Order(HIGHEST_PRECEDENCE) on Configuration
+            //SshSessionFactory.setInstance(new CustomJschConfigSessionFactory(file));
 
-<span class="nc" id="L55">  @SneakyThrows</span>
-  public String getPublicKey() {
-<span class="nc" id="L57">    return copyToString(new FileReader(new File(this.getPublicKeyPath())));</span>
-  }
+<span class="nc" id="L38">            System.setProperty(&quot;spring.cloud.config.server.git.private-key&quot;, privateKey);</span>
+<span class="nc" id="L39">            System.setProperty(&quot;spring.cloud.config.server.git.ignore-local-ssh-settings&quot;, &quot;true&quot;);</span>
+        } else {
+<span class="nc" id="L41">            log.info(&quot;ssh uri properties privateKey is not blank: {}&quot;, isNotBlank(sshUriProperties.getPrivateKey()));</span>
+<span class="nc" id="L42">            log.info(&quot;ssh uri properties is ignore local ssh settings: {}&quot;, sshUriProperties.isIgnoreLocalSshSettings());</span>
+<span class="nc" id="L43">            log.info(&quot;ssh uri properties is strict host key checking: {}&quot;, sshUriProperties.isStrictHostKeyChecking());</span>
 
-  public String getPublicKeyPath() {
-<span class="nc" id="L61">    return this.getPrivateKeyPath() + &quot;.pub&quot;;</span>
-  }
+<span class="nc" id="L45">            sshUriProperties.setPrivateKey(privateKey);</span>
+<span class="nc" id="L46">            sshUriProperties.setIgnoreLocalSshSettings(true);</span>
+        }
+<span class="nc" id="L48">    }</span>
 
-  public static String getPrivateKeyPath(final String privateKeyLocation) {
-<span class="nc" id="L65">    return ResourceUtils.findResourceFile(privateKeyLocation, Consts.DATA_DIRECTORY);</span>
-  }
+<span class="nc" id="L50">    @SneakyThrows</span>
+    public String getPrivateKey() {
+<span class="nc" id="L52">        return copyToString(new FileReader(new File(this.getPrivateKeyPath())));</span>
+    }
+
+    public String getPrivateKeyPath() {
+<span class="nc" id="L56">        return getPrivateKeyPath(this.privateKeyLocation);</span>
+    }
+
+<span class="nc" id="L59">    @SneakyThrows</span>
+    public String getPublicKey() {
+<span class="nc" id="L61">        return copyToString(new FileReader(new File(this.getPublicKeyPath())));</span>
+    }
+
+    public String getPublicKeyPath() {
+<span class="nc" id="L65">        return this.getPrivateKeyPath() + &quot;.pub&quot;;</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

@@ -33,12 +33,12 @@ digraph G {
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + DeployKey(privateKeyLocation : String) </td></tr>
+<tr><td align="left" balign="left"> + getPrivateKeyPath(privateKeyLocation : String) : String </td></tr>
 <tr><td align="left" balign="left"> + setUp(sshUriProperties : SshUriProperties) </td></tr>
 <tr><td align="left" balign="left"> + getPrivateKey() : String </td></tr>
 <tr><td align="left" balign="left"> + getPrivateKeyPath() : String </td></tr>
 <tr><td align="left" balign="left"> + getPublicKey() : String </td></tr>
 <tr><td align="left" balign="left"> + getPublicKeyPath() : String </td></tr>
-<tr><td align="left" balign="left"> + getPrivateKeyPath(privateKeyLocation : String) : String </td></tr>
 		</table></td></tr>
 		</table>>, URL="./DeployKey.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }

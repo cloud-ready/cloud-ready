@@ -15,82 +15,82 @@ import java.util.regex.Pattern;
 @NoArgsConstructor(access = PRIVATE)
 public abstract class EnvironmentUtils {
 
-  public static String getEnvProperty(final Environment environment, final String name) {
-    final String result;
-<span class="nc bnc" id="L20" title="All 4 branches missed.">    if (environment == null || name == null) {</span>
-<span class="nc" id="L21">      result = null;</span>
-    } else {
-<span class="nc" id="L23">      final List&lt;PropertySource&gt; propertySources = environment.getPropertySources();</span>
-<span class="nc bnc" id="L24" title="All 2 branches missed.">      result = propertySources != null ? //</span>
-<span class="nc" id="L25">          propertySources.stream()</span>
-<span class="nc bnc" id="L26" title="All 2 branches missed.">              .filter(propertySource -&gt; getProperty(propertySource, name) != null)</span>
-<span class="nc" id="L27">              .map(propertySource -&gt; getProperty(propertySource, name))</span>
-<span class="nc" id="L28">              .findFirst()</span>
-<span class="nc" id="L29">              .orElse(null) :</span>
-          null;
-    }
-<span class="nc" id="L32">    return result;</span>
-  }
+<span class="nc" id="L18">    private static final Pattern VARIABLE_SUBSTITUTION_PATTERN = Pattern.compile(&quot;\\$\\{(\\w+)\\}&quot;);</span>
 
-  private static String getProperty(final PropertySource propertySource, final String key) {
-    final String result;
-
-<span class="nc" id="L38">    final Map&lt;?, ?&gt; source = propertySource.getSource();</span>
-<span class="nc bnc" id="L39" title="All 2 branches missed.">    if (source == null) {</span>
-<span class="nc" id="L40">      result = null;</span>
-    } else {
-<span class="nc" id="L42">      final Object valueObj = source.get(key);</span>
-<span class="nc bnc" id="L43" title="All 2 branches missed.">      result = valueObj == null ? null : &quot;&quot; + valueObj;</span>
+    public static String getEnvProperty(final Environment environment, final String name) {
+        final String result;
+<span class="nc bnc" id="L22" title="All 4 branches missed.">        if (environment == null || name == null) {</span>
+<span class="nc" id="L23">            result = null;</span>
+        } else {
+<span class="nc" id="L25">            final List&lt;PropertySource&gt; propertySources = environment.getPropertySources();</span>
+<span class="nc bnc" id="L26" title="All 2 branches missed.">            result = propertySources != null ? //</span>
+<span class="nc" id="L27">                propertySources.stream()</span>
+<span class="nc bnc" id="L28" title="All 2 branches missed.">                    .filter(propertySource -&gt; getProperty(propertySource, name) != null)</span>
+<span class="nc" id="L29">                    .map(propertySource -&gt; getProperty(propertySource, name))</span>
+<span class="nc" id="L30">                    .findFirst()</span>
+<span class="nc" id="L31">                    .orElse(null) :</span>
+                null;
+        }
+<span class="nc" id="L34">        return result;</span>
     }
 
-<span class="nc" id="L46">    return result;</span>
-  }
+    private static String getProperty(final PropertySource propertySource, final String key) {
+        final String result;
 
-  public static String getApplicationName(final Environment environment) {
-<span class="nc" id="L50">    return getEnvProperty(environment, &quot;spring.application.name&quot;);</span>
-  }
+<span class="nc" id="L40">        final Map&lt;?, ?&gt; source = propertySource.getSource();</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">        if (source == null) {</span>
+<span class="nc" id="L42">            result = null;</span>
+        } else {
+<span class="nc" id="L44">            final Object valueObj = source.get(key);</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">            result = valueObj == null ? null : &quot;&quot; + valueObj;</span>
+        }
 
-  public static String getConfigPassword(final Environment environment) {
-<span class="nc" id="L54">    return getEnvProperty(environment, &quot;spring.cloud.config.password&quot;);</span>
-  }
-
-  public static String getParentConfigPassword(final Environment environment) {
-<span class="nc" id="L58">    return getEnvProperty(environment, &quot;spring.cloud.config.parent.password&quot;);</span>
-  }
-
-<span class="nc" id="L61">  private static final Pattern VARIABLE_SUBSTITUTION_PATTERN = Pattern.compile(&quot;\\$\\{(\\w+)\\}&quot;);</span>
-
-  public static String getParentApplication(final Environment environment) {
-<span class="nc bnc" id="L64" title="All 2 branches missed.">    if (environment == null) {</span>
-<span class="nc" id="L65">      return null;</span>
+<span class="nc" id="L48">        return result;</span>
     }
 
-<span class="nc" id="L68">    final String evnPropertyValue = getEnvProperty(environment, &quot;spring.cloud.config.parent.application&quot;);</span>
-<span class="nc bnc" id="L69" title="All 2 branches missed.">    if (evnPropertyValue == null) {</span>
-<span class="nc" id="L70">      return null;</span>
+    public static String getApplicationName(final Environment environment) {
+<span class="nc" id="L52">        return getEnvProperty(environment, &quot;spring.application.name&quot;);</span>
     }
 
-<span class="nc" id="L73">    final Matcher matcher = VARIABLE_SUBSTITUTION_PATTERN.matcher(evnPropertyValue);</span>
+    public static String getConfigPassword(final Environment environment) {
+<span class="nc" id="L56">        return getEnvProperty(environment, &quot;spring.cloud.config.password&quot;);</span>
+    }
 
-<span class="nc" id="L75">    String result = evnPropertyValue;</span>
-<span class="nc bnc" id="L76" title="All 2 branches missed.">    while (matcher.find()) {</span>
-<span class="nc" id="L77">      final String name = matcher.group(1);</span>
-<span class="nc" id="L78">      final String value = System.getProperty(name);</span>
-<span class="nc bnc" id="L79" title="All 2 branches missed.">      result = result.replaceAll(&quot;\\$\\{&quot; + name + &quot;\\}&quot;, value == null ? &quot;&quot; : value);</span>
-<span class="nc" id="L80">    }</span>
+    public static String getParentConfigPassword(final Environment environment) {
+<span class="nc" id="L60">        return getEnvProperty(environment, &quot;spring.cloud.config.parent.password&quot;);</span>
+    }
 
-<span class="nc" id="L82">    return result;</span>
-  }
+    public static String getParentApplication(final Environment environment) {
+<span class="nc bnc" id="L64" title="All 2 branches missed.">        if (environment == null) {</span>
+<span class="nc" id="L65">            return null;</span>
+        }
 
-  public static String getParentLabel(final Environment environment, final String label) {
-<span class="nc" id="L86">    final String evnPropertyValue = getEnvProperty(environment, &quot;spring.cloud.config.parent.label&quot;);</span>
-<span class="nc bnc" id="L87" title="All 4 branches missed.">    return evnPropertyValue != null &amp;&amp; label != null ? evnPropertyValue.replace(&quot;{label}&quot;, label) : label;</span>
-  }
+<span class="nc" id="L68">        final String evnPropertyValue = getEnvProperty(environment, &quot;spring.cloud.config.parent.application&quot;);</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">        if (evnPropertyValue == null) {</span>
+<span class="nc" id="L70">            return null;</span>
+        }
 
-  @Deprecated
-  public static String getParentProfile(final Environment environment, final String profile) {
-<span class="nc" id="L92">    final String evnPropertyValue = getEnvProperty(environment, &quot;spring.cloud.config.parent.profile&quot;);</span>
-<span class="nc bnc" id="L93" title="All 4 branches missed.">    return evnPropertyValue != null &amp;&amp; profile != null ? evnPropertyValue.replace(&quot;{profile}&quot;, profile) : profile;</span>
-  }
+<span class="nc" id="L73">        final Matcher matcher = VARIABLE_SUBSTITUTION_PATTERN.matcher(evnPropertyValue);</span>
+
+<span class="nc" id="L75">        String result = evnPropertyValue;</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">        while (matcher.find()) {</span>
+<span class="nc" id="L77">            final String name = matcher.group(1);</span>
+<span class="nc" id="L78">            final String value = System.getProperty(name);</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">            result = result.replaceAll(&quot;\\$\\{&quot; + name + &quot;\\}&quot;, value == null ? &quot;&quot; : value);</span>
+<span class="nc" id="L80">        }</span>
+
+<span class="nc" id="L82">        return result;</span>
+    }
+
+    public static String getParentLabel(final Environment environment, final String label) {
+<span class="nc" id="L86">        final String evnPropertyValue = getEnvProperty(environment, &quot;spring.cloud.config.parent.label&quot;);</span>
+<span class="nc bnc" id="L87" title="All 4 branches missed.">        return evnPropertyValue != null &amp;&amp; label != null ? evnPropertyValue.replace(&quot;{label}&quot;, label) : label;</span>
+    }
+
+    @Deprecated
+    public static String getParentProfile(final Environment environment, final String profile) {
+<span class="nc" id="L92">        final String evnPropertyValue = getEnvProperty(environment, &quot;spring.cloud.config.parent.profile&quot;);</span>
+<span class="nc bnc" id="L93" title="All 4 branches missed.">        return evnPropertyValue != null &amp;&amp; profile != null ? evnPropertyValue.replace(&quot;{profile}&quot;, profile) : profile;</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

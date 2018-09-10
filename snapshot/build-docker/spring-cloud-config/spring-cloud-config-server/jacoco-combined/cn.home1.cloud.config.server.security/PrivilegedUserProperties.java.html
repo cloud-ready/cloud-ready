@@ -21,39 +21,39 @@ import javax.annotation.PostConstruct;
 <span class="nc" id="L21">@Slf4j</span>
 <span class="nc" id="L22">public class PrivilegedUserProperties {</span>
 
-  @Autowired
-<span class="nc" id="L25">  @Getter(value = PRIVATE)</span>
-  private SecurityProperties securityProperties;
+    @Autowired
+<span class="nc" id="L25">    @Getter(value = PRIVATE)</span>
+    private SecurityProperties securityProperties;
 
-  @Value(&quot;${security.hook.name:hook}&quot;)
-<span class="nc" id="L29">  private String hookName;</span>
+    @Value(&quot;${security.hook.name:hook}&quot;)
+<span class="nc" id="L29">    private String hookName;</span>
 
-  @Value(&quot;${security.hook.password:hook_pass}&quot;)
-<span class="nc" id="L32">  private String hookPassword;</span>
+    @Value(&quot;${security.hook.password:hook_pass}&quot;)
+<span class="nc" id="L32">    private String hookPassword;</span>
 
-  public String getAdminName() {
-<span class="nc" id="L35">    return this.securityProperties.getUser().getName();</span>
-  }
-
-  public String getAdminPassword() {
-<span class="nc" id="L39">    return this.securityProperties.getUser().getPassword();</span>
-  }
-
-  public List&lt;String&gt; getAdminRoles() {
-<span class="nc" id="L43">    return this.securityProperties.getUser().getRole();</span>
-  }
-
-  @PostConstruct
-  private void init() {
-<span class="nc bnc" id="L48" title="All 2 branches missed.">    if (isBlank(this.getAdminPassword())) {</span>
-<span class="nc" id="L49">      this.securityProperties.getUser().setPassword(UUID.randomUUID().toString());</span>
-<span class="nc" id="L50">      log.info(&quot;auto generated admin password, username:{}, password:{}&quot;, this.getAdminName(), this.getAdminPassword());</span>
+    public String getAdminName() {
+<span class="nc" id="L35">        return this.securityProperties.getUser().getName();</span>
     }
 
-<span class="nc bnc" id="L53" title="All 2 branches missed.">    if (isBlank(this.hookPassword)) {</span>
-<span class="nc" id="L54">      this.hookPassword = UUID.randomUUID().toString();</span>
-<span class="nc" id="L55">      log.info(&quot;auto generated hook password, username:{}, password:{}&quot;, this.hookName, this.hookPassword);</span>
+    public String getAdminPassword() {
+<span class="nc" id="L39">        return this.securityProperties.getUser().getPassword();</span>
     }
-<span class="nc" id="L57">  }</span>
+
+    public List&lt;String&gt; getAdminRoles() {
+<span class="nc" id="L43">        return this.securityProperties.getUser().getRole();</span>
+    }
+
+    @PostConstruct
+    private void init() {
+<span class="nc bnc" id="L48" title="All 2 branches missed.">        if (isBlank(this.getAdminPassword())) {</span>
+<span class="nc" id="L49">            this.securityProperties.getUser().setPassword(UUID.randomUUID().toString());</span>
+<span class="nc" id="L50">            log.info(&quot;auto generated admin password, username:{}, password:{}&quot;, this.getAdminName(), this.getAdminPassword());</span>
+        }
+
+<span class="nc bnc" id="L53" title="All 2 branches missed.">        if (isBlank(this.hookPassword)) {</span>
+<span class="nc" id="L54">            this.hookPassword = UUID.randomUUID().toString();</span>
+<span class="nc" id="L55">            log.info(&quot;auto generated hook password, username:{}, password:{}&quot;, this.hookName, this.hookPassword);</span>
+        }
+<span class="nc" id="L57">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

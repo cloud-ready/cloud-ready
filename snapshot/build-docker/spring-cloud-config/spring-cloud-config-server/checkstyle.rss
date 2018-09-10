@@ -25,9 +25,9 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2018</copyright>
     <item>
-      <title>File: 14,
+      <title>File: 13,
              Errors: 0,
-             Warnings: 574,
+             Warnings: 63,
              Infos: 0
       </title>
             <link>https://github.com/cloud-ready/spring-cloud-config/spring-cloud-config-server/checkstyle.html</link>
@@ -52,21 +52,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  63
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://github.com/cloud-ready/spring-cloud-config/spring-cloud-config-server/checkstyle.html#cn.home1.cloud.config.server.util.Consts.java">cn/home1/cloud/config/server/util/Consts.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  4
+                  6
                 </td>
                 <td>
                   0
@@ -94,7 +80,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  74
+                  8
                 </td>
                 <td>
                   0
@@ -108,7 +94,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  61
+                  3
                 </td>
                 <td>
                   0
@@ -122,7 +108,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  104
+                  18
                 </td>
                 <td>
                   0
@@ -136,7 +122,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  36
+                  5
                 </td>
                 <td>
                   0
@@ -150,7 +136,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  25
+                  4
                 </td>
                 <td>
                   0
@@ -164,7 +150,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  31
+                  1
                 </td>
                 <td>
                   0
@@ -178,7 +164,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  22
+                  1
                 </td>
                 <td>
                   0
@@ -192,7 +178,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  23
+                  3
                 </td>
                 <td>
                   0
@@ -206,7 +192,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  41
+                  5
                 </td>
                 <td>
                   0
@@ -220,7 +206,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  70
+                  4
                 </td>
                 <td>
                   0
@@ -234,7 +220,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  16
+                  1
                 </td>
                 <td>
                   0

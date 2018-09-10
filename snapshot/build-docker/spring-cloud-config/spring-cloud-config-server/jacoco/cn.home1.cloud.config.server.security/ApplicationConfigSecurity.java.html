@@ -23,69 +23,69 @@ import java.util.regex.Pattern;
 <span class="nc" id="L23">@Slf4j</span>
 <span class="nc" id="L24">public class ApplicationConfigSecurity {</span>
 
-<span class="nc" id="L26">  private static final Pattern PATTERN_COMMA = Pattern.compile(&quot;,&quot;);</span>
+<span class="nc" id="L26">    private static final Pattern PATTERN_COMMA = Pattern.compile(&quot;,&quot;);</span>
 
-  @Autowired
-<span class="nc" id="L29">  @Setter</span>
-  private PrivilegedUserProperties privilegedUserProperties;
+    @Autowired
+<span class="nc" id="L29">    @Setter</span>
+    private PrivilegedUserProperties privilegedUserProperties;
 
-  /**
-   * Allow admin user, allow user that name matches repository name
-   *
-   * @param pathApplication application (repository) name extracted from path
-   * @param pathProfiles    profiles extracted from path
-   * @return allow access
-   */
-  public boolean checkAuthentication(final String pathApplication, final String pathProfiles) {
-    final boolean result;
+    /**
+     * Allow admin user, allow user that name matches repository name
+     *
+     * @param pathApplication application (repository) name extracted from path
+     * @param pathProfiles    profiles extracted from path
+     * @return allow access
+     */
+    public boolean checkAuthentication(final String pathApplication, final String pathProfiles) {
+        final boolean result;
 
-<span class="nc" id="L42">    final Collection&lt;String&gt; envProfiles = PATTERN_COMMA.splitAsStream(pathProfiles)</span>
-<span class="nc" id="L43">        .filter(profile -&gt; profile.endsWith(DOT_ENV))</span>
-<span class="nc" id="L44">        .collect(toSet());</span>
+<span class="nc" id="L42">        final Collection&lt;String&gt; envProfiles = PATTERN_COMMA.splitAsStream(pathProfiles)</span>
+<span class="nc" id="L43">            .filter(profile -&gt; profile.endsWith(DOT_ENV))</span>
+<span class="nc" id="L44">            .collect(toSet());</span>
 
-<span class="nc" id="L46">    final Authentication auth = SecurityContextHolder.getContext().getAuthentication();</span>
-<span class="nc bnc" id="L47" title="All 2 branches missed.">    final String authName = auth != null ? auth.getName() : null;</span>
+<span class="nc" id="L46">        final Authentication auth = SecurityContextHolder.getContext().getAuthentication();</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">        final String authName = auth != null ? auth.getName() : null;</span>
 
-<span class="nc bnc" id="L49" title="All 2 branches missed.">    if (envProfiles.size() &lt;= 1) {</span>
-<span class="nc bnc" id="L50" title="All 4 branches missed.">      if (isNotEmpty(authName) &amp;&amp; auth.isAuthenticated()) {</span>
-<span class="nc" id="L51">        final String adminName = this.privilegedUserProperties.getAdminName();</span>
-<span class="nc bnc" id="L52" title="All 2 branches missed.">        if (adminName.equals(authName)) {</span>
-<span class="nc" id="L53">          result = true;</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">        if (envProfiles.size() &lt;= 1) {</span>
+<span class="nc bnc" id="L50" title="All 4 branches missed.">            if (isNotEmpty(authName) &amp;&amp; auth.isAuthenticated()) {</span>
+<span class="nc" id="L51">                final String adminName = this.privilegedUserProperties.getAdminName();</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">                if (adminName.equals(authName)) {</span>
+<span class="nc" id="L53">                    result = true;</span>
+                } else {
+<span class="nc bnc" id="L55" title="All 4 branches missed.">                    final boolean applicationMatch = pathApplication != null &amp;&amp; pathApplication.equals(authName);</span>
+<span class="nc" id="L56">                    final boolean isRequestValid = this.isRequestValid(auth, envProfiles);</span>
+<span class="nc bnc" id="L57" title="All 4 branches missed.">                    result = applicationMatch &amp;&amp; isRequestValid;</span>
+                }
+<span class="nc" id="L59">            } else {</span>
+<span class="nc" id="L60">                result = false;</span>
+            }
         } else {
-<span class="nc bnc" id="L55" title="All 4 branches missed.">          final boolean applicationMatch = pathApplication != null &amp;&amp; pathApplication.equals(authName);</span>
-<span class="nc" id="L56">          final boolean isRequestValid = this.isRequestValid(auth, envProfiles);</span>
-<span class="nc bnc" id="L57" title="All 4 branches missed.">          result = applicationMatch &amp;&amp; isRequestValid;</span>
+<span class="nc" id="L63">            result = false;</span>
+<span class="nc" id="L64">            log.info(&quot;Illegal to access multiple environment profiles ({}) in one request&quot;, envProfiles);</span>
         }
-<span class="nc" id="L59">      } else {</span>
-<span class="nc" id="L60">        result = false;</span>
-      }
-    } else {
-<span class="nc" id="L63">      result = false;</span>
-<span class="nc" id="L64">      log.info(&quot;Illegal to access multiple environment profiles ({}) in one request&quot;, envProfiles);</span>
+
+<span class="nc bnc" id="L67" title="All 2 branches missed.">        log.debug(&quot;'{}' {} privilege to access '{}'&quot;, authName, result ? &quot;has&quot; : &quot;has no&quot;, pathApplication);</span>
+<span class="nc" id="L68">        return result;</span>
     }
 
-<span class="nc bnc" id="L67" title="All 2 branches missed.">    log.debug(&quot;'{}' {} privilege to access '{}'&quot;, authName, result ? &quot;has&quot; : &quot;has no&quot;, pathApplication);</span>
-<span class="nc" id="L68">    return result;</span>
-  }
+    boolean isRequestValid(final Authentication auth, final Collection&lt;String&gt; envProfiles) {
+        final boolean result;
 
-  boolean isRequestValid(final Authentication auth, final Collection&lt;String&gt; envProfiles) {
-    final boolean result;
+<span class="nc" id="L74">        final Optional&lt;String&gt; privilege = auth.getAuthorities().stream()</span>
+<span class="nc" id="L75">            .map(GrantedAuthority::getAuthority)</span>
+<span class="nc" id="L76">            .filter(authority -&gt; authority.startsWith(PRIVILEGE_ENV_PROFILE_))</span>
+<span class="nc" id="L77">            .map(p -&gt; p.replace(PRIVILEGE_ENV_PROFILE_, &quot;&quot;))</span>
+<span class="nc" id="L78">            .findFirst(); // one environment profile privilege at most, may be none.</span>
 
-<span class="nc" id="L74">    final Optional&lt;String&gt; privilege = auth.getAuthorities().stream()</span>
-<span class="nc" id="L75">        .map(GrantedAuthority::getAuthority)</span>
-<span class="nc" id="L76">        .filter(authority -&gt; authority.startsWith(PRIVILEGE_ENV_PROFILE_))</span>
-<span class="nc" id="L77">        .map(p -&gt; p.replace(PRIVILEGE_ENV_PROFILE_, &quot;&quot;))</span>
-<span class="nc" id="L78">        .findFirst(); // one environment profile privilege at most, may be none.</span>
+<span class="nc bnc" id="L80" title="All 4 branches missed.">        if (privilege.isPresent() &amp;&amp; privilege.get().equals(&quot;*&quot;)) {</span>
+<span class="nc" id="L81">            result = true; // wildcard privilege can access any environment profile</span>
+        } else {
+<span class="nc" id="L83">            result = privilege</span>
+<span class="nc bnc" id="L84" title="All 4 branches missed.">                .map(p -&gt; envProfiles.isEmpty() || envProfiles.contains(p)) // access no or matched environment profile only</span>
+<span class="nc" id="L85">                .orElseGet(envProfiles::isEmpty); // can not access any environment profile</span>
+        }
 
-<span class="nc bnc" id="L80" title="All 4 branches missed.">    if (privilege.isPresent() &amp;&amp; privilege.get().equals(&quot;*&quot;)) {</span>
-<span class="nc" id="L81">      result = true; // wildcard privilege can access any environment profile</span>
-    } else {
-<span class="nc" id="L83">      result = privilege</span>
-<span class="nc bnc" id="L84" title="All 4 branches missed.">          .map(p -&gt; envProfiles.isEmpty() || envProfiles.contains(p)) // access no or matched environment profile only</span>
-<span class="nc" id="L85">          .orElseGet(envProfiles::isEmpty); // can not access any environment profile</span>
+<span class="nc" id="L88">        return result;</span>
     }
-
-<span class="nc" id="L88">    return result;</span>
-  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

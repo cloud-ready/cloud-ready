@@ -19,10 +19,10 @@ digraph G {
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + ConfigServer() </td></tr>
+<tr><td align="left" balign="left"> + main(args : String[]) </td></tr>
 <tr><td align="left" balign="left"> + index() : String </td></tr>
 <tr><td align="left" balign="left"> + getDeployKeyPublic() : ResponseEntity&lt;String&gt; </td></tr>
 <tr><td align="left" balign="left"> + encryptParentPassword(application : String, parentApplication : String, parentPassword : String) : String </td></tr>
-<tr><td align="left" balign="left"> + main(args : String[]) </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ConfigServer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }

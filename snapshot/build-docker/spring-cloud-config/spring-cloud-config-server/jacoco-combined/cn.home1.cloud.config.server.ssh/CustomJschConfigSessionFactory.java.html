@@ -16,27 +16,27 @@ import org.eclipse.jgit.util.FS;
 @Deprecated
 public class CustomJschConfigSessionFactory extends JschConfigSessionFactory {
 
-  private String[] identityKeyPaths;
+    private String[] identityKeyPaths;
 
-<span class="nc" id="L21">  public CustomJschConfigSessionFactory(final String... identityKeyPaths) {</span>
-<span class="nc" id="L22">    this.identityKeyPaths = identityKeyPaths;</span>
-<span class="nc" id="L23">  }</span>
+<span class="nc" id="L21">    public CustomJschConfigSessionFactory(final String... identityKeyPaths) {</span>
+<span class="nc" id="L22">        this.identityKeyPaths = identityKeyPaths;</span>
+<span class="nc" id="L23">    }</span>
 
-  @Override
-  protected void configure(final OpenSshConfig.Host hc, final Session session) {
-    // nothing special needed here.
-<span class="nc" id="L28">    session.setConfig(&quot;StrictHostKeyChecking&quot;, &quot;no&quot;);</span>
-<span class="nc" id="L29">  }</span>
+    @Override
+    protected void configure(final OpenSshConfig.Host hc, final Session session) {
+        // nothing special needed here.
+<span class="nc" id="L28">        session.setConfig(&quot;StrictHostKeyChecking&quot;, &quot;no&quot;);</span>
+<span class="nc" id="L29">    }</span>
 
-  @Override
-  protected JSch getJSch(final OpenSshConfig.Host hc, final FS fs) throws JSchException {
-<span class="nc" id="L33">    final JSch jsch = super.getJSch(hc, fs);</span>
-    // Clean out anything 'default' - any encrypted keys that are loaded by default before this will break.
-<span class="nc" id="L35">    jsch.removeAllIdentity();</span>
-<span class="nc bnc" id="L36" title="All 2 branches missed.">    for (final String identKeyPath : this.identityKeyPaths) {</span>
-<span class="nc" id="L37">      jsch.addIdentity(identKeyPath);</span>
+    @Override
+    protected JSch getJSch(final OpenSshConfig.Host hc, final FS fs) throws JSchException {
+<span class="nc" id="L33">        final JSch jsch = super.getJSch(hc, fs);</span>
+        // Clean out anything 'default' - any encrypted keys that are loaded by default before this will break.
+<span class="nc" id="L35">        jsch.removeAllIdentity();</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">        for (final String identKeyPath : this.identityKeyPaths) {</span>
+<span class="nc" id="L37">            jsch.addIdentity(identKeyPath);</span>
+        }
+<span class="nc" id="L39">        return jsch;</span>
     }
-<span class="nc" id="L39">    return jsch;</span>
-  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>
