@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.springframework.cloud.client.serviceregistry.endpoint.MultiServiceRegistryEndpoint
-	c21 [label=<<table title="org.springframework.cloud.client.serviceregistry.endpoint.MultiServiceRegistryEndpoint" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MultiServiceRegistryEndpoint.html">
+	c23 [label=<<table title="org.springframework.cloud.client.serviceregistry.endpoint.MultiServiceRegistryEndpoint" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MultiServiceRegistryEndpoint.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MultiServiceRegistryEndpoint </td></tr>
 		</table></td></tr>
@@ -22,9 +22,6 @@ digraph G {
 <tr><td align="left" balign="left"> + setRegistrations(registrations : List&lt;Registration&gt;) </td></tr>
 <tr><td align="left" balign="left"> + setStatus(status : String) : ResponseEntity&lt;?&gt; </td></tr>
 <tr><td align="left" balign="left"> + getStatus() : ResponseEntity&lt;&gt; </td></tr>
-<tr><td align="left" balign="left"> + getPath() : String </td></tr>
-<tr><td align="left" balign="left"> + isSensitive() : boolean </td></tr>
-<tr><td align="left" balign="left"> + getEndpointType() : Class&lt;?&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./MultiServiceRegistryEndpoint.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
