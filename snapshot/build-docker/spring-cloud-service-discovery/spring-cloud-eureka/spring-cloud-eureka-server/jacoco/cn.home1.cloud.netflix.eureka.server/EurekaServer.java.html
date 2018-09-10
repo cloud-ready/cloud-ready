@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.cloud.netflix.eureka.EurekaClientConfigBean;
@@ -16,9 +15,9 @@ import org.springframework.context.event.EventListener;
  * Created by zhanghaolun on 16/9/26.
  */
 @EnableEurekaServer
-@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
-<span class="nc" id="L20">@Slf4j</span>
-<span class="nc" id="L21">public class EurekaServer {</span>
+@SpringBootApplication
+<span class="nc" id="L19">@Slf4j</span>
+<span class="nc" id="L20">public class EurekaServer {</span>
 
     @Autowired
     private EurekaClientConfigBean eurekaClientConfig;
@@ -27,13 +26,13 @@ import org.springframework.context.event.EventListener;
     private EurekaInstanceConfigBean eurekaInstanceConfig;
 
     public static void main(final String... args) {
-<span class="nc" id="L30">        new SpringApplicationBuilder(EurekaServer.class).web(true).run(args);</span>
-<span class="nc" id="L31">    }</span>
+<span class="nc" id="L29">        new SpringApplicationBuilder(EurekaServer.class).web(true).run(args);</span>
+<span class="nc" id="L30">    }</span>
 
     @EventListener(ApplicationReadyEvent.class)
     public void printImportantInfo() {
-<span class="nc" id="L35">        log.info(&quot;eureka.client.service-url.defaultZone: {}&quot;, this.eurekaClientConfig.getServiceUrl().get(&quot;defaultZone&quot;));</span>
-<span class="nc" id="L36">        log.info(&quot;eureka.instance.hostname: {}&quot;, this.eurekaInstanceConfig.getHostname());</span>
-<span class="nc" id="L37">    }</span>
+<span class="nc" id="L34">        log.info(&quot;eureka.client.service-url.defaultZone: {}&quot;, this.eurekaClientConfig.getServiceUrl().get(&quot;defaultZone&quot;));</span>
+<span class="nc" id="L35">        log.info(&quot;eureka.instance.hostname: {}&quot;, this.eurekaInstanceConfig.getHostname());</span>
+<span class="nc" id="L36">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>
