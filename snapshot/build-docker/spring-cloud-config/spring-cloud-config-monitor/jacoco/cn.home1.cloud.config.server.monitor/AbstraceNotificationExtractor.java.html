@@ -17,51 +17,51 @@ import java.util.regex.Pattern;
 <span class="fc" id="L17">@Slf4j</span>
 <span class="fc" id="L18">public abstract class AbstraceNotificationExtractor implements PropertyPathNotificationExtractor {</span>
 
-<span class="fc" id="L20">  private static final Pattern PATH_PATTERN = Pattern.compile(&quot;^(https?)://(.+)/(.*)/commit/[a-zA-Z0-9]{7,40}&quot;);</span>
-  private static final String ALL_APPLICATION_STR = &quot;application&quot;;
+<span class="fc" id="L20">    private static final Pattern PATH_PATTERN = Pattern.compile(&quot;^(https?)://(.+)/(.*)/commit/[a-zA-Z0-9]{7,40}&quot;);</span>
+    private static final String ALL_APPLICATION_STR = &quot;application&quot;;
 
-  @Value(&quot;${spring.cloud.config.server.common-config.prefix:home1-oss-common}&quot;)
-  private String commonConfigPrefix;
+    @Value(&quot;${spring.cloud.config.server.common-config.prefix:home1-oss-common}&quot;)
+    private String commonConfigPrefix;
 
-  @Value(&quot;${spring.cloud.config.server.common-config.suffix:-common}&quot;)
-  private String commonConfigSuffix;
+    @Value(&quot;${spring.cloud.config.server.common-config.suffix:-common}&quot;)
+    private String commonConfigSuffix;
 
-  protected void addAllPaths(final Set&lt;String&gt; paths, final Map&lt;String, Object&gt; commit, final String name) {
-<span class="fc bfc" id="L30" title="All 2 branches covered.">    if (paths.contains(ALL_APPLICATION_STR)) {</span>
-<span class="fc" id="L31">      return;</span>
-    }
-    // example:
-    // http://gitlab/configserver/oss-todomvc-app-config/commit/929f67f2b38a6269e7ad63f606c9d89a7d8eb79f
-<span class="fc" id="L35">    final String url = (String) commit.get(&quot;url&quot;);</span>
-<span class="fc" id="L36">    log.debug(&quot;config server monitor url:{}&quot;, url);</span>
-<span class="pc bpc" id="L37" title="1 of 2 branches missed.">    if (StringUtils.isBlank(url)) {</span>
-<span class="nc" id="L38">      return;</span>
-    }
-<span class="fc" id="L40">    final Matcher matcher = PATH_PATTERN.matcher(url);</span>
-<span class="pc bpc" id="L41" title="1 of 2 branches missed.">    if (matcher.matches()) {</span>
-<span class="fc" id="L42">      final String repository = matcher.group(3);</span>
-<span class="fc" id="L43">      log.debug(&quot;will add application pattern, repository name :{}, current result:{}&quot;, repository, paths);</span>
-<span class="fc" id="L44">      final int lastIndex = repository.lastIndexOf('-');</span>
-<span class="pc bpc" id="L45" title="1 of 2 branches missed.">      if (lastIndex &lt;= 0) {</span>
-<span class="nc" id="L46">        log.info(&quot;the suffix of repository name is not ends with -xxx (-config), ignored.&quot;);</span>
-<span class="nc" id="L47">        return;</span>
-      }
-<span class="fc" id="L49">      final String applicationName = repository.substring(0, lastIndex);</span>
-<span class="fc" id="L50">      String pattern = null;</span>
-<span class="fc bfc" id="L51" title="All 2 branches covered.">      if (applicationName.startsWith(commonConfigPrefix)) {</span>
-<span class="fc" id="L52">        pattern = ALL_APPLICATION_STR;// to all application</span>
-      } else {
-<span class="fc" id="L54">        pattern = applicationName;</span>
-<span class="fc" id="L55">        final int idx = applicationName.indexOf('-', 1);</span>
-<span class="pc bpc" id="L56" title="1 of 2 branches missed.">        if (idx &gt; 0) {</span>
-<span class="fc" id="L57">          pattern = applicationName.substring(0, idx);</span>
+    protected void addAllPaths(final Set&lt;String&gt; paths, final Map&lt;String, Object&gt; commit, final String name) {
+<span class="fc bfc" id="L30" title="All 2 branches covered.">        if (paths.contains(ALL_APPLICATION_STR)) {</span>
+<span class="fc" id="L31">            return;</span>
         }
-<span class="fc" id="L59">        pattern = pattern + &quot;*&quot;;</span>
-      }
-<span class="fc bfc" id="L61" title="All 2 branches covered.">      if (paths.add(pattern)) {</span>
-<span class="fc" id="L62">        log.info(&quot;add refresh pattern {}, applicationName:{}&quot;, pattern, applicationName);</span>
-      }
-    }
-<span class="fc" id="L65">  }</span>
+        // example:
+        // http://gitlab/configserver/oss-todomvc-app-config/commit/929f67f2b38a6269e7ad63f606c9d89a7d8eb79f
+<span class="fc" id="L35">        final String url = (String) commit.get(&quot;url&quot;);</span>
+<span class="fc" id="L36">        log.debug(&quot;config server monitor url:{}&quot;, url);</span>
+<span class="pc bpc" id="L37" title="1 of 2 branches missed.">        if (StringUtils.isBlank(url)) {</span>
+<span class="nc" id="L38">            return;</span>
+        }
+<span class="fc" id="L40">        final Matcher matcher = PATH_PATTERN.matcher(url);</span>
+<span class="pc bpc" id="L41" title="1 of 2 branches missed.">        if (matcher.matches()) {</span>
+<span class="fc" id="L42">            final String repository = matcher.group(3);</span>
+<span class="fc" id="L43">            log.debug(&quot;will add application pattern, repository name :{}, current result:{}&quot;, repository, paths);</span>
+<span class="fc" id="L44">            final int lastIndex = repository.lastIndexOf('-');</span>
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">            if (lastIndex &lt;= 0) {</span>
+<span class="nc" id="L46">                log.info(&quot;the suffix of repository name is not ends with -xxx (-config), ignored.&quot;);</span>
+<span class="nc" id="L47">                return;</span>
+            }
+<span class="fc" id="L49">            final String applicationName = repository.substring(0, lastIndex);</span>
+<span class="fc" id="L50">            String pattern = null;</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">            if (applicationName.startsWith(commonConfigPrefix)) {</span>
+<span class="fc" id="L52">                pattern = ALL_APPLICATION_STR;// to all application</span>
+            } else {
+<span class="fc" id="L54">                pattern = applicationName;</span>
+<span class="fc" id="L55">                final int idx = applicationName.indexOf('-', 1);</span>
+<span class="pc bpc" id="L56" title="1 of 2 branches missed.">                if (idx &gt; 0) {</span>
+<span class="fc" id="L57">                    pattern = applicationName.substring(0, idx);</span>
+                }
+<span class="fc" id="L59">                pattern = pattern + &quot;*&quot;;</span>
+            }
+<span class="fc bfc" id="L61" title="All 2 branches covered.">            if (paths.add(pattern)) {</span>
+<span class="fc" id="L62">                log.info(&quot;add refresh pattern {}, applicationName:{}&quot;, pattern, applicationName);</span>
+            }
+        }
+<span class="fc" id="L65">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

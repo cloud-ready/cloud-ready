@@ -20,32 +20,32 @@ import java.util.Set;
 @Order(Ordered.LOWEST_PRECEDENCE - 100)
 <span class="fc" id="L21">public class GitlabRepositoryPathNotificationExtractor extends AbstraceNotificationExtractor {</span>
 
-  @Override
-  public PropertyPathNotification extract( //
-      final MultiValueMap&lt;String, String&gt; headers, //
-      final Map&lt;String, Object&gt; payload //
-  ) {
-    final PropertyPathNotification result;
-<span class="pc bpc" id="L29" title="1 of 2 branches missed.">    if (&quot;Push Hook&quot;.equals(headers.getFirst(&quot;X-Gitlab-Event&quot;))) {</span>
-<span class="pc bpc" id="L30" title="1 of 2 branches missed.">      if (payload.get(&quot;commits&quot;) instanceof Collection) {</span>
-<span class="fc" id="L31">        final Set&lt;String&gt; paths = new HashSet&lt;&gt;();</span>
+    @Override
+    public PropertyPathNotification extract( //
+        final MultiValueMap&lt;String, String&gt; headers, //
+        final Map&lt;String, Object&gt; payload //
+    ) {
+        final PropertyPathNotification result;
+<span class="pc bpc" id="L29" title="1 of 2 branches missed.">        if (&quot;Push Hook&quot;.equals(headers.getFirst(&quot;X-Gitlab-Event&quot;))) {</span>
+<span class="pc bpc" id="L30" title="1 of 2 branches missed.">            if (payload.get(&quot;commits&quot;) instanceof Collection) {</span>
+<span class="fc" id="L31">                final Set&lt;String&gt; paths = new HashSet&lt;&gt;();</span>
 
-<span class="fc" id="L33">        @SuppressWarnings(&quot;unchecked&quot;) final Collection&lt;Map&lt;String, Object&gt;&gt; commits = (Collection&lt;Map&lt;String, Object&gt;&gt;) payload.get(&quot;commits&quot;);</span>
+<span class="fc" id="L33">                @SuppressWarnings(&quot;unchecked&quot;) final Collection&lt;Map&lt;String, Object&gt;&gt; commits = (Collection&lt;Map&lt;String, Object&gt;&gt;) payload.get(&quot;commits&quot;);</span>
 
-<span class="fc bfc" id="L35" title="All 2 branches covered.">        for (final Map&lt;String, Object&gt; commit : commits) {</span>
-<span class="fc" id="L36">          addAllPaths(paths, commit, &quot;added&quot;);</span>
-<span class="fc" id="L37">          addAllPaths(paths, commit, &quot;removed&quot;);</span>
-<span class="fc" id="L38">          addAllPaths(paths, commit, &quot;modified&quot;);</span>
-<span class="fc" id="L39">        }</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">                for (final Map&lt;String, Object&gt; commit : commits) {</span>
+<span class="fc" id="L36">                    addAllPaths(paths, commit, &quot;added&quot;);</span>
+<span class="fc" id="L37">                    addAllPaths(paths, commit, &quot;removed&quot;);</span>
+<span class="fc" id="L38">                    addAllPaths(paths, commit, &quot;modified&quot;);</span>
+<span class="fc" id="L39">                }</span>
 
-<span class="pc bpc" id="L41" title="1 of 2 branches missed.">        result = !paths.isEmpty() ? new PropertyPathNotification(paths.toArray(new String[0])) : null;</span>
-<span class="fc" id="L42">      } else {</span>
-<span class="nc" id="L43">        result = null;</span>
-      }
-    } else {
-<span class="nc" id="L46">      result = null;</span>
+<span class="pc bpc" id="L41" title="1 of 2 branches missed.">                result = !paths.isEmpty() ? new PropertyPathNotification(paths.toArray(new String[0])) : null;</span>
+<span class="fc" id="L42">            } else {</span>
+<span class="nc" id="L43">                result = null;</span>
+            }
+        } else {
+<span class="nc" id="L46">            result = null;</span>
+        }
+<span class="fc" id="L48">        return result;</span>
     }
-<span class="fc" id="L48">    return result;</span>
-  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>
