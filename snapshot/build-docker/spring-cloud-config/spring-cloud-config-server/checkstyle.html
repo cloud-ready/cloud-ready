@@ -93,7 +93,7 @@
         <ul class="breadcrumb">
         <li id="publishDate">Last Published: 2018-09-10<span class="divider">|</span>
 </li>
-          <li id="projectVersion">Version: 2.0.1-springboot2-SNAPSHOT</li>
+          <li id="projectVersion">Version: 1.0.1-SNAPSHOT</li>
         </ul>
       </div>
       <div class="row-fluid">
@@ -146,7 +146,7 @@
 <tr class="b">
 <td>13</td>
 <td>0</td>
-<td>66</td>
+<td>63</td>
 <td>0</td></tr></table></div>
 <div class="section">
 <h2><a name="Files"></a>Files</h2>
@@ -159,7 +159,7 @@
 <tr class="b">
 <td><a href="#cn.home1.cloud.config.server.ConfigServer.java">cn/home1/cloud/config/server/ConfigServer.java</a></td>
 <td>0</td>
-<td>5</td>
+<td>4</td>
 <td>0</td></tr>
 <tr class="a">
 <td><a href="#cn.home1.cloud.config.server.environment.GitParentSupportConfiguration.java">cn/home1/cloud/config/server/environment/GitParentSupportConfiguration.java</a></td>
@@ -169,7 +169,7 @@
 <tr class="b">
 <td><a href="#cn.home1.cloud.config.server.environment.GitParentSupportMultipleJGitEnvironmentRepository.java">cn/home1/cloud/config/server/environment/GitParentSupportMultipleJGitEnvironmentRepository.java</a></td>
 <td>0</td>
-<td>4</td>
+<td>3</td>
 <td>0</td></tr>
 <tr class="a">
 <td><a href="#cn.home1.cloud.config.server.security.ApplicationConfigSecurity.java">cn/home1/cloud/config/server/security/ApplicationConfigSecurity.java</a></td>
@@ -177,9 +177,9 @@
 <td>5</td>
 <td>0</td></tr>
 <tr class="b">
-<td><a href="#cn.home1.cloud.config.server.security.ApplicationSecurityAutoConfiguration.java">cn/home1/cloud/config/server/security/ApplicationSecurityAutoConfiguration.java</a></td>
+<td><a href="#cn.home1.cloud.config.server.security.ApplicationWebSecurityConfigurerAdapter.java">cn/home1/cloud/config/server/security/ApplicationWebSecurityConfigurerAdapter.java</a></td>
 <td>0</td>
-<td>2</td>
+<td>1</td>
 <td>0</td></tr>
 <tr class="a">
 <td><a href="#cn.home1.cloud.config.server.security.ConfigSecurity.java">cn/home1/cloud/config/server/security/ConfigSecurity.java</a></td>
@@ -244,11 +244,6 @@
 <td>27</td>
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td></tr>
 <tr class="b">
-<td>indentation</td>
-<td><a class="externalLink" href="http://checkstyle.sourceforge.net/config_indentation.html#CommentsIndentation">CommentsIndentation</a></td>
-<td>1</td>
-<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td></tr>
-<tr class="a">
 <td>javadoc</td>
 <td><a class="externalLink" href="http://checkstyle.sourceforge.net/config_javadoc.html#JavadocMethod">JavadocMethod</a>
 <ul>
@@ -259,29 +254,29 @@
 <li>allowMissingParamTags: <tt>&quot;true&quot;</tt></li>
 <li>minLineCount: <tt>&quot;2&quot;</tt></li>
 <li>allowedAnnotations: <tt>&quot;Override, Test&quot;</tt></li></ul></td>
-<td>6</td>
+<td>7</td>
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td></tr>
-<tr class="b">
+<tr class="a">
 <td></td>
 <td><a class="externalLink" href="http://checkstyle.sourceforge.net/config_javadoc.html#JavadocParagraph">JavadocParagraph</a></td>
 <td>1</td>
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td></tr>
-<tr class="a">
+<tr class="b">
 <td></td>
 <td><a class="externalLink" href="http://checkstyle.sourceforge.net/config_javadoc.html#SummaryJavadoc">SummaryJavadoc</a>
 <ul>
 <li>forbiddenSummaryFragments: <tt>&quot;^@return the *|^This method returns |^A [{]@code [a-zA-Z0-9]+[}]( is a )&quot;</tt></li></ul></td>
-<td>11</td>
+<td>10</td>
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td></tr>
-<tr class="b">
+<tr class="a">
 <td>sizes</td>
 <td><a class="externalLink" href="http://checkstyle.sourceforge.net/config_sizes.html#LineLength">LineLength</a>
 <ul>
 <li>max: <tt>&quot;120&quot;</tt></li>
 <li>ignorePattern: <tt>&quot;^package.*|^import.*|a href|href|http://|https://|ftp://&quot;</tt></li></ul></td>
-<td>15</td>
+<td>13</td>
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td></tr>
-<tr class="a">
+<tr class="b">
 <td>whitespace</td>
 <td><a class="externalLink" href="http://checkstyle.sourceforge.net/config_whitespace.html#OperatorWrap">OperatorWrap</a>
 <ul>
@@ -289,7 +284,7 @@
 <li>option: <tt>&quot;NL&quot;</tt></li></ul></td>
 <td>2</td>
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td></tr>
-<tr class="b">
+<tr class="a">
 <td></td>
 <td><a class="externalLink" href="http://checkstyle.sourceforge.net/config_whitespace.html#ParenPad">ParenPad</a></td>
 <td>1</td>
@@ -299,42 +294,36 @@
 <div class="section">
 <h3 id="cn.home1.cloud.config.server.ConfigServer.java">cn/home1/cloud/config/server/ConfigServer.java</h3>
 <table border="0" class="table table-striped">
-<tr class="a">
+<tr class="b">
 <th>Severity</th>
 <th>Category</th>
 <th>Rule</th>
 <th>Message</th>
 <th>Line</th></tr>
-<tr class="b">
+<tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>imports</td>
 <td>CustomImportOrder</td>
 <td>Wrong lexicographical order for 'java.io.File' import. Should be before 'org.springframework.web.bind.annotation.RestController'.</td>
-<td><a href="./xref/cn/home1/cloud/config/server/ConfigServer.html#L40">40</a></td></tr>
-<tr class="a">
+<td><a href="./xref/cn/home1/cloud/config/server/ConfigServer.html#L39">39</a></td></tr>
+<tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>javadoc</td>
 <td>SummaryJavadoc</td>
 <td>First sentence of Javadoc is missing an ending period.</td>
-<td><a href="./xref/cn/home1/cloud/config/server/ConfigServer.html#L42">42</a></td></tr>
-<tr class="b">
+<td><a href="./xref/cn/home1/cloud/config/server/ConfigServer.html#L41">41</a></td></tr>
+<tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>javadoc</td>
 <td>JavadocMethod</td>
 <td>Missing a Javadoc comment.</td>
-<td><a href="./xref/cn/home1/cloud/config/server/ConfigServer.html#L97">97</a></td></tr>
-<tr class="a">
+<td><a href="./xref/cn/home1/cloud/config/server/ConfigServer.html#L96">96</a></td></tr>
+<tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>javadoc</td>
 <td>SummaryJavadoc</td>
 <td>First sentence of Javadoc is missing an ending period.</td>
-<td><a href="./xref/cn/home1/cloud/config/server/ConfigServer.html#L138">138</a></td></tr>
-<tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
-<td>sizes</td>
-<td>LineLength</td>
-<td>Line is longer than 120 characters (found 134).</td>
-<td><a href="./xref/cn/home1/cloud/config/server/ConfigServer.html#L143">143</a></td></tr></table></div>
+<td><a href="./xref/cn/home1/cloud/config/server/ConfigServer.html#L137">137</a></td></tr></table></div>
 <div class="section">
 <h3 id="cn.home1.cloud.config.server.environment.GitParentSupportConfiguration.java">cn/home1/cloud/config/server/environment/GitParentSupportConfiguration.java</h3>
 <table border="0" class="table table-striped">
@@ -349,7 +338,7 @@
 <td>javadoc</td>
 <td>JavadocMethod</td>
 <td>Missing a Javadoc comment.</td>
-<td><a href="./xref/cn/home1/cloud/config/server/environment/GitParentSupportConfiguration.html#L47">47</a></td></tr></table></div>
+<td><a href="./xref/cn/home1/cloud/config/server/environment/GitParentSupportConfiguration.html#L46">46</a></td></tr></table></div>
 <div class="section">
 <h3 id="cn.home1.cloud.config.server.environment.GitParentSupportMultipleJGitEnvironmentRepository.java">cn/home1/cloud/config/server/environment/GitParentSupportMultipleJGitEnvironmentRepository.java</h3>
 <table border="0" class="table table-striped">
@@ -364,85 +353,73 @@
 <td>imports</td>
 <td>CustomImportOrder</td>
 <td>Wrong lexicographical order for 'java.util.Set' import. Should be before 'org.springframework.security.authentication.BadCredentialsException'.</td>
-<td><a href="./xref/cn/home1/cloud/config/server/environment/GitParentSupportMultipleJGitEnvironmentRepository.html#L20">20</a></td></tr>
+<td><a href="./xref/cn/home1/cloud/config/server/environment/GitParentSupportMultipleJGitEnvironmentRepository.html#L19">19</a></td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
-<td>sizes</td>
-<td>LineLength</td>
-<td>Line is longer than 120 characters (found 151).</td>
-<td><a href="./xref/cn/home1/cloud/config/server/environment/GitParentSupportMultipleJGitEnvironmentRepository.html#L29">29</a></td></tr>
-<tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>sizes</td>
 <td>LineLength</td>
 <td>Line is longer than 120 characters (found 155).</td>
-<td><a href="./xref/cn/home1/cloud/config/server/environment/GitParentSupportMultipleJGitEnvironmentRepository.html#L50">50</a></td></tr>
-<tr class="a">
+<td><a href="./xref/cn/home1/cloud/config/server/environment/GitParentSupportMultipleJGitEnvironmentRepository.html#L49">49</a></td></tr>
+<tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>sizes</td>
 <td>LineLength</td>
 <td>Line is longer than 120 characters (found 125).</td>
-<td><a href="./xref/cn/home1/cloud/config/server/environment/GitParentSupportMultipleJGitEnvironmentRepository.html#L57">57</a></td></tr></table></div>
+<td><a href="./xref/cn/home1/cloud/config/server/environment/GitParentSupportMultipleJGitEnvironmentRepository.html#L56">56</a></td></tr></table></div>
 <div class="section">
 <h3 id="cn.home1.cloud.config.server.security.ApplicationConfigSecurity.java">cn/home1/cloud/config/server/security/ApplicationConfigSecurity.java</h3>
 <table border="0" class="table table-striped">
-<tr class="b">
+<tr class="a">
 <th>Severity</th>
 <th>Category</th>
 <th>Rule</th>
 <th>Message</th>
 <th>Line</th></tr>
-<tr class="a">
+<tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>imports</td>
 <td>CustomImportOrder</td>
 <td>Wrong lexicographical order for 'java.util.Collection' import. Should be before 'org.springframework.security.core.context.SecurityContextHolder'.</td>
 <td><a href="./xref/cn/home1/cloud/config/server/security/ApplicationConfigSecurity.html#L16">16</a></td></tr>
-<tr class="b">
+<tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>imports</td>
 <td>CustomImportOrder</td>
 <td>Wrong lexicographical order for 'java.util.Optional' import. Should be before 'org.springframework.security.core.context.SecurityContextHolder'.</td>
 <td><a href="./xref/cn/home1/cloud/config/server/security/ApplicationConfigSecurity.html#L17">17</a></td></tr>
-<tr class="a">
+<tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>imports</td>
 <td>CustomImportOrder</td>
 <td>Wrong lexicographical order for 'java.util.regex.Pattern' import. Should be before 'org.springframework.security.core.context.SecurityContextHolder'.</td>
 <td><a href="./xref/cn/home1/cloud/config/server/security/ApplicationConfigSecurity.html#L18">18</a></td></tr>
-<tr class="b">
+<tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>javadoc</td>
 <td>SummaryJavadoc</td>
 <td>First sentence of Javadoc is missing an ending period.</td>
 <td><a href="./xref/cn/home1/cloud/config/server/security/ApplicationConfigSecurity.html#L32">32</a></td></tr>
-<tr class="a">
+<tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>sizes</td>
 <td>LineLength</td>
 <td>Line is longer than 120 characters (found 124).</td>
 <td><a href="./xref/cn/home1/cloud/config/server/security/ApplicationConfigSecurity.html#L84">84</a></td></tr></table></div>
 <div class="section">
-<h3 id="cn.home1.cloud.config.server.security.ApplicationSecurityAutoConfiguration.java">cn/home1/cloud/config/server/security/ApplicationSecurityAutoConfiguration.java</h3>
+<h3 id="cn.home1.cloud.config.server.security.ApplicationWebSecurityConfigurerAdapter.java">cn/home1/cloud/config/server/security/ApplicationWebSecurityConfigurerAdapter.java</h3>
 <table border="0" class="table table-striped">
-<tr class="b">
+<tr class="a">
 <th>Severity</th>
 <th>Category</th>
 <th>Rule</th>
 <th>Message</th>
 <th>Line</th></tr>
-<tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
-<td>indentation</td>
-<td>CommentsIndentation</td>
-<td>Comment has incorrect indentation level 0, expected is 8, indentation should be the same level as line 68.</td>
-<td><a href="./xref/cn/home1/cloud/config/server/security/ApplicationSecurityAutoConfiguration.html#L66">66</a></td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>javadoc</td>
-<td>SummaryJavadoc</td>
-<td>First sentence of Javadoc is missing an ending period.</td>
-<td><a href="./xref/cn/home1/cloud/config/server/security/ApplicationSecurityAutoConfiguration.html#L77">77</a></td></tr></table></div>
+<td>JavadocMethod</td>
+<td>Missing a Javadoc comment.</td>
+<td><a href="./xref/cn/home1/cloud/config/server/security/ApplicationWebSecurityConfigurerAdapter.html#L93">93</a></td></tr></table></div>
 <div class="section">
 <h3 id="cn.home1.cloud.config.server.security.ConfigSecurity.java">cn/home1/cloud/config/server/security/ConfigSecurity.java</h3>
 <table border="0" class="table table-striped">
@@ -711,13 +688,13 @@
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>imports</td>
 <td>CustomImportOrder</td>
-<td>Wrong lexicographical order for 'java.io.File' import. Should be before 'org.springframework.cloud.config.server.environment.MultipleJGitEnvironmentProperties'.</td>
+<td>Wrong lexicographical order for 'java.io.File' import. Should be before 'org.springframework.cloud.config.server.ssh.SshUriProperties'.</td>
 <td><a href="./xref/cn/home1/cloud/config/server/ssh/DeployKey.html#L14">14</a></td></tr>
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>imports</td>
 <td>CustomImportOrder</td>
-<td>Wrong lexicographical order for 'java.io.FileReader' import. Should be before 'org.springframework.cloud.config.server.environment.MultipleJGitEnvironmentProperties'.</td>
+<td>Wrong lexicographical order for 'java.io.FileReader' import. Should be before 'org.springframework.cloud.config.server.ssh.SshUriProperties'.</td>
 <td><a href="./xref/cn/home1/cloud/config/server/ssh/DeployKey.html#L15">15</a></td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>

@@ -34,7 +34,7 @@ digraph G {
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + DeployKey(privateKeyLocation : String) </td></tr>
 <tr><td align="left" balign="left"> + getPrivateKeyPath(privateKeyLocation : String) : String </td></tr>
-<tr><td align="left" balign="left"> + setUp(sshUriProperties : MultipleJGitEnvironmentProperties) </td></tr>
+<tr><td align="left" balign="left"> + setUp(sshUriProperties : SshUriProperties) </td></tr>
 <tr><td align="left" balign="left"> + getPrivateKey() : String </td></tr>
 <tr><td align="left" balign="left"> + getPrivateKeyPath() : String </td></tr>
 <tr><td align="left" balign="left"> + getPublicKey() : String </td></tr>

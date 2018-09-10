@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// cn.home1.cloud.config.server.ConfigServer.ConfigServerConfiguration
-	c176 [label=<<table title="cn.home1.cloud.config.server.ConfigServer.ConfigServerConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ConfigServer.ConfigServerConfiguration.html">
+	c179 [label=<<table title="cn.home1.cloud.config.server.ConfigServer.ConfigServerConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ConfigServer.ConfigServerConfiguration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ConfigServerConfiguration </td></tr>
 		</table></td></tr>
@@ -19,7 +19,7 @@ digraph G {
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> # ConfigServerConfiguration() </td></tr>
-<tr><td align="left" balign="left"> + propertiesBasedSshTransportCallback(sshUriProperties : MultipleJGitEnvironmentProperties) : TransportConfigCallback </td></tr>
+<tr><td align="left" balign="left"> + propertiesBasedSshTransportCallback(sshUriProperties : SshUriProperties) : TransportConfigCallback </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ConfigServer.ConfigServerConfiguration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }

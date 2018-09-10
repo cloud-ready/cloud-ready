@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// cn.home1.cloud.config.server.environment.GitParentSupportConfiguration
-	c281 [label=<<table title="cn.home1.cloud.config.server.environment.GitParentSupportConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./GitParentSupportConfiguration.html">
+	c284 [label=<<table title="cn.home1.cloud.config.server.environment.GitParentSupportConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./GitParentSupportConfiguration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> GitParentSupportConfiguration </td></tr>
 		</table></td></tr>
@@ -20,7 +20,7 @@ digraph G {
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + GitParentSupportConfiguration() </td></tr>
 <tr><td align="left" balign="left"> + configSecurity() : ConfigSecurity </td></tr>
-<tr><td align="left" balign="left"> + environmentRepository(environmentProperties : MultipleJGitEnvironmentProperties) : EnvironmentRepository </td></tr>
+<tr><td align="left" balign="left"> + environmentRepository() : EnvironmentRepository </td></tr>
 		</table></td></tr>
 		</table>>, URL="./GitParentSupportConfiguration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }

@@ -12,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.config.environment.Environment;
-import org.springframework.cloud.config.server.environment.MultipleJGitEnvironmentProperties;
 import org.springframework.cloud.config.server.environment.MultipleJGitEnvironmentRepository;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -20,87 +19,87 @@ import org.springframework.security.authentication.BadCredentialsException;
 import java.util.Set;
 
 @ConfigurationProperties(&quot;spring.cloud.config.server.git&quot;)
-<span class="nc" id="L23">@Slf4j</span>
+<span class="nc" id="L22">@Slf4j</span>
 public class GitParentSupportMultipleJGitEnvironmentRepository extends MultipleJGitEnvironmentRepository {
 
-<span class="nc" id="L26">    @Setter</span>
+<span class="nc" id="L25">    @Setter</span>
     private ConfigSecurity configSecurity;
 
-    public GitParentSupportMultipleJGitEnvironmentRepository(ConfigurableEnvironment environment, final MultipleJGitEnvironmentProperties properties) {
-<span class="nc" id="L30">        super(environment, properties);</span>
-<span class="nc" id="L31">    }</span>
+    public GitParentSupportMultipleJGitEnvironmentRepository(final ConfigurableEnvironment environment) {
+<span class="nc" id="L29">        super(environment);</span>
+<span class="nc" id="L30">    }</span>
 
     @Override
     public Environment findOne(final String application, final String profile, final String label) {
-<span class="nc" id="L35">        final Environment currentApplicationEnv = super.findOne(application, profile, label);</span>
+<span class="nc" id="L34">        final Environment currentApplicationEnv = super.findOne(application, profile, label);</span>
 
         // load parents
-<span class="nc" id="L38">        final Set&lt;String&gt; history = newLinkedHashSet();</span>
-<span class="nc" id="L39">        history.add(EnvironmentUtils.getApplicationName(currentApplicationEnv));</span>
+<span class="nc" id="L37">        final Set&lt;String&gt; history = newLinkedHashSet();</span>
+<span class="nc" id="L38">        history.add(EnvironmentUtils.getApplicationName(currentApplicationEnv));</span>
 
-<span class="nc" id="L41">        for (Environment parentEnv, applicationEnv = currentApplicationEnv; //</span>
-<span class="nc bnc" id="L42" title="All 2 branches missed.">             (parentEnv = getParentEnvironment(applicationEnv, label)) != null; //</span>
-<span class="nc" id="L43">             applicationEnv = parentEnv) {</span>
+<span class="nc" id="L40">        for (Environment parentEnv, applicationEnv = currentApplicationEnv; //</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">             (parentEnv = getParentEnvironment(applicationEnv, label)) != null; //</span>
+<span class="nc" id="L42">             applicationEnv = parentEnv) {</span>
 
-<span class="nc" id="L45">            final String parentApplication = EnvironmentUtils.getParentApplication(applicationEnv);</span>
+<span class="nc" id="L44">            final String parentApplication = EnvironmentUtils.getParentApplication(applicationEnv);</span>
 
-<span class="nc" id="L47">            final String expectedParentPassword = EnvironmentUtils.getConfigPassword(parentEnv);</span>
-<span class="nc bnc" id="L48" title="All 2 branches missed.">            if (isNotBlank(expectedParentPassword)) {</span>
-<span class="nc" id="L49">                final String token = EnvironmentUtils.getParentConfigPassword(applicationEnv);</span>
-<span class="nc" id="L50">                final Boolean hasParentPrivilege = this.configSecurity.verifyParentPassword(application, parentApplication, token, expectedParentPassword);</span>
-<span class="nc bnc" id="L51" title="All 2 branches missed.">                if (!hasParentPrivilege) {</span>
-<span class="nc" id="L52">                    throw new BadCredentialsException(&quot;Invalid access to parent config '&quot; + parentApplication + &quot;'.&quot;);</span>
+<span class="nc" id="L46">            final String expectedParentPassword = EnvironmentUtils.getConfigPassword(parentEnv);</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">            if (isNotBlank(expectedParentPassword)) {</span>
+<span class="nc" id="L48">                final String token = EnvironmentUtils.getParentConfigPassword(applicationEnv);</span>
+<span class="nc" id="L49">                final Boolean hasParentPrivilege = this.configSecurity.verifyParentPassword(application, parentApplication, token, expectedParentPassword);</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">                if (!hasParentPrivilege) {</span>
+<span class="nc" id="L51">                    throw new BadCredentialsException(&quot;Invalid access to parent config '&quot; + parentApplication + &quot;'.&quot;);</span>
                 }
             }
 
-<span class="nc bnc" id="L56" title="All 2 branches missed.">            if (history.contains(parentApplication)) {</span>
-<span class="nc" id="L57">                log.warn(&quot;circular reference detected! ignore existed parent. application:{}, circular parentApplication:{}&quot;,</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            if (history.contains(parentApplication)) {</span>
+<span class="nc" id="L56">                log.warn(&quot;circular reference detected! ignore existed parent. application:{}, circular parentApplication:{}&quot;,</span>
                     application, parentApplication);
-<span class="nc" id="L59">                break;</span>
+<span class="nc" id="L58">                break;</span>
             } else {
-<span class="nc" id="L61">                history.add(parentApplication);</span>
+<span class="nc" id="L60">                history.add(parentApplication);</span>
             }
 
             // application config first.
             // PropertySources[n] will override (cover) the value in PropertySources[n+1] under same key.
-<span class="nc" id="L66">            currentApplicationEnv.getPropertySources().addAll(parentEnv.getPropertySources());</span>
+<span class="nc" id="L65">            currentApplicationEnv.getPropertySources().addAll(parentEnv.getPropertySources());</span>
         }
 
-<span class="nc" id="L69">        return currentApplicationEnv;</span>
+<span class="nc" id="L68">        return currentApplicationEnv;</span>
     }
 
 
     private Environment getParentEnvironment(final Environment environment, final String label) {
-<span class="nc" id="L74">        final String parentApplication = EnvironmentUtils.getParentApplication(environment);</span>
-<span class="nc bnc" id="L75" title="All 4 branches missed.">        if (parentApplication == null || isBlank(parentApplication)) {</span>
-<span class="nc" id="L76">            return null;</span>
+<span class="nc" id="L73">        final String parentApplication = EnvironmentUtils.getParentApplication(environment);</span>
+<span class="nc bnc" id="L74" title="All 4 branches missed.">        if (parentApplication == null || isBlank(parentApplication)) {</span>
+<span class="nc" id="L75">            return null;</span>
         }
-<span class="nc" id="L78">        final String parentLabel = EnvironmentUtils.getParentLabel(environment, label);</span>
+<span class="nc" id="L77">        final String parentLabel = EnvironmentUtils.getParentLabel(environment, label);</span>
 
-<span class="nc" id="L80">        Environment result = null;</span>
+<span class="nc" id="L79">        Environment result = null;</span>
 
-<span class="nc" id="L82">        String[] profiles = environment.getProfiles();</span>
-<span class="nc bnc" id="L83" title="All 4 branches missed.">        if (profiles == null || profiles.length == 0) {</span>
-<span class="nc" id="L84">            profiles = new String[]{&quot;default&quot;};</span>
+<span class="nc" id="L81">        String[] profiles = environment.getProfiles();</span>
+<span class="nc bnc" id="L82" title="All 4 branches missed.">        if (profiles == null || profiles.length == 0) {</span>
+<span class="nc" id="L83">            profiles = new String[]{&quot;default&quot;};</span>
         }
 
-<span class="nc bnc" id="L87" title="All 2 branches missed.">        for (final String profile : profiles) {</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">        for (final String profile : profiles) {</span>
             Environment found;
             try {
-<span class="nc" id="L90">                found = super.findOne(parentApplication, profile, parentLabel);</span>
-<span class="nc" id="L91">            } catch (final Exception exception) {</span>
-<span class="nc" id="L92">                log.warn(&quot;error fetch parent exception! parentApplication:{}, profile:{}, parentLabel:{}&quot;,</span>
+<span class="nc" id="L89">                found = super.findOne(parentApplication, profile, parentLabel);</span>
+<span class="nc" id="L90">            } catch (final Exception exception) {</span>
+<span class="nc" id="L91">                log.warn(&quot;error fetch parent exception! parentApplication:{}, profile:{}, parentLabel:{}&quot;,</span>
                     parentApplication, profile, parentLabel, exception);
-<span class="nc" id="L94">                throw exception;</span>
-<span class="nc" id="L95">            }</span>
+<span class="nc" id="L93">                throw exception;</span>
+<span class="nc" id="L94">            }</span>
 
-<span class="nc bnc" id="L97" title="All 2 branches missed.">            if (result == null) {</span>
-<span class="nc" id="L98">                result = found;</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">            if (result == null) {</span>
+<span class="nc" id="L97">                result = found;</span>
             } else {
-<span class="nc" id="L100">                result.getPropertySources().addAll(found.getPropertySources());</span>
+<span class="nc" id="L99">                result.getPropertySources().addAll(found.getPropertySources());</span>
             }
         }
-<span class="nc" id="L103">        return result;</span>
+<span class="nc" id="L102">        return result;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

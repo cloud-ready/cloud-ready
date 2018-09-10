@@ -25,21 +25,8 @@ digraph G {
 <tr><td align="left" balign="left"> + verifyParentPassword(application : String, parentApplication : String, token : String, expectedParentPassword : String) : Boolean </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ConfigSecurity.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// cn.home1.cloud.config.server.security.ApplicationSecurityAutoConfiguration
-	c38 [label=<<table title="cn.home1.cloud.config.server.security.ApplicationSecurityAutoConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ApplicationSecurityAutoConfiguration.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> ApplicationSecurityAutoConfiguration </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left">  </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + ApplicationSecurityAutoConfiguration() </td></tr>
-<tr><td align="left" balign="left"> + authenticationEventPublisher(publisher : ApplicationEventPublisher) : DefaultAuthenticationEventPublisher </td></tr>
-		</table></td></tr>
-		</table>>, URL="./ApplicationSecurityAutoConfiguration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// cn.home1.cloud.config.server.security.GitFileConfigUserDetailsService
-	c39 [label=<<table title="cn.home1.cloud.config.server.security.GitFileConfigUserDetailsService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./GitFileConfigUserDetailsService.html">
+	c38 [label=<<table title="cn.home1.cloud.config.server.security.GitFileConfigUserDetailsService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./GitFileConfigUserDetailsService.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> GitFileConfigUserDetailsService </td></tr>
 		</table></td></tr>
@@ -52,7 +39,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="./GitFileConfigUserDetailsService.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// cn.home1.cloud.config.server.security.Role
-	c40 [label=<<table title="cn.home1.cloud.config.server.security.Role" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Role.html">
+	c39 [label=<<table title="cn.home1.cloud.config.server.security.Role" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Role.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
 <tr><td align="center" balign="center"> Role </td></tr>
@@ -68,7 +55,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="./Role.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// cn.home1.cloud.config.server.security.PrivilegedUserProperties
-	c41 [label=<<table title="cn.home1.cloud.config.server.security.PrivilegedUserProperties" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./PrivilegedUserProperties.html">
+	c40 [label=<<table title="cn.home1.cloud.config.server.security.PrivilegedUserProperties" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./PrivilegedUserProperties.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> PrivilegedUserProperties </td></tr>
 		</table></td></tr>
@@ -82,6 +69,24 @@ digraph G {
 <tr><td align="left" balign="left"> + getAdminRoles() : List&lt;String&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./PrivilegedUserProperties.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// cn.home1.cloud.config.server.security.ApplicationWebSecurityConfigurerAdapter
+	c41 [label=<<table title="cn.home1.cloud.config.server.security.ApplicationWebSecurityConfigurerAdapter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ApplicationWebSecurityConfigurerAdapter.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> ApplicationWebSecurityConfigurerAdapter </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + ApplicationWebSecurityConfigurerAdapter() </td></tr>
+<tr><td align="left" balign="left"> + init(web : WebSecurity) </td></tr>
+<tr><td align="left" balign="left"> # configure(auth : AuthenticationManagerBuilder) </td></tr>
+<tr><td align="left" balign="left"> # configure(http : HttpSecurity) </td></tr>
+<tr><td align="left" balign="left"> + applicationConfigSecurity() : ApplicationConfigSecurity </td></tr>
+<tr><td align="left" balign="left"> + privilegedUserProperties() : PrivilegedUserProperties </td></tr>
+<tr><td align="left" balign="left"> + userDetailsService() : GitFileConfigUserDetailsService </td></tr>
+		</table></td></tr>
+		</table>>, URL="./ApplicationWebSecurityConfigurerAdapter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// cn.home1.cloud.config.server.security.ApplicationConfigSecurity
 	c42 [label=<<table title="cn.home1.cloud.config.server.security.ApplicationConfigSecurity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ApplicationConfigSecurity.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">

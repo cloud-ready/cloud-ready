@@ -25,10 +25,10 @@ import javax.annotation.PostConstruct;
 <span class="nc" id="L25">    @Getter(value = PRIVATE)</span>
     private SecurityProperties securityProperties;
 
-    @Value(&quot;${spring.security.hook.name:hook}&quot;)
+    @Value(&quot;${security.hook.name:hook}&quot;)
 <span class="nc" id="L29">    private String hookName;</span>
 
-    @Value(&quot;${spring.security.hook.password:hook_pass}&quot;)
+    @Value(&quot;${security.hook.password:hook_pass}&quot;)
 <span class="nc" id="L32">    private String hookPassword;</span>
 
     public String getAdminName() {
@@ -40,7 +40,7 @@ import javax.annotation.PostConstruct;
     }
 
     public List&lt;String&gt; getAdminRoles() {
-<span class="nc" id="L43">        return this.securityProperties.getUser().getRoles();</span>
+<span class="nc" id="L43">        return this.securityProperties.getUser().getRole();</span>
     }
 
     @PostConstruct

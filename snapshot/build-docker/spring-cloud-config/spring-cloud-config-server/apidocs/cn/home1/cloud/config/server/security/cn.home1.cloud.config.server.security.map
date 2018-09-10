@@ -1,14 +1,14 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./ConfigSecurity.html" title="cn.home1.cloud.config.server.security.ConfigSecurity" alt="" coords="15,11,793,157"/>
-<area shape="rect" id="node1" href="./ConfigSecurity.html" title="&lt;TABLE&gt;" alt="" coords="4,5,804,163"/>
-<area shape="rect" id="node2_1" href="./ApplicationSecurityAutoConfiguration.html" title="cn.home1.cloud.config.server.security.ApplicationSecurityAutoConfiguration" alt="" coords="839,37,1489,131"/>
-<area shape="rect" id="node2" href="./ApplicationSecurityAutoConfiguration.html" title="&lt;TABLE&gt;" alt="" coords="828,31,1500,137"/>
-<area shape="rect" id="node3_2" href="./GitFileConfigUserDetailsService.html" title="cn.home1.cloud.config.server.security.GitFileConfigUserDetailsService" alt="" coords="1535,37,1889,131"/>
-<area shape="rect" id="node3" href="./GitFileConfigUserDetailsService.html" title="&lt;TABLE&gt;" alt="" coords="1525,31,1899,137"/>
-<area shape="rect" id="node4_3" href="./Role.html" title="cn.home1.cloud.config.server.security.Role" alt="" coords="1934,11,2039,157"/>
-<area shape="rect" id="node4" href="./Role.html" title="&lt;TABLE&gt;" alt="" coords="1923,5,2050,163"/>
-<area shape="rect" id="node5_4" href="./PrivilegedUserProperties.html" title="cn.home1.cloud.config.server.security.PrivilegedUserProperties" alt="" coords="2085,19,2299,149"/>
-<area shape="rect" id="node5" href="./PrivilegedUserProperties.html" title="&lt;TABLE&gt;" alt="" coords="2075,14,2309,154"/>
-<area shape="rect" id="node6_5" href="./ApplicationConfigSecurity.html" title="cn.home1.cloud.config.server.security.ApplicationConfigSecurity" alt="" coords="2345,37,2818,131"/>
-<area shape="rect" id="node6" href="./ApplicationConfigSecurity.html" title="&lt;TABLE&gt;" alt="" coords="2334,31,2829,137"/>
+<area shape="rect" id="node1_0" href="./ConfigSecurity.html" title="cn.home1.cloud.config.server.security.ConfigSecurity" alt="" coords="15,28,793,175"/>
+<area shape="rect" id="node1" href="./ConfigSecurity.html" title="&lt;TABLE&gt;" alt="" coords="4,23,804,180"/>
+<area shape="rect" id="node2_1" href="./GitFileConfigUserDetailsService.html" title="cn.home1.cloud.config.server.security.GitFileConfigUserDetailsService" alt="" coords="838,54,1191,149"/>
+<area shape="rect" id="node2" href="./GitFileConfigUserDetailsService.html" title="&lt;TABLE&gt;" alt="" coords="827,49,1202,154"/>
+<area shape="rect" id="node3_2" href="./Role.html" title="cn.home1.cloud.config.server.security.Role" alt="" coords="1237,28,1342,175"/>
+<area shape="rect" id="node3" href="./Role.html" title="&lt;TABLE&gt;" alt="" coords="1226,23,1353,180"/>
+<area shape="rect" id="node4_3" href="./PrivilegedUserProperties.html" title="cn.home1.cloud.config.server.security.PrivilegedUserProperties" alt="" coords="1388,37,1601,166"/>
+<area shape="rect" id="node4" href="./PrivilegedUserProperties.html" title="&lt;TABLE&gt;" alt="" coords="1377,31,1612,171"/>
+<area shape="rect" id="node5_4" href="./ApplicationWebSecurityConfigurerAdapter.html" title="cn.home1.cloud.config.server.security.ApplicationWebSecurityConfigurerAdapter" alt="" coords="1647,11,1999,192"/>
+<area shape="rect" id="node5" href="./ApplicationWebSecurityConfigurerAdapter.html" title="&lt;TABLE&gt;" alt="" coords="1636,5,2009,197"/>
+<area shape="rect" id="node6_5" href="./ApplicationConfigSecurity.html" title="cn.home1.cloud.config.server.security.ApplicationConfigSecurity" alt="" coords="2045,54,2518,149"/>
+<area shape="rect" id="node6" href="./ApplicationConfigSecurity.html" title="&lt;TABLE&gt;" alt="" coords="2034,49,2529,154"/>
 </map>
