@@ -93,7 +93,7 @@
         <ul class="breadcrumb">
         <li id="publishDate">Last Published: 2018-09-10<span class="divider">|</span>
 </li>
-          <li id="projectVersion">Version: 1.0.1-SNAPSHOT</li>
+          <li id="projectVersion">Version: 2.0.1-springboot2-SNAPSHOT</li>
         </ul>
       </div>
       <div class="row-fluid">
@@ -215,7 +215,7 @@ curl -s -X GET -u admin:admin_pass http://config-server:8888/config/develop/demo
 <div>
 <div>
 <pre class="source"># contents in '[]' is ignorable, depends on application instance's config
-curl -s -X GET [-u user:password] http[s]://host[:port][/server.context-path][/management.context-path]/refresh
+curl -s -X GET [-u user:password] http[s]://host[:port][/server.servlet.context-path][/management.endpoints.web.base-path]/refresh
 </pre></div></div>
 
 <p>5.2. git push hook on git service -&gt; config-server&#x2019;s <tt>monitor</tt> endpoint -&gt; cloud-bus (MQ) -&gt; application instances automatically</p>

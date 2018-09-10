@@ -48,7 +48,7 @@ digraph G {
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> # ConfigServerConfiguration() </td></tr>
-<tr><td align="left" balign="left"> + propertiesBasedSshTransportCallback(sshUriProperties : SshUriProperties) : TransportConfigCallback </td></tr>
+<tr><td align="left" balign="left"> + propertiesBasedSshTransportCallback(sshUriProperties : MultipleJGitEnvironmentProperties) : TransportConfigCallback </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ConfigServer.ConfigServerConfiguration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
