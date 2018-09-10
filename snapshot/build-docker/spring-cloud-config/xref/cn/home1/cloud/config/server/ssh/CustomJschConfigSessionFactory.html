@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>CustomJschConfigSessionFactory xref</title>
+<link type="text/css" rel="stylesheet" href="../../../../../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../../../../../apidocs/cn/home1/cloud/config/server/ssh/CustomJschConfigSessionFactory.html">View Javadoc</a></div><pre>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> cn.home1.cloud.config.server.ssh;
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> com.jcraft.jsch.JSch;
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> com.jcraft.jsch.JSchException;
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> com.jcraft.jsch.Session;
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> org.eclipse.jgit.transport.JschConfigSessionFactory;
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> org.eclipse.jgit.transport.OpenSshConfig;
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> org.eclipse.jgit.util.FS;
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <em class="jxr_javadoccomment"> * A custom JschConfigSessionFactory load keys from given locations</em>
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <em class="jxr_javadoccomment"> * Created by zhanghaolun on 16/9/18.</em>
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  @Deprecated
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../../cn/home1/cloud/config/server/ssh/CustomJschConfigSessionFactory.html">CustomJschConfigSessionFactory</a> <strong class="jxr_keyword">extends</strong> JschConfigSessionFactory {
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>    <strong class="jxr_keyword">private</strong> String[] identityKeyPaths;
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>    <strong class="jxr_keyword">public</strong> <a href="../../../../../../cn/home1/cloud/config/server/ssh/CustomJschConfigSessionFactory.html">CustomJschConfigSessionFactory</a>(<strong class="jxr_keyword">final</strong> String... identityKeyPaths) {
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>      <strong class="jxr_keyword">this</strong>.identityKeyPaths = identityKeyPaths;
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>    }
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>    @Override
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>    <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> configure(<strong class="jxr_keyword">final</strong> OpenSshConfig.Host hc, <strong class="jxr_keyword">final</strong> Session session) {
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>      <em class="jxr_comment">// nothing special needed here.</em>
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>      session.setConfig(<span class="jxr_string">"StrictHostKeyChecking"</span>, <span class="jxr_string">"no"</span>);
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>    }
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>    @Override
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>    <strong class="jxr_keyword">protected</strong> JSch getJSch(<strong class="jxr_keyword">final</strong> OpenSshConfig.Host hc, <strong class="jxr_keyword">final</strong> FS fs) <strong class="jxr_keyword">throws</strong> JSchException {
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>      <strong class="jxr_keyword">final</strong> JSch jsch = <strong class="jxr_keyword">super</strong>.getJSch(hc, fs);
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>      <em class="jxr_comment">// Clean out anything 'default' - any encrypted keys that are loaded by default before this will break.</em>
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>      jsch.removeAllIdentity();
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>      <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> String identKeyPath : <strong class="jxr_keyword">this</strong>.identityKeyPaths) {
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>        jsch.addIdentity(identKeyPath);
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>      }
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>      <strong class="jxr_keyword">return</strong> jsch;
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>    }
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  }
+</pre>
+<hr/>
+<div id="footer">Copyright &#169; 2018. All rights reserved.</div>
+</body>
+</html>
