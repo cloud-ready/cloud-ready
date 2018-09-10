@@ -1,4 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./EurekaServer.html" title="cn.home1.cloud.netflix.eureka.server.EurekaServer" alt="" coords="15,11,163,123"/>
-<area shape="rect" id="node1" href="./EurekaServer.html" title="&lt;TABLE&gt;" alt="" coords="5,5,174,128"/>
+<area shape="rect" id="node1_0" href="./ApplicationSecurityAutoConfiguration.html" title="cn.home1.cloud.netflix.eureka.server.ApplicationSecurityAutoConfiguration" alt="" coords="16,19,667,114"/>
+<area shape="rect" id="node1" href="./ApplicationSecurityAutoConfiguration.html" title="&lt;TABLE&gt;" alt="" coords="5,14,677,119"/>
+<area shape="rect" id="node2_1" href="./EurekaServer.html" title="cn.home1.cloud.netflix.eureka.server.EurekaServer" alt="" coords="713,11,861,123"/>
+<area shape="rect" id="node2" href="./EurekaServer.html" title="&lt;TABLE&gt;" alt="" coords="702,5,871,128"/>
 </map>
