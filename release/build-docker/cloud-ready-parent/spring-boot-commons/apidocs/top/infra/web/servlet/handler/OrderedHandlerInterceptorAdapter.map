@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./OrderedHandlerInterceptorAdapter.html" title="top.infra.web.servlet.handler.OrderedHandlerInterceptorAdapter" alt="" coords="457,216,695,293"/>
+<area shape="rect" id="node1" href="./OrderedHandlerInterceptorAdapter.html" title="&lt;TABLE&gt;" alt="" coords="446,211,706,299"/>
+<area shape="rect" id="node2_1" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/web/servlet/handler/HandlerInterceptorAdapter.html" title="org.springframework.web.servlet.handler.HandlerInterceptorAdapter" alt="" coords="15,11,659,157"/>
+<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/web/servlet/handler/HandlerInterceptorAdapter.html" title="&lt;TABLE&gt;" alt="" coords="5,5,670,163"/>
+<area shape="rect" id="node3_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/core/Ordered.html" title="org.springframework.core.Ordered" alt="" coords="705,28,927,140"/>
+<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/core/Ordered.html" title="&lt;TABLE&gt;" alt="" coords="695,23,937,145"/>
+</map>
