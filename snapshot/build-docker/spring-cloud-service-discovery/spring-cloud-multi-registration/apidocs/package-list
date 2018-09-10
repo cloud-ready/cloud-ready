@@ -1,0 +1,3 @@
+org.springframework.boot.actuate.endpoint
+org.springframework.cloud.client.serviceregistry
+org.springframework.cloud.client.serviceregistry.endpoint
