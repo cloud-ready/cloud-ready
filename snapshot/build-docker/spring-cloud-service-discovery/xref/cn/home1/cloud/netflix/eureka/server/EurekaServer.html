@@ -12,37 +12,38 @@
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> org.springframework.beans.factory.annotation.Autowired;
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> org.springframework.boot.autoconfigure.SpringBootApplication;
-<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> org.springframework.boot.builder.SpringApplicationBuilder;
-<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> org.springframework.boot.context.event.ApplicationReadyEvent;
-<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> org.springframework.cloud.netflix.eureka.EurekaClientConfigBean;
-<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean;
-<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
-<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <strong class="jxr_keyword">import</strong> org.springframework.context.event.EventListener;
-<a class="jxr_linenumber" name="L13" href="#L13">13</a>  
-<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_javadoccomment"> * Created by zhanghaolun on 16/9/26.</em>
-<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L17" href="#L17">17</a>  @EnableEurekaServer
-<a class="jxr_linenumber" name="L18" href="#L18">18</a>  @SpringBootApplication
-<a class="jxr_linenumber" name="L19" href="#L19">19</a>  @Slf4j
-<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../../cn/home1/cloud/netflix/eureka/server/EurekaServer.html">EurekaServer</a> {
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>  
-<a class="jxr_linenumber" name="L22" href="#L22">22</a>      @Autowired
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>      <strong class="jxr_keyword">private</strong> EurekaClientConfigBean eurekaClientConfig;
-<a class="jxr_linenumber" name="L24" href="#L24">24</a>  
-<a class="jxr_linenumber" name="L25" href="#L25">25</a>      @Autowired
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>      <strong class="jxr_keyword">private</strong> EurekaInstanceConfigBean eurekaInstanceConfig;
-<a class="jxr_linenumber" name="L27" href="#L27">27</a>  
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> main(<strong class="jxr_keyword">final</strong> String... args) {
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>          <strong class="jxr_keyword">new</strong> SpringApplicationBuilder(EurekaServer.<strong class="jxr_keyword">class</strong>).web(<strong class="jxr_keyword">true</strong>).run(args);
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>      }
-<a class="jxr_linenumber" name="L31" href="#L31">31</a>  
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>      @EventListener(ApplicationReadyEvent.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> printImportantInfo() {
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>          log.info(<span class="jxr_string">"eureka.client.service-url.defaultZone: {}"</span>, <strong class="jxr_keyword">this</strong>.eurekaClientConfig.getServiceUrl().get(<span class="jxr_string">"defaultZone"</span>));
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>          log.info(<span class="jxr_string">"eureka.instance.hostname: {}"</span>, <strong class="jxr_keyword">this</strong>.eurekaInstanceConfig.getHostname());
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>      }
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>  }
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> org.springframework.boot.builder.SpringApplicationBuilder;
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> org.springframework.boot.context.event.ApplicationReadyEvent;
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> org.springframework.cloud.netflix.eureka.EurekaClientConfigBean;
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean;
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <strong class="jxr_keyword">import</strong> org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> org.springframework.context.event.EventListener;
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <em class="jxr_javadoccomment"> * Created by zhanghaolun on 16/9/26.</em>
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  @EnableEurekaServer
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  @SpringBootApplication(exclude = {SecurityAutoConfiguration.<strong class="jxr_keyword">class</strong>})
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  @Slf4j
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../../cn/home1/cloud/netflix/eureka/server/EurekaServer.html">EurekaServer</a> {
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>      @Autowired
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>      <strong class="jxr_keyword">private</strong> EurekaClientConfigBean eurekaClientConfig;
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>      @Autowired
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>      <strong class="jxr_keyword">private</strong> EurekaInstanceConfigBean eurekaInstanceConfig;
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> main(<strong class="jxr_keyword">final</strong> String... args) {
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>          <strong class="jxr_keyword">new</strong> SpringApplicationBuilder(EurekaServer.<strong class="jxr_keyword">class</strong>).web(<strong class="jxr_keyword">true</strong>).run(args);
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>      }
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>      @EventListener(ApplicationReadyEvent.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> printImportantInfo() {
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>          log.info(<span class="jxr_string">"eureka.client.service-url.defaultZone: {}"</span>, <strong class="jxr_keyword">this</strong>.eurekaClientConfig.getServiceUrl().get(<span class="jxr_string">"defaultZone"</span>));
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>          log.info(<span class="jxr_string">"eureka.instance.hostname: {}"</span>, <strong class="jxr_keyword">this</strong>.eurekaInstanceConfig.getHostname());
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>      }
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2018. All rights reserved.</div>
