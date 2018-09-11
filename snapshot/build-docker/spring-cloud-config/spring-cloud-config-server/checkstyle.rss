@@ -27,7 +27,7 @@ under the License.
     <item>
       <title>File: 13,
              Errors: 0,
-             Warnings: 63,
+             Warnings: 66,
              Infos: 0
       </title>
             <link>https://github.com/cloud-ready/spring-cloud-config/spring-cloud-config-server/checkstyle.html</link>
@@ -94,7 +94,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  3
+                  4
                 </td>
                 <td>
                   0
@@ -130,13 +130,13 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/cloud-ready/spring-cloud-config/spring-cloud-config-server/checkstyle.html#cn.home1.cloud.config.server.security.PrivilegedUserProperties.java">cn/home1/cloud/config/server/security/PrivilegedUserProperties.java</a>
+                  <a href="https://github.com/cloud-ready/spring-cloud-config/spring-cloud-config-server/checkstyle.html#cn.home1.cloud.config.server.security.ApplicationSecurityAutoConfiguration.java">cn/home1/cloud/config/server/security/ApplicationSecurityAutoConfiguration.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  4
+                  2
                 </td>
                 <td>
                   0
@@ -144,13 +144,13 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/cloud-ready/spring-cloud-config/spring-cloud-config-server/checkstyle.html#cn.home1.cloud.config.server.security.ApplicationWebSecurityConfigurerAdapter.java">cn/home1/cloud/config/server/security/ApplicationWebSecurityConfigurerAdapter.java</a>
+                  <a href="https://github.com/cloud-ready/spring-cloud-config/spring-cloud-config-server/checkstyle.html#cn.home1.cloud.config.server.security.PrivilegedUserProperties.java">cn/home1/cloud/config/server/security/PrivilegedUserProperties.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  1
+                  4
                 </td>
                 <td>
                   0
@@ -206,7 +206,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  4
+                  5
                 </td>
                 <td>
                   0
