@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DefaultTimeZone.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spring-boot-jackson2-joda</a> &gt; <a href="index.source.html" class="el_package">top.infra.jackson2</a> &gt; <span class="el_source">DefaultTimeZone.java</span></div><h1>DefaultTimeZone.java</h1><pre class="source lang-java linenums">package top.infra.jackson2;
+
+import static org.joda.time.format.DateTimeFormat.forPattern;
+
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.joda.time.Minutes;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
+import java.util.TimeZone;
+
+/**
+ * Created by zhanghaolun on 16/6/20.
+ */
+public abstract class DefaultTimeZone {
+
+    public static final String CRON_EVERY_30_SECONDS = &quot;0/30 * * * * ?&quot;;
+
+<span class="nc" id="L20">    public static final DateTimeZone DEFAULT_DATE_TIME_ZONE = DateTimeZone.getDefault();</span>
+<span class="nc" id="L21">    public static final TimeZone DEFAULT_TIME_ZONE = DEFAULT_DATE_TIME_ZONE.toTimeZone();</span>
+<span class="nc" id="L22">    public static final DateTime EPOCH = new DateTime(0L, DEFAULT_DATE_TIME_ZONE);</span>
+
+    /**
+     * see: http://stackoverflow.com/questions/15245307/java-simpledateformat-timezone-offset-with-minute-separated-by-colon
+     * You can get the timezone offset formatted like +08:00
+     * with the SimpleDateFormat in Java 7 (yyyy-MM-dd'T'HH:mm:ss.SSSXXX)
+     * with the Joda's DateTimeFormat (yyyy-MM-dd'T'HH:mm:ss.SSSZZ)
+     */
+    public static final String PATTERN_JAVA_ISO8601 = &quot;yyyy-MM-dd'T'HH:mm:ss.SSSXXX&quot;;
+    public static final String PATTERN_JODA_ISO8601 = &quot;yyyy-MM-dd'T'HH:mm:ss.SSSZZ&quot;;
+
+    public static final DateTimeFormatter yyyyMMdd_HHmmss;
+    public static final DateTimeFormatter ISO8601;
+
+    static {
+<span class="nc" id="L37">        yyyyMMdd_HHmmss = forPattern(&quot;yyyyMMdd-HH:mm:ss&quot;).withZone(DEFAULT_DATE_TIME_ZONE);</span>
+<span class="nc" id="L38">        ISO8601 = DateTimeFormat.forPattern(PATTERN_JODA_ISO8601).withZone(DEFAULT_DATE_TIME_ZONE);</span>
+<span class="nc" id="L39">    }</span>
+
+    private DefaultTimeZone() {
+    }
+
+    public static DateTime now() {
+<span class="nc" id="L45">        return DateTime.now(DEFAULT_DATE_TIME_ZONE);</span>
+    }
+
+    public static Integer minutesSinceEpoch(final DateTime dateTime) {
+<span class="nc" id="L49">        return Minutes.minutesBetween(EPOCH, dateTime).getMinutes();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>
