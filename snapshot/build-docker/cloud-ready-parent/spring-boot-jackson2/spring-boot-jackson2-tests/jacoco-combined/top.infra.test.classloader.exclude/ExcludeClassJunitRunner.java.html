@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ExcludeClassJunitRunner.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Combined</a> &gt; <a href="index.source.html" class="el_package">top.infra.test.classloader.exclude</a> &gt; <span class="el_source">ExcludeClassJunitRunner.java</span></div><h1>ExcludeClassJunitRunner.java</h1><pre class="source lang-java linenums">package top.infra.test.classloader.exclude;
+
+import lombok.SneakyThrows;
+
+import org.junit.runner.Runner;
+import org.junit.runners.BlockJUnit4ClassRunner;
+import org.junit.runners.Suite;
+import org.junit.runners.model.InitializationError;
+
+import java.net.URLClassLoader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import top.infra.test.classloader.ClassLoaderChangerRunner;
+import top.infra.test.classloader.ClassUtils;
+
+public class ExcludeClassJunitRunner extends Suite {
+
+    private static URLClassLoader currentClassLoader;
+    private static ExcludeClassesClassLoader customClassLoader;
+
+    static {
+<span class="fc" id="L24">        currentClassLoader = (URLClassLoader) Thread.currentThread().getContextClassLoader();</span>
+<span class="fc" id="L25">        customClassLoader = new ExcludeClassesClassLoader(</span>
+            currentClassLoader,
+<span class="fc" id="L27">            currentClassLoader.getURLs(),</span>
+            null
+        );
+<span class="fc" id="L30">    }</span>
+
+    public ExcludeClassJunitRunner(final Class&lt;?&gt; klass) throws InitializationError {
+<span class="fc" id="L33">        super(</span>
+<span class="fc" id="L34">            ClassUtils.loadFromCustomClassloader(customClassLoader, klass),</span>
+<span class="fc" id="L35">            buildRunners(ClassUtils.loadFromCustomClassloader(customClassLoader, klass)));</span>
+<span class="fc" id="L36">    }</span>
+
+    // Runs junit tests in a separate thread using the custom class loader
+//    @Override
+//    public void run(final org.junit.runner.notification.RunNotifier notifier) {
+//        final Runnable runnable = () -&gt; {
+//            super.run(notifier);
+//        };
+//        final Thread thread = new Thread(runnable);
+//        thread.setContextClassLoader(customClassLoader);
+//        thread.start();
+//        try {
+//            thread.join();
+//        } catch (final InterruptedException ex) {
+//            Thread.currentThread().interrupt();
+//        }
+//    }
+
+<span class="nc" id="L54">    @SneakyThrows</span>
+    private static List&lt;Runner&gt; buildRunners(final Class&lt;?&gt; klass) {
+<span class="fc" id="L56">        final ExcludeClasses excludeClasses = klass.getAnnotation(ExcludeClasses.class);</span>
+<span class="pc bpc" id="L57" title="1 of 2 branches missed.">        if (excludeClasses == null) throw new IllegalArgumentException(&quot;Class &quot; + klass + &quot; is missing ExcludeClasses annotation&quot;);</span>
+
+<span class="fc" id="L59">        customClassLoader.setExcludes(Arrays.asList(excludeClasses.excludesClasses()));</span>
+
+<span class="fc" id="L61">        final Class&lt;?&gt; testClass = customClassLoader.loadClass(klass.getName());</span>
+
+<span class="fc" id="L63">        final Class&lt;?&gt; runnerClass = excludeClasses.runner();</span>
+<span class="fc" id="L64">        final BlockJUnit4ClassRunner junit4Runner =</span>
+<span class="fc" id="L65">            (BlockJUnit4ClassRunner) runnerClass.getConstructor(Class.class).newInstance(testClass);</span>
+
+<span class="fc" id="L67">        final List&lt;Runner&gt; runners = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L68">        runners.add(new ClassLoaderChangerRunner(currentClassLoader, customClassLoader, junit4Runner));</span>
+<span class="fc" id="L69">        return runners;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

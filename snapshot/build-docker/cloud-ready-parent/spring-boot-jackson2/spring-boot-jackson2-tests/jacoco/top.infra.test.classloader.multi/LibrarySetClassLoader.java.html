@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LibrarySetClassLoader.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spring-boot-jackson2-tests</a> &gt; <a href="index.source.html" class="el_package">top.infra.test.classloader.multi</a> &gt; <span class="el_source">LibrarySetClassLoader.java</span></div><h1>LibrarySetClassLoader.java</h1><pre class="source lang-java linenums">package top.infra.test.classloader.multi;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.Arrays;
+
+public class LibrarySetClassLoader extends URLClassLoader {
+
+    private final ClassLoader classLoader;
+
+    public LibrarySetClassLoader(final ClassLoader classLoader, final String[] libraries) throws IOException {
+<span class="fc" id="L15">        super(toUrls(libraries), Integer.class.getClassLoader());</span>
+<span class="fc" id="L16">        this.classLoader = classLoader;</span>
+<span class="fc" id="L17">    }</span>
+
+    @Override
+    public Class&lt;?&gt; loadClass(final String name) throws ClassNotFoundException {
+        try {
+<span class="fc" id="L22">            return super.loadClass(name);</span>
+<span class="fc" id="L23">        } catch (final ClassNotFoundException e) {</span>
+<span class="fc" id="L24">            return this.classLoader.loadClass(name);</span>
+        }
+    }
+
+    public static URL[] toUrls(final String[] libraries) throws IOException {
+<span class="fc" id="L29">        return Arrays.stream(libraries).map((s) -&gt; {</span>
+            try {
+<span class="fc bfc" id="L31" title="All 2 branches covered.">                if (s.startsWith(&quot;file:&quot;)) {</span>
+<span class="fc" id="L32">                    return new File(s.substring(&quot;file:&quot;.length())).toURI().toURL();</span>
+                }
+<span class="fc" id="L34">                return new URL(s);</span>
+<span class="nc" id="L35">            } catch (final MalformedURLException e) {</span>
+<span class="nc" id="L36">                throw new RuntimeException(e);</span>
+            }
+<span class="fc" id="L38">        }).toArray(URL[]::new);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

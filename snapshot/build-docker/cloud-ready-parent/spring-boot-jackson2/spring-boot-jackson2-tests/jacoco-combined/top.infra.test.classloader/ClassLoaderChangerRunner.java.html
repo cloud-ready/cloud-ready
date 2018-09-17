@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClassLoaderChangerRunner.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Combined</a> &gt; <a href="index.source.html" class="el_package">top.infra.test.classloader</a> &gt; <span class="el_source">ClassLoaderChangerRunner.java</span></div><h1>ClassLoaderChangerRunner.java</h1><pre class="source lang-java linenums">package top.infra.test.classloader;
+
+import org.junit.runner.Description;
+import org.junit.runner.Runner;
+import org.junit.runner.notification.RunNotifier;
+import org.junit.runners.BlockJUnit4ClassRunner;
+
+/**
+ * see: https://arnaudroger.github.io/blog/2016/07/18/testing-with-custom-classpath.html
+ * see: https://github.com/arnaudroger/blog/tree/master/src/main/java/io/github/arnaudroger/tmvl
+ */
+public class ClassLoaderChangerRunner extends Runner {
+
+    private final ClassLoader currentClassLoader;
+    private final ClassLoader customClassLoader;
+    private final BlockJUnit4ClassRunner delegate;
+
+    public ClassLoaderChangerRunner(
+        final ClassLoader currentClassLoader,
+        final ClassLoader customClassLoader,
+        final BlockJUnit4ClassRunner delegate
+<span class="fc" id="L22">    ) {</span>
+<span class="fc" id="L23">        this.currentClassLoader = currentClassLoader;</span>
+<span class="fc" id="L24">        this.customClassLoader = customClassLoader;</span>
+<span class="fc" id="L25">        this.delegate = delegate;</span>
+<span class="fc" id="L26">    }</span>
+
+    @Override
+    public Description getDescription() {
+<span class="fc" id="L30">        return this.delegate.getDescription();</span>
+    }
+
+    @Override
+    public void run(final RunNotifier runNotifier) {
+        try {
+<span class="fc" id="L36">            Thread.currentThread().setContextClassLoader(this.customClassLoader);</span>
+<span class="fc" id="L37">            this.delegate.run(runNotifier);</span>
+        } finally {
+<span class="fc" id="L39">            Thread.currentThread().setContextClassLoader(this.currentClassLoader);</span>
+        }
+<span class="fc" id="L41">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>
