@@ -25,9 +25,9 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2018</copyright>
     <item>
-      <title>File: 5,
+      <title>File: 6,
              Errors: 0,
-             Warnings: 26,
+             Warnings: 21,
              Infos: 0
       </title>
             <link>https://github.com/cloud-ready/spring-cloud-service-discovery/spring-cloud-multi-registration/checkstyle.html</link>
@@ -46,13 +46,13 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="https://github.com/cloud-ready/spring-cloud-service-discovery/spring-cloud-multi-registration/checkstyle.html#org.springframework.cloud.client.serviceregistry.endpoint.MultiServiceRegistryEndpoint.java">org/springframework/cloud/client/serviceregistry/endpoint/MultiServiceRegistryEndpoint.java</a>
+                  <a href="https://github.com/cloud-ready/spring-cloud-service-discovery/spring-cloud-multi-registration/checkstyle.html#org.springframework.boot.actuate.endpoint.ListEndPointsAutoConfiguration.java">org/springframework/boot/actuate/endpoint/ListEndPointsAutoConfiguration.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  14
+                  1
                 </td>
                 <td>
                   0
@@ -60,13 +60,27 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/cloud-ready/spring-cloud-service-discovery/spring-cloud-multi-registration/checkstyle.html#org.springframework.boot.actuate.endpoint.ShowAllEndpoint.java">org/springframework/boot/actuate/endpoint/ShowAllEndpoint.java</a>
+                  <a href="https://github.com/cloud-ready/spring-cloud-service-discovery/spring-cloud-multi-registration/checkstyle.html#org.springframework.boot.actuate.endpoint.ListEndPoints.java">org/springframework/boot/actuate/endpoint/ListEndPoints.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  5
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/cloud-ready/spring-cloud-service-discovery/spring-cloud-multi-registration/checkstyle.html#org.springframework.cloud.client.serviceregistry.endpoint.MultiServiceRegistryEndpoint.java">org/springframework/cloud/client/serviceregistry/endpoint/MultiServiceRegistryEndpoint.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  11
                 </td>
                 <td>
                   0

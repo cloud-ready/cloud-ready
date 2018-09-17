@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.springframework.cloud.client.serviceregistry.AutoMultiServiceRegistrationAutoConfiguration
-	c11 [label=<<table title="org.springframework.cloud.client.serviceregistry.AutoMultiServiceRegistrationAutoConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AutoMultiServiceRegistrationAutoConfiguration.html">
+	c10 [label=<<table title="org.springframework.cloud.client.serviceregistry.AutoMultiServiceRegistrationAutoConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AutoMultiServiceRegistrationAutoConfiguration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> AutoMultiServiceRegistrationAutoConfiguration </td></tr>
 		</table></td></tr>
@@ -23,7 +23,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="./AutoMultiServiceRegistrationAutoConfiguration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.springframework.cloud.client.serviceregistry.MultiServiceRegistryAutoConfiguration
-	c12 [label=<<table title="org.springframework.cloud.client.serviceregistry.MultiServiceRegistryAutoConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MultiServiceRegistryAutoConfiguration.html">
+	c11 [label=<<table title="org.springframework.cloud.client.serviceregistry.MultiServiceRegistryAutoConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MultiServiceRegistryAutoConfiguration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MultiServiceRegistryAutoConfiguration </td></tr>
 		</table></td></tr>
@@ -35,7 +35,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="./MultiServiceRegistryAutoConfiguration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.springframework.cloud.client.serviceregistry.MultiServiceRegistryAutoConfiguration.MultiServiceRegistryEndpointConfiguration
-	c13 [label=<<table title="org.springframework.cloud.client.serviceregistry.MultiServiceRegistryAutoConfiguration.MultiServiceRegistryEndpointConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MultiServiceRegistryAutoConfiguration.MultiServiceRegistryEndpointConfiguration.html">
+	c12 [label=<<table title="org.springframework.cloud.client.serviceregistry.MultiServiceRegistryAutoConfiguration.MultiServiceRegistryEndpointConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MultiServiceRegistryAutoConfiguration.MultiServiceRegistryEndpointConfiguration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MultiServiceRegistryEndpointConfiguration </td></tr>
 		</table></td></tr>
@@ -48,7 +48,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="./MultiServiceRegistryAutoConfiguration.MultiServiceRegistryEndpointConfiguration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.springframework.cloud.client.serviceregistry.AutoMultiServiceRegistrationConfiguration
-	c14 [label=<<table title="org.springframework.cloud.client.serviceregistry.AutoMultiServiceRegistrationConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AutoMultiServiceRegistrationConfiguration.html">
+	c13 [label=<<table title="org.springframework.cloud.client.serviceregistry.AutoMultiServiceRegistrationConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AutoMultiServiceRegistrationConfiguration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> AutoMultiServiceRegistrationConfiguration </td></tr>
 		</table></td></tr>
