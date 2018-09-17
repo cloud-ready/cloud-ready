@@ -1,0 +1,5 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+spring-boot-jackson2-jaxb,top.infra.jackson2,HackedJackson2JaxbAnnotationIntrospector,4,4,0,0,2,2,2,1,2,1
+spring-boot-jackson2-jaxb,top.infra.jackson2,JaxbAnnotationJackson2AutoConfiguration,0,7,0,0,0,2,0,2,0,2
+spring-boot-jackson2-jaxb,top.infra.jackson2,JaxbAnnotationJackson2MapperCustomizerFactory,0,26,0,0,0,3,0,2,0,2
+spring-boot-jackson2-jaxb,top.infra.jackson2,JaxbAnnotationJackson2Customizer,38,149,9,7,11,30,9,7,1,7

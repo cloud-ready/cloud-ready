@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JaxbAnnotationJackson2Customizer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Combined</a> &gt; <a href="index.source.html" class="el_package">top.infra.jackson2</a> &gt; <span class="el_source">JaxbAnnotationJackson2Customizer.java</span></div><h1>JaxbAnnotationJackson2Customizer.java</h1><pre class="source lang-java linenums">package top.infra.jackson2;
+
+import static top.infra.jackson2.JaxbAnnotationJackson2MapperCustomizerFactory.CLASS_JAXB_ANNOTATION_INTROSPECTOR;
+import static top.infra.jackson2.JaxbAnnotationJackson2MapperCustomizerFactory.CLASS_JAXB_ANNOTATION_MODULE;
+import static top.infra.jackson2.JaxbAnnotationJackson2MapperCustomizerFactory.CLASS_JAXB_ANNOTATION_MODULE_PRIORITY;
+
+import com.fasterxml.jackson.databind.Module;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+
+import java.lang.reflect.Method;
+import java.util.List;
+import java.util.Optional;
+
+import top.infra.common.ClassUtils;
+import top.infra.common.EnumUtils;
+
+
+/**
+ * see: http://wiki.fasterxml.com/JacksonJAXBAnnotations see: https://github.com/FasterXML/jackson-module-jaxb-annotations
+ */
+<span class="fc" id="L25">@Slf4j</span>
+<span class="fc" id="L26">public class JaxbAnnotationJackson2Customizer implements Jackson2Customizer {</span>
+
+    @Override
+    public void customize(final Jackson2Properties properties, final ObjectMapper mapper) {
+<span class="nc" id="L30">        final Boolean isXmlMapper = this.isXmlMapper(mapper);</span>
+
+<span class="nc bnc" id="L32" title="All 2 branches missed.">        if (properties.getJaxb().getEnabled()) {</span>
+<span class="nc" id="L33">            final Optional&lt;Module&gt; module = this.jaxbAnnotationModule(isXmlMapper);</span>
+<span class="nc" id="L34">            module.ifPresent(mapper::registerModule);</span>
+        }
+<span class="nc" id="L36">    }</span>
+
+    @Override
+    public void customize(final Jackson2Properties properties, final Jackson2ObjectMapperBuilder builder) {
+<span class="fc" id="L40">        final Boolean isXmlMapper = this.isXmlMapper(builder);</span>
+
+<span class="pc bpc" id="L42" title="1 of 2 branches missed.">        if (properties.getJaxb().getEnabled()) {</span>
+<span class="fc" id="L43">            final Optional&lt;Module&gt; jaxbAnnotationModule = this.jaxbAnnotationModule(isXmlMapper);</span>
+<span class="pc bpc" id="L44" title="1 of 2 branches missed.">            if (jaxbAnnotationModule.isPresent()) {</span>
+<span class="fc" id="L45">                final List&lt;Module&gt; modules = this.modules(builder);</span>
+<span class="fc" id="L46">                modules.add(jaxbAnnotationModule.get());</span>
+<span class="fc" id="L47">                builder.modulesToInstall(modules.toArray(new Module[0]));</span>
+            }
+        }
+<span class="fc" id="L50">    }</span>
+
+    private Optional&lt;Module&gt; jaxbAnnotationModule(final Boolean isXmlMapper) {
+<span class="fc" id="L53">        final Optional&lt;Module&gt; jaxbAnnotationModule = this.jaxbAnnotationModule();</span>
+
+<span class="fc" id="L55">        final Optional&lt;Object&gt; priority = this.priority(isXmlMapper);</span>
+<span class="pc bpc" id="L56" title="2 of 4 branches missed.">        if (jaxbAnnotationModule.isPresent() &amp;&amp; priority.isPresent()) {</span>
+<span class="fc" id="L57">            this.setJaxbAnnotationModulePriority(jaxbAnnotationModule.get(), priority.get());</span>
+        }
+
+<span class="fc" id="L60">        return jaxbAnnotationModule;</span>
+    }
+
+    private Optional&lt;Module&gt; jaxbAnnotationModule() {
+        try {
+            final Optional&lt;Module&gt; module;
+<span class="fc" id="L66">            final Optional&lt;Class&lt;?&gt;&gt; moduleClass = ClassUtils.forName(CLASS_JAXB_ANNOTATION_MODULE);</span>
+<span class="fc" id="L67">            final Class&lt;?&gt; introspectorClass = ClassUtils.forName(CLASS_JAXB_ANNOTATION_INTROSPECTOR).get();</span>
+<span class="pc bpc" id="L68" title="1 of 2 branches missed.">            if (moduleClass.isPresent()) {</span>
+<span class="fc" id="L69">                module = Optional.of((Module) moduleClass.get().getConstructor(introspectorClass) //</span>
+<span class="fc" id="L70">                    .newInstance(new HackedJackson2JaxbAnnotationIntrospector()));</span>
+            } else {
+<span class="nc" id="L72">                module = Optional.empty();</span>
+            }
+
+<span class="fc" id="L75">            return module;</span>
+<span class="nc" id="L76">        } catch (final ReflectiveOperationException ex) {</span>
+<span class="nc" id="L77">            log.info(&quot;JaxbAnnotationModule config error&quot;, ex);</span>
+
+<span class="nc" id="L79">            return Optional.empty();</span>
+        }
+    }
+
+    private Optional&lt;Object&gt; priority(final Boolean isXmlMapper) {
+        final Optional&lt;Object&gt; priority;
+
+<span class="pc bpc" id="L86" title="1 of 2 branches missed.">        final String priorityName = isXmlMapper ? &quot;PRIMARY&quot; : &quot;SECONDARY&quot;;</span>
+
+<span class="fc" id="L88">        final Class&lt;?&gt; enumType = ClassUtils.forName(CLASS_JAXB_ANNOTATION_MODULE_PRIORITY).orElse(null);</span>
+<span class="pc bpc" id="L89" title="1 of 2 branches missed.">        priority = Optional.ofNullable(enumType != null ? EnumUtils.objectValueOf(enumType, priorityName) : null);</span>
+<span class="fc" id="L90">        return priority;</span>
+    }
+
+    private void setJaxbAnnotationModulePriority(final Module jaxbAnnotationModule, final Object priority) {
+        try {
+<span class="fc" id="L95">            final Class&lt;?&gt; enumType = ClassUtils.forName(CLASS_JAXB_ANNOTATION_MODULE_PRIORITY).orElse(null);</span>
+<span class="fc" id="L96">            final Method setPriorityMethod = jaxbAnnotationModule.getClass().getDeclaredMethod(&quot;setPriority&quot;, enumType);</span>
+<span class="fc" id="L97">            setPriorityMethod.invoke(jaxbAnnotationModule, priority);</span>
+<span class="nc" id="L98">        } catch (final ReflectiveOperationException ex) {</span>
+<span class="nc" id="L99">            log.info(&quot;JaxbAnnotationModule config error&quot;, ex);</span>
+<span class="fc" id="L100">        }</span>
+<span class="fc" id="L101">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JaxbAnnotationJackson2MapperCustomizerFactory.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Combined</a> &gt; <a href="index.source.html" class="el_package">top.infra.jackson2</a> &gt; <span class="el_source">JaxbAnnotationJackson2MapperCustomizerFactory.java</span></div><h1>JaxbAnnotationJackson2MapperCustomizerFactory.java</h1><pre class="source lang-java linenums">package top.infra.jackson2;
+
+import com.google.common.collect.Lists;
+
+import java.util.Optional;
+
+<span class="fc" id="L7">public class JaxbAnnotationJackson2MapperCustomizerFactory implements Jackson2MapperCustomizerFactory {</span>
+
+    static final String CLASS_JAXB_ANNOTATION_INTROSPECTOR = &quot;com.fasterxml.jackson.module.jaxb.JaxbAnnotationIntrospector&quot;;
+    static final String CLASS_JAXB_ANNOTATION_MODULE = &quot;com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule&quot;;
+    static final String CLASS_JAXB_ANNOTATION_MODULE_PRIORITY = CLASS_JAXB_ANNOTATION_MODULE + &quot;$Priority&quot;;
+
+    @Override
+    public Optional&lt;Jackson2MapperCustomizer&gt; getObject() {
+<span class="fc" id="L15">        return this.newInstanceIfPresent(</span>
+            &quot;top.infra.jackson2.JaxbAnnotationJackson2Customizer&quot;,
+<span class="fc" id="L17">            Lists.newArrayList(</span>
+                CLASS_JAXB_ANNOTATION_INTROSPECTOR,
+                CLASS_JAXB_ANNOTATION_MODULE,
+                CLASS_JAXB_ANNOTATION_MODULE_PRIORITY,
+                CLASS_JACKSON2_OBJECT_MAPPER_BUILDER
+            ));
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>
