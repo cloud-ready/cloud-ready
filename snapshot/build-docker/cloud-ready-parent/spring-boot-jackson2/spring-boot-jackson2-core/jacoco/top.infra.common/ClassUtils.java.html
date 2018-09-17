@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClassUtils.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spring-boot-jackson2-core</a> &gt; <a href="index.source.html" class="el_package">top.infra.common</a> &gt; <span class="el_source">ClassUtils.java</span></div><h1>ClassUtils.java</h1><pre class="source lang-java linenums">package top.infra.common;
+
+import java.net.URLClassLoader;
+import java.util.Arrays;
+import java.util.Optional;
+
+public abstract class ClassUtils {
+
+    private ClassUtils() {
+    }
+
+    public static boolean isPresent(final String className) {
+<span class="fc" id="L13">        return isPresent(className, null);</span>
+    }
+
+    /**
+     * see: {@link org.springframework.boot.autoconfigure.condition.OnClassCondition}
+     *
+     * @param className   className
+     * @param classLoader classLoader
+     * @return isPresent
+     */
+    public static boolean isPresent(final String className, ClassLoader classLoader) {
+<span class="pc bpc" id="L24" title="1 of 2 branches missed.">        if (classLoader == null) {</span>
+<span class="fc" id="L25">            classLoader = org.springframework.util.ClassUtils.getDefaultClassLoader();</span>
+        }
+        try {
+<span class="fc" id="L28">            forName(className, classLoader);</span>
+<span class="fc" id="L29">            return true;</span>
+<span class="nc" id="L30">        } catch (final Throwable ex) {</span>
+<span class="nc" id="L31">            return false;</span>
+        }
+    }
+
+    public static Class&lt;?&gt; forName(final String className, final ClassLoader classLoader) throws ClassNotFoundException {
+<span class="pc bpc" id="L36" title="1 of 2 branches missed.">        if (classLoader != null) {</span>
+<span class="fc" id="L37">            return classLoader.loadClass(className);</span>
+        }
+<span class="nc" id="L39">        return Class.forName(className);</span>
+    }
+
+    public static Optional&lt;Class&lt;?&gt;&gt; forName(final String className) {
+        try {
+<span class="fc" id="L44">            final ClassLoader classLoader = org.springframework.util.ClassUtils.getDefaultClassLoader();</span>
+            final Class&lt;?&gt; result;
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">            if (classLoader != null) {</span>
+<span class="fc" id="L47">                result = classLoader.loadClass(className);</span>
+            } else {
+<span class="nc" id="L49">                result = Class.forName(className);</span>
+            }
+<span class="fc" id="L51">            return Optional.ofNullable(result);</span>
+<span class="nc" id="L52">        } catch (final ClassNotFoundException ex) {</span>
+<span class="nc" id="L53">            return Optional.empty();</span>
+        }
+    }
+
+    public static void printClassLoader(final Class&lt;?&gt; target) {
+<span class="nc" id="L58">        ClassLoader classLoader = target.getClassLoader();</span>
+<span class="nc bnc" id="L59" title="All 2 branches missed.">        if (classLoader instanceof URLClassLoader) {</span>
+<span class="nc" id="L60">            System.out.println(target.getName()</span>
+                + &quot;/classLoader = &quot;
+                + classLoader
+<span class="nc" id="L63">                + &quot;/URLs/&quot; + Arrays.asList(((URLClassLoader) classLoader).getURLs()));</span>
+        } else {
+<span class="nc" id="L65">            System.out.println(target.getName() + &quot;/classLoader = &quot; + classLoader);</span>
+        }
+<span class="nc" id="L67">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

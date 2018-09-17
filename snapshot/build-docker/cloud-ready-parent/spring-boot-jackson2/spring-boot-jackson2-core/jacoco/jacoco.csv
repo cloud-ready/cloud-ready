@@ -1,0 +1,13 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+spring-boot-jackson2-core,top.infra.common,EnumUtils,105,0,2,0,28,0,6,0,5,0
+spring-boot-jackson2-core,top.infra.common,ClassUtils,53,32,5,3,12,11,5,4,1,4
+spring-boot-jackson2-core,top.infra.jackson2,Jackson2Properties.Jaxb,80,6,14,0,0,2,13,1,6,1
+spring-boot-jackson2-core,top.infra.jackson2,Jackson2MapperCustomizer,33,20,6,2,5,6,7,2,3,2
+spring-boot-jackson2-core,top.infra.jackson2,DefaultJackson2ObjectMapperBuilderCustomizer,1,38,1,1,0,10,1,4,0,4
+spring-boot-jackson2-core,top.infra.jackson2,DefaultJackson2Customizer,137,145,4,2,34,29,4,9,2,8
+spring-boot-jackson2-core,top.infra.jackson2,DefaultJackson2MapperCustomizerFactory,0,14,0,0,0,3,0,2,0,2
+spring-boot-jackson2-core,top.infra.jackson2,Jackson2BuilderCustomizer,43,0,0,0,13,0,3,0,3,0
+spring-boot-jackson2-core,top.infra.jackson2,Jackson2AutoConfiguration,0,13,0,0,0,3,0,3,0,3
+spring-boot-jackson2-core,top.infra.jackson2,Jackson2MapperCustomizerFactory,7,25,3,3,4,6,3,1,0,1
+spring-boot-jackson2-core,top.infra.jackson2,Jackson2Customizer,2,0,0,0,1,0,1,0,1,0
+spring-boot-jackson2-core,top.infra.jackson2,Jackson2Properties,59,61,0,0,5,10,16,9,16,9

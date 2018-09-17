@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Jackson2MapperCustomizer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spring-boot-jackson2-core</a> &gt; <a href="index.source.html" class="el_package">top.infra.jackson2</a> &gt; <span class="el_source">Jackson2MapperCustomizer.java</span></div><h1>Jackson2MapperCustomizer.java</h1><pre class="source lang-java linenums">package top.infra.jackson2;
+
+import static java.lang.Boolean.FALSE;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.springframework.core.Ordered;
+
+import java.util.Optional;
+import java.util.TimeZone;
+
+import top.infra.common.ClassUtils;
+
+/**
+ * Created by zhanghaolun on 16/7/28.
+ */
+public interface Jackson2MapperCustomizer extends Ordered {
+
+    String CLASS_XML_MAPPER = &quot;com.fasterxml.jackson.dataformat.xml.XmlMapper&quot;;
+
+    String PATTERN_JAVA_ISO8601 = &quot;yyyy-MM-dd'T'HH:mm:ss.SSSXXX&quot;;
+
+    void customize(Jackson2Properties properties, ObjectMapper mapper);
+
+    @Override
+    default int getOrder() {
+<span class="nc" id="L27">        return Ordered.LOWEST_PRECEDENCE;</span>
+    }
+
+    default String dateFormat(final Jackson2Properties properties) {
+        final String dateFormat;
+<span class="pc bpc" id="L32" title="1 of 2 branches missed.">        if (properties.getDateFormat() == null) {</span>
+<span class="fc" id="L33">            dateFormat = PATTERN_JAVA_ISO8601;</span>
+        } else {
+<span class="nc" id="L35">            dateFormat = properties.getDateFormat();</span>
+        }
+<span class="fc" id="L37">        return dateFormat;</span>
+    }
+
+    default Boolean isXmlMapper(final ObjectMapper mapper) {
+<span class="nc" id="L41">        final Optional&lt;Class&lt;?&gt;&gt; classOptional = ClassUtils.forName(CLASS_XML_MAPPER);</span>
+<span class="nc bnc" id="L42" title="All 4 branches missed.">        return mapper != null &amp;&amp; classOptional.map(xmlMapperClass -&gt; xmlMapperClass.isAssignableFrom(mapper.getClass())).orElse(FALSE);</span>
+    }
+
+    default TimeZone timeZone(final Jackson2Properties properties) {
+        // Since Jackson 2.6.3 we always need to set a TimeZone (see
+        // gh-4170). If none in our properties fallback to the Jackson's
+        // default
+        final TimeZone timeZone;
+<span class="pc bpc" id="L50" title="1 of 2 branches missed.">        if (properties.getTimeZone() == null) {</span>
+            //timeZone = DefaultTimeZone.DEFAULT_TIME_ZONE;
+<span class="fc" id="L52">            timeZone = new ObjectMapper().getSerializationConfig().getTimeZone();</span>
+        } else {
+<span class="nc" id="L54">            timeZone = properties.getTimeZone();</span>
+        }
+<span class="fc" id="L56">        return timeZone;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

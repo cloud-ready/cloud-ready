@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DefaultJackson2Customizer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spring-boot-jackson2-core</a> &gt; <a href="index.source.html" class="el_package">top.infra.jackson2</a> &gt; <span class="el_source">DefaultJackson2Customizer.java</span></div><h1>DefaultJackson2Customizer.java</h1><pre class="source lang-java linenums">package top.infra.jackson2;
+
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
+
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+import org.springframework.util.ClassUtils;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.TimeZone;
+
+/**
+ * see: {@link org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration}.
+ * see: org.springframework.hateoas.config.HypermediaSupportBeanDefinitionRegistrar
+ * see: org.springframework.hateoas.config.EnableHypermediaSupport
+ */
+<span class="fc" id="L26">public class DefaultJackson2Customizer implements Jackson2Customizer {</span>
+
+    @Override
+    public void customize(final Jackson2Properties properties, final ObjectMapper mapper) {
+<span class="nc" id="L30">        mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY,</span>
+<span class="nc" id="L31">            this.feature(properties, DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, TRUE));</span>
+
+<span class="nc" id="L33">        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,</span>
+<span class="nc" id="L34">            this.feature(properties, DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, FALSE));</span>
+
+<span class="nc" id="L36">        mapper.configure(JsonGenerator.Feature.QUOTE_NON_NUMERIC_NUMBERS,</span>
+<span class="nc" id="L37">            this.feature(properties, JsonGenerator.Feature.QUOTE_NON_NUMERIC_NUMBERS, FALSE));</span>
+
+<span class="nc" id="L39">        mapper.configure(JsonParser.Feature.ALLOW_NON_NUMERIC_NUMBERS,</span>
+<span class="nc" id="L40">            this.feature(properties, JsonParser.Feature.ALLOW_NON_NUMERIC_NUMBERS, TRUE));</span>
+
+<span class="nc" id="L42">        mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES,</span>
+<span class="nc" id="L43">            this.feature(properties, JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, TRUE));</span>
+
+        // see: https://github.com/FasterXML/jackson-databind/issues/1218
+<span class="nc" id="L46">        mapper.configure(MapperFeature.INFER_CREATOR_FROM_CONSTRUCTOR_PROPERTIES,</span>
+<span class="nc" id="L47">            this.feature(properties, MapperFeature.INFER_CREATOR_FROM_CONSTRUCTOR_PROPERTIES, FALSE));</span>
+
+<span class="nc" id="L49">        mapper.configure(SerializationFeature.INDENT_OUTPUT,</span>
+<span class="nc" id="L50">            this.feature(properties, SerializationFeature.INDENT_OUTPUT, FALSE));</span>
+
+<span class="nc" id="L52">        mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS,</span>
+<span class="nc" id="L53">            this.feature(properties, SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, FALSE));</span>
+        //WRITE_DATES_WITH_ZONE_ID
+
+<span class="nc" id="L56">        mapper.setTimeZone(this.timeZone(properties));</span>
+<span class="nc" id="L57">        this.configureDateFormat(properties, mapper);</span>
+
+        // Jackson2ObjectMapperBuilder.registerWellKnownModulesIfAvailable
+<span class="nc" id="L60">        new Jackson2ObjectMapperBuilder().configure(mapper);</span>
+<span class="nc" id="L61">    }</span>
+
+    @Override
+    public void customize(final Jackson2Properties properties, final Jackson2ObjectMapperBuilder builder) {
+<span class="fc" id="L65">        this.feature(builder, DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY,</span>
+<span class="fc" id="L66">            this.feature(properties, DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, TRUE));</span>
+
+<span class="fc" id="L68">        this.feature(builder, DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,</span>
+<span class="fc" id="L69">            this.feature(properties, DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, FALSE));</span>
+
+<span class="fc" id="L71">        this.feature(builder, JsonGenerator.Feature.QUOTE_NON_NUMERIC_NUMBERS,</span>
+<span class="fc" id="L72">            this.feature(properties, JsonGenerator.Feature.QUOTE_NON_NUMERIC_NUMBERS, FALSE));</span>
+
+<span class="fc" id="L74">        this.feature(builder, JsonParser.Feature.ALLOW_NON_NUMERIC_NUMBERS,</span>
+<span class="fc" id="L75">            this.feature(properties, JsonParser.Feature.ALLOW_NON_NUMERIC_NUMBERS, TRUE));</span>
+
+<span class="fc" id="L77">        this.feature(builder, JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES,</span>
+<span class="fc" id="L78">            this.feature(properties, JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, TRUE));</span>
+
+        // see: https://github.com/FasterXML/jackson-databind/issues/1218
+<span class="fc" id="L81">        this.feature(builder, MapperFeature.INFER_CREATOR_FROM_CONSTRUCTOR_PROPERTIES,</span>
+<span class="fc" id="L82">            this.feature(properties, MapperFeature.INFER_CREATOR_FROM_CONSTRUCTOR_PROPERTIES, FALSE));</span>
+
+<span class="fc" id="L84">        this.feature(builder, SerializationFeature.INDENT_OUTPUT,</span>
+<span class="fc" id="L85">            this.feature(properties, SerializationFeature.INDENT_OUTPUT, FALSE));</span>
+
+<span class="fc" id="L87">        this.feature(builder, SerializationFeature.WRITE_DATES_AS_TIMESTAMPS,</span>
+<span class="fc" id="L88">            this.feature(properties, SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, FALSE));</span>
+        //WRITE_DATES_WITH_ZONE_ID
+
+<span class="fc" id="L91">        builder.timeZone(this.timeZone(properties));</span>
+<span class="fc" id="L92">        properties.setDateFormat(this.dateFormat(properties));</span>
+<span class="fc" id="L93">    }</span>
+
+    private void configureDateFormat(final Jackson2Properties properties, final ObjectMapper mapper) {
+        // We support a fully qualified class name extending DateFormat or a date
+        // pattern string value
+<span class="nc" id="L98">        String dateFormat = properties.getDateFormat();</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">        if (dateFormat != null) {</span>
+            try {
+<span class="nc" id="L101">                Class&lt;?&gt; dateFormatClass = ClassUtils.forName(dateFormat, null);</span>
+<span class="nc" id="L102">                mapper.setDateFormat((DateFormat) BeanUtils.instantiateClass(dateFormatClass));</span>
+<span class="nc" id="L103">            } catch (ClassNotFoundException ex) {</span>
+<span class="nc" id="L104">                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(</span>
+                    dateFormat);
+                // Since Jackson 2.6.3 we always need to set a TimeZone (see
+                // gh-4170). If none in our properties fallback to the Jackson's
+                // default
+<span class="nc" id="L109">                TimeZone timeZone = properties.getTimeZone();</span>
+<span class="nc bnc" id="L110" title="All 2 branches missed.">                if (timeZone == null) {</span>
+<span class="nc" id="L111">                    timeZone = new ObjectMapper().getSerializationConfig()</span>
+<span class="nc" id="L112">                        .getTimeZone();</span>
+                }
+<span class="nc" id="L114">                simpleDateFormat.setTimeZone(timeZone);</span>
+<span class="nc" id="L115">                mapper.setDateFormat(simpleDateFormat);</span>
+<span class="nc" id="L116">            }</span>
+        }
+<span class="nc" id="L118">    }</span>
+
+    private void feature(final Jackson2ObjectMapperBuilder builder, final Object feature, final Boolean enabled) {
+<span class="fc bfc" id="L121" title="All 2 branches covered.">        if (enabled) {</span>
+<span class="fc" id="L122">            builder.featuresToEnable(feature);</span>
+        } else {
+<span class="fc" id="L124">            builder.featuresToDisable(feature);</span>
+        }
+<span class="fc" id="L126">    }</span>
+
+    private Boolean feature(final Jackson2Properties properties, final DeserializationFeature feature, final Boolean defaultValue) {
+<span class="fc" id="L129">        return properties.getDeserialization().getOrDefault(feature, defaultValue);</span>
+    }
+
+    private Boolean feature(final Jackson2Properties properties, final JsonGenerator.Feature feature, final Boolean defaultValue) {
+<span class="fc" id="L133">        return properties.getGenerator().getOrDefault(feature, defaultValue);</span>
+    }
+
+    private Boolean feature(final Jackson2Properties properties, final JsonParser.Feature feature, final Boolean defaultValue) {
+<span class="fc" id="L137">        return properties.getParser().getOrDefault(feature, defaultValue);</span>
+    }
+
+    private Boolean feature(final Jackson2Properties properties, final MapperFeature feature, final Boolean defaultValue) {
+<span class="fc" id="L141">        return properties.getMapper().getOrDefault(feature, defaultValue);</span>
+    }
+
+    private Boolean feature(final Jackson2Properties properties, final SerializationFeature feature, final Boolean defaultValue) {
+<span class="fc" id="L145">        return properties.getSerialization().getOrDefault(feature, defaultValue);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

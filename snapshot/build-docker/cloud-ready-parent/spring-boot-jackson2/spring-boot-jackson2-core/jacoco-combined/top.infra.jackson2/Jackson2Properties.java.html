@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Jackson2Properties.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Combined</a> &gt; <a href="index.source.html" class="el_package">top.infra.jackson2</a> &gt; <span class="el_source">Jackson2Properties.java</span></div><h1>Jackson2Properties.java</h1><pre class="source lang-java linenums">package top.infra.jackson2;
+
+import static java.lang.Boolean.FALSE;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
+
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.TimeZone;
+
+/**
+ * see {@link org.springframework.boot.autoconfigure.jackson.JacksonProperties}
+ */
+@ConfigurationProperties(prefix = &quot;spring.jackson&quot;)
+@Getter
+<span class="pc" id="L29">@Setter</span>
+<span class="fc" id="L30">public class Jackson2Properties {</span>
+
+    /**
+     * Date format string (yyyy-MM-dd HH:mm:ss), or a fully-qualified date format class
+     * name.
+     */
+<span class="fc" id="L36">    private String dateFormat;</span>
+
+    /**
+     * Joda date time format string (yyyy-MM-dd HH:mm:ss). If not configured,
+     * &quot;date-format&quot; will be used as a fallback if it is configured with a format string.
+     */
+<span class="nc" id="L42">    private String jodaDateTimeFormat;</span>
+
+    /**
+     * One of the constants on Jackson's PropertyNamingStrategy
+     * (CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES). Can also be a fully-qualified class
+     * name of a PropertyNamingStrategy subclass.
+     */
+<span class="nc" id="L49">    private String propertyNamingStrategy;</span>
+
+    /**
+     * Jackson on/off features that affect the way Java objects are serialized.
+     */
+<span class="fc" id="L54">    private Map&lt;SerializationFeature, Boolean&gt; serialization = new HashMap&lt;SerializationFeature, Boolean&gt;();</span>
+
+    /**
+     * Jackson on/off features that affect the way Java objects are deserialized.
+     */
+<span class="fc" id="L59">    private Map&lt;DeserializationFeature, Boolean&gt; deserialization = new HashMap&lt;DeserializationFeature, Boolean&gt;();</span>
+
+    /**
+     * Jackson general purpose on/off features.
+     */
+<span class="fc" id="L64">    private Map&lt;MapperFeature, Boolean&gt; mapper = new HashMap&lt;MapperFeature, Boolean&gt;();</span>
+
+    /**
+     * Jackson on/off features for parsers.
+     */
+<span class="fc" id="L69">    private Map&lt;JsonParser.Feature, Boolean&gt; parser = new HashMap&lt;JsonParser.Feature, Boolean&gt;();</span>
+
+    /**
+     * Jackson on/off features for generators.
+     */
+<span class="fc" id="L74">    private Map&lt;JsonGenerator.Feature, Boolean&gt; generator = new HashMap&lt;JsonGenerator.Feature, Boolean&gt;();</span>
+
+    /**
+     * Controls the inclusion of properties during serialization. Configured with one of
+     * the values in Jackson's JsonInclude.Include enumeration.
+     */
+<span class="nc" id="L80">    private JsonInclude.Include defaultPropertyInclusion;</span>
+
+    /**
+     * Time zone used when formatting dates. Configured using any recognized time zone
+     * identifier, for example &quot;America/Los_Angeles&quot; or &quot;GMT+10&quot;.
+     */
+<span class="fc" id="L86">    private TimeZone timeZone = null;</span>
+
+    /**
+     * Locale used for formatting.
+     */
+<span class="nc" id="L91">    private Locale locale;</span>
+
+<span class="pc bnc" id="L93" title="All 14 branches missed.">    @Data</span>
+    public static class Jaxb {
+
+<span class="pc" id="L96">        private Boolean enabled = FALSE;</span>
+    }
+
+<span class="fc" id="L99">    @NestedConfigurationProperty</span>
+<span class="nc" id="L100">    private Jaxb jaxb = new Jaxb();</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

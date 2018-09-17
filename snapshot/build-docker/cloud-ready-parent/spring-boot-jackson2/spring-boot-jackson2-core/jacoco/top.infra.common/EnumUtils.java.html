@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EnumUtils.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spring-boot-jackson2-core</a> &gt; <a href="index.source.html" class="el_package">top.infra.common</a> &gt; <span class="el_source">EnumUtils.java</span></div><h1>EnumUtils.java</h1><pre class="source lang-java linenums">package top.infra.common;
+
+import lombok.extern.slf4j.Slf4j;
+
+import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.Map;
+
+<span class="nc" id="L9">@Slf4j</span>
+public abstract class EnumUtils {
+
+    private static Method methodEnumConstantDirectory;
+
+    static {
+        try {
+            //enumConstantDirectory is much faster than for-loop
+<span class="nc" id="L17">            methodEnumConstantDirectory = Class.class.getDeclaredMethod(&quot;enumConstantDirectory&quot;);</span>
+<span class="nc" id="L18">            methodEnumConstantDirectory.setAccessible(true);</span>
+<span class="nc" id="L19">        } catch (final ReflectiveOperationException ex) {</span>
+<span class="nc" id="L20">            log.error(&quot;can not find Class.enumConstantDirectory, fall back to for-loop&quot;);</span>
+<span class="nc" id="L21">        }</span>
+<span class="nc" id="L22">    }</span>
+
+    private EnumUtils() {
+    }
+
+    @SuppressWarnings(&quot;unchecked&quot;)
+    public static &lt;E extends Enum&lt;E&gt;&gt; E getEnumValue(final Class&lt;E&gt; enumClass, final String enumName) {
+        try {
+            final E result;
+<span class="nc bnc" id="L31" title="All 2 branches missed.">            if (methodEnumConstantDirectory != null) {</span>
+<span class="nc" id="L32">                final Map&lt;String, E&gt; constantDic = (Map&lt;String, E&gt;) methodEnumConstantDirectory.invoke(enumClass);</span>
+<span class="nc" id="L33">                result = constantDic.get(enumName);</span>
+<span class="nc" id="L34">            } else {</span>
+<span class="nc" id="L35">                result = Arrays.stream(enumClass.getEnumConstants())</span>
+<span class="nc" id="L36">                    .filter(constant -&gt; constant.name().equals(enumName))</span>
+<span class="nc" id="L37">                    .findAny()</span>
+<span class="nc" id="L38">                    .orElse(null);</span>
+            }
+<span class="nc" id="L40">            return result;</span>
+<span class="nc" id="L41">        } catch (final ReflectiveOperationException ignored) {</span>
+<span class="nc" id="L42">            return null;</span>
+        }
+    }
+
+    @SuppressWarnings(&quot;unchecked&quot;)
+    public static &lt;E extends Enum&lt;E&gt;&gt; E valueOf(final Class&lt;E&gt; enumClass, final String enumName) {
+        try {
+            final E result;
+<span class="nc" id="L50">            final Method method = enumClass.getDeclaredMethod(&quot;valueOf&quot;, String.class);</span>
+<span class="nc" id="L51">            result = (E) method.invoke(enumClass, enumName);</span>
+<span class="nc" id="L52">            return result;</span>
+<span class="nc" id="L53">        } catch (ReflectiveOperationException ignored) {</span>
+<span class="nc" id="L54">            return null;</span>
+        }
+    }
+
+    public static Object objectValueOf(final Class&lt;?&gt; enumClass, final String enumName) {
+        try {
+            final Object result;
+<span class="nc" id="L61">            final Method method = enumClass.getDeclaredMethod(&quot;valueOf&quot;, String.class);</span>
+<span class="nc" id="L62">            result = method.invoke(enumClass, enumName);</span>
+<span class="nc" id="L63">            return result;</span>
+<span class="nc" id="L64">        } catch (ReflectiveOperationException ignored) {</span>
+<span class="nc" id="L65">            return null;</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>
