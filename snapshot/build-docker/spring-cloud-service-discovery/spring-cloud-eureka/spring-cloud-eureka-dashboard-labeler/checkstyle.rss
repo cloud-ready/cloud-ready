@@ -27,7 +27,7 @@ under the License.
     <item>
       <title>File: 1,
              Errors: 0,
-             Warnings: 2,
+             Warnings: 24,
              Infos: 0
       </title>
             <link>https://github.com/cloud-ready/spring-cloud-service-discovery/spring-cloud-eureka/spring-cloud-eureka-dashboard-labeler/checkstyle.html</link>
@@ -52,7 +52,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  2
+                  24
                 </td>
                 <td>
                   0

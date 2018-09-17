@@ -19,9 +19,9 @@ digraph G {
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + EurekaDashboardLabeler() </td></tr>
-<tr><td align="left" balign="left"> + aspectOf() : EurekaDashboardLabeler </td></tr>
 <tr><td align="left" balign="left"> + versionLabelAppInstances(jp : ProceedingJoinPoint) : String </td></tr>
 <tr><td align="left" balign="left"> + init() : EurekaDashboardLabeler </td></tr>
+<tr><td align="left" balign="left"> + aspectOf() : EurekaDashboardLabeler </td></tr>
 		</table></td></tr>
 		</table>>, URL="./EurekaDashboardLabeler.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
