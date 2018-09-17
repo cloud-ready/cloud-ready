@@ -1,4 +1,2 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-Combined,cn.home1.cloud.netflix.eureka.server,ApplicationSecurityAutoConfiguration.ApplicationWebSecurityConfigurerAdapter,78,0,0,0,13,0,2,0,2,0
 Combined,cn.home1.cloud.netflix.eureka.server,EurekaServer,37,0,0,0,7,0,4,0,4,0
-Combined,cn.home1.cloud.netflix.eureka.server,ApplicationSecurityAutoConfiguration,8,0,0,0,2,0,2,0,2,0
