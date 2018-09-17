@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HalJackson2Customizer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Combined</a> &gt; <a href="index.source.html" class="el_package">top.infra.jackson2</a> &gt; <span class="el_source">HalJackson2Customizer.java</span></div><h1>HalJackson2Customizer.java</h1><pre class="source lang-java linenums">package top.infra.jackson2;
+
+import static java.lang.Boolean.FALSE;
+
+import com.fasterxml.jackson.databind.Module;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+
+import java.lang.reflect.Method;
+import java.util.List;
+import java.util.Optional;
+
+import top.infra.common.ClassUtils;
+
+<span class="fc" id="L18">@Slf4j</span>
+<span class="fc" id="L19">public class HalJackson2Customizer implements Jackson2Customizer {</span>
+
+    @Override
+    public void customize(final Jackson2Properties properties, final ObjectMapper mapper) {
+<span class="nc" id="L23">        final Optional&lt;Module&gt; jackson2HalModule = this.jackson2HalModule();</span>
+<span class="nc bnc" id="L24" title="All 4 branches missed.">        if (jackson2HalModule.isPresent() &amp;&amp; !this.isAlreadyRegisteredIn(mapper, jackson2HalModule.get().getClass())) {</span>
+<span class="nc" id="L25">            mapper.registerModule(jackson2HalModule.get());</span>
+        }
+<span class="nc" id="L27">    }</span>
+
+    @Override
+    public void customize(final Jackson2Properties properties, final Jackson2ObjectMapperBuilder builder) {
+<span class="fc" id="L31">        final Optional&lt;Module&gt; jackson2HalModule = this.jackson2HalModule();</span>
+
+<span class="fc" id="L33">        final List&lt;Module&gt; modules = this.modules(builder);</span>
+<span class="pc bpc" id="L34" title="2 of 4 branches missed.">        if (jackson2HalModule.isPresent() &amp;&amp; modules.stream().noneMatch(</span>
+<span class="fc" id="L35">            module -&gt; jackson2HalModule.get().getClass().isAssignableFrom(module.getClass()))) {</span>
+
+<span class="fc" id="L37">            modules.add(jackson2HalModule.get());</span>
+<span class="fc" id="L38">            builder.modulesToInstall(modules.toArray(new Module[0]));</span>
+        }
+<span class="fc" id="L40">    }</span>
+
+    Boolean isAlreadyRegisteredIn(final ObjectMapper mapper, final Class&lt;?&gt; jackson2HalModuleClass) {
+        try {
+            final Boolean result;
+<span class="nc" id="L45">            final Method methodIsAlreadyRegisteredIn = jackson2HalModuleClass.getDeclaredMethod(</span>
+                &quot;isAlreadyRegisteredIn&quot;, ObjectMapper.class);
+<span class="nc" id="L47">            result = (Boolean) methodIsAlreadyRegisteredIn.invoke(null, mapper);</span>
+<span class="nc" id="L48">            return result;</span>
+<span class="nc" id="L49">        } catch (final ReflectiveOperationException | SecurityException | IllegalArgumentException ex) {</span>
+<span class="nc" id="L50">            log.info(&quot;Jackson2HalModule config error&quot;, ex);</span>
+<span class="nc" id="L51">            return FALSE;</span>
+        }
+    }
+
+    Optional&lt;Module&gt; jackson2HalModule() {
+        try {
+<span class="fc" id="L57">            final Optional&lt;Class&lt;?&gt;&gt; moduleClass = ClassUtils.forName(HalJackson2MapperCustomizerFactory.CLASS_JACKSON2_HAL_MODULE);</span>
+            final Object jackson2HalModule;
+<span class="pc bpc" id="L59" title="1 of 2 branches missed.">            if (moduleClass.isPresent()) {</span>
+<span class="fc" id="L60">                jackson2HalModule = moduleClass.get().newInstance();</span>
+            } else {
+<span class="nc" id="L62">                jackson2HalModule = null;</span>
+            }
+<span class="fc" id="L64">            return Optional.ofNullable((Module) jackson2HalModule);</span>
+<span class="nc" id="L65">        } catch (final ReflectiveOperationException ex) {</span>
+<span class="nc" id="L66">            log.info(&quot;Jackson2HalModule config error&quot;, ex);</span>
+<span class="nc" id="L67">            return Optional.empty();</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>
