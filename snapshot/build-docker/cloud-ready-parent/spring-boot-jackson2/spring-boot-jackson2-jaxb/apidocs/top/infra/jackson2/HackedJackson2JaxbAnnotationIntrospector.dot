@@ -77,6 +77,7 @@ digraph G {
 <tr><td align="left" balign="left"> + findSerializer(arg0 : Annotated) : JsonSerializer&lt;?&gt; </td></tr>
 <tr><td align="left" balign="left"> + findContentSerializer(arg0 : Annotated) : Object </td></tr>
 <tr><td align="left" balign="left"> + findSerializationType(arg0 : Annotated) : Class&lt;?&gt; </td></tr>
+<tr><td align="left" balign="left"> + findSerializationInclusion(arg0 : Annotated, arg1 : JsonInclude.Include) : JsonInclude.Include </td></tr>
 <tr><td align="left" balign="left"> + findPropertyInclusion(arg0 : Annotated) : JsonInclude.Value </td></tr>
 <tr><td align="left" balign="left"> + refineSerializationType(arg0 : MapperConfig&lt;?&gt;, arg1 : Annotated, arg2 : JavaType) : JavaType </td></tr>
 <tr><td align="left" balign="left"> + findSerializationPropertyOrder(arg0 : AnnotatedClass) : String[] </td></tr>
@@ -85,13 +86,17 @@ digraph G {
 <tr><td align="left" balign="left"> + findSerializationContentConverter(arg0 : AnnotatedMember) : Object </td></tr>
 <tr><td align="left" balign="left"> + findNameForSerialization(arg0 : Annotated) : PropertyName </td></tr>
 <tr><td align="left" balign="left"> + hasAsValueAnnotation(arg0 : AnnotatedMethod) : boolean </td></tr>
+<tr><td align="left" balign="left"> + findEnumValue(arg0 : Enum&lt;?&gt;) : String </td></tr>
 <tr><td align="left" balign="left"> + findEnumValues(arg0 : Class&lt;?&gt;, arg1 : Enum&lt;?&gt;[], arg2 : String[]) : String[] </td></tr>
 <tr><td align="left" balign="left"> + findDeserializer(arg0 : Annotated) : Object </td></tr>
 <tr><td align="left" balign="left"> + findKeyDeserializer(arg0 : Annotated) : Object </td></tr>
 <tr><td align="left" balign="left"> + findContentDeserializer(arg0 : Annotated) : Object </td></tr>
+<tr><td align="left" balign="left"> + findDeserializationType(arg0 : Annotated, arg1 : JavaType) : Class&lt;?&gt; </td></tr>
+<tr><td align="left" balign="left"> + findDeserializationContentType(arg0 : Annotated, arg1 : JavaType) : Class&lt;?&gt; </td></tr>
 <tr><td align="left" balign="left"> # _doFindDeserializationType(arg0 : Annotated, arg1 : JavaType) : Class&lt;?&gt; </td></tr>
 <tr><td align="left" balign="left"> + refineDeserializationType(arg0 : MapperConfig&lt;?&gt;, arg1 : Annotated, arg2 : JavaType) : JavaType </td></tr>
 <tr><td align="left" balign="left"> + findNameForDeserialization(arg0 : Annotated) : PropertyName </td></tr>
+<tr><td align="left" balign="left"> + hasCreatorAnnotation(arg0 : Annotated) : boolean </td></tr>
 <tr><td align="left" balign="left"> + findDeserializationConverter(arg0 : Annotated) : Object </td></tr>
 <tr><td align="left" balign="left"> + findDeserializationContentConverter(arg0 : AnnotatedMember) : Object </td></tr>
 <tr><td align="left" balign="left"> # isJAXBAnnotation(arg0 : Annotation) : boolean </td></tr>
