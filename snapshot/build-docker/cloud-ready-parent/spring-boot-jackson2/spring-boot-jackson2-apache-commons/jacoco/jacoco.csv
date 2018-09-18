@@ -1,0 +1,9 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+spring-boot-jackson2-apache-commons,top.infra.jackson2.ser,PairSerializer,103,362,19,31,19,99,18,18,1,10
+spring-boot-jackson2-apache-commons,top.infra.jackson2.deser,PairDeserializer,210,200,38,14,42,59,31,5,5,5
+spring-boot-jackson2-apache-commons,top.infra.jackson2,CommonsLangSerializers,14,77,3,5,3,19,3,4,0,3
+spring-boot-jackson2-apache-commons,top.infra.jackson2,CommonsLangJackson2Customizer,0,33,0,0,0,9,0,3,0,3
+spring-boot-jackson2-apache-commons,top.infra.jackson2,CommonsLangDeserializers,4,65,4,6,2,18,4,3,0,2
+spring-boot-jackson2-apache-commons,top.infra.jackson2,CommonsLangModule,11,27,2,0,2,7,3,3,2,3
+spring-boot-jackson2-apache-commons,top.infra.jackson2,CommonsLangJackson2AutoConfiguration,0,7,0,0,0,2,0,2,0,2
+spring-boot-jackson2-apache-commons,top.infra.jackson2,CommonsLangJackson2MapperCustomizerFactory,0,22,0,0,0,3,0,2,0,2

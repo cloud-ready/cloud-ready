@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PairDeserializer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spring-boot-jackson2-apache-commons</a> &gt; <a href="index.source.html" class="el_package">top.infra.jackson2.deser</a> &gt; <span class="el_source">PairDeserializer.java</span></div><h1>PairDeserializer.java</h1><pre class="source lang-java linenums">package top.infra.jackson2.deser;
+
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.databind.BeanProperty;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.deser.ContextualDeserializer;
+import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.fasterxml.jackson.databind.jsontype.TypeDeserializer;
+
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
+
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+
+/**
+ * see: {@link com.fasterxml.jackson.databind.deser.std.MapEntryDeserializer}.
+ */
+public class PairDeserializer extends StdDeserializer&lt;Pair&lt;Object, Object&gt;&gt; implements ContextualDeserializer {
+
+    private static final long serialVersionUID = 1;
+
+    // // Configuration: typing, deserializers
+
+    protected final JavaType _type;
+
+    /**
+     * Key deserializer to use; either passed via constructor
+     * (when indicated by annotations), or resolved when
+     * {@link #createContextual} is called;
+     */
+    protected final JsonDeserializer&lt;Object&gt; _keyDeserializer;
+    /**
+     * If key instances have polymorphic type information, this
+     * is the type deserializer that can handle it
+     */
+    protected final TypeDeserializer _keyTypeDeserializer;
+
+    /**
+     * Value deserializer.
+     */
+    protected final JsonDeserializer&lt;Object&gt; _valueDeserializer;
+
+    /**
+     * If value instances have polymorphic type information, this
+     * is the type deserializer that can handle it
+     */
+    protected final TypeDeserializer _valueTypeDeserializer;
+
+    /*
+    /**********************************************************
+    /* Life-cycle
+    /**********************************************************
+     */
+
+    public PairDeserializer(
+        final JavaType type,
+        final JsonDeserializer&lt;Object&gt; keyDeser,
+        final TypeDeserializer keyTypeDeserializer,
+        final JsonDeserializer&lt;Object&gt; valueDeser,
+        final TypeDeserializer valueTypeDeser
+    ) {
+<span class="fc" id="L68">        super(type);</span>
+<span class="pc bpc" id="L69" title="1 of 2 branches missed.">        if (type.containedTypeCount() != 2) { // sanity check</span>
+<span class="nc" id="L70">            throw new IllegalArgumentException(&quot;Missing generic type information for &quot; + type);</span>
+        }
+<span class="fc" id="L72">        this._type = type;</span>
+<span class="fc" id="L73">        this._keyDeserializer = keyDeser;</span>
+<span class="fc" id="L74">        this._keyTypeDeserializer = keyTypeDeserializer;</span>
+<span class="fc" id="L75">        this._valueDeserializer = valueDeser;</span>
+<span class="fc" id="L76">        this._valueTypeDeserializer = valueTypeDeser;</span>
+<span class="fc" id="L77">    }</span>
+
+    /**
+     * Copy-constructor that can be used by sub-classes to allow
+     * copy-on-write styling copying of settings of an existing instance.
+     */
+    protected PairDeserializer(final PairDeserializer src) {
+<span class="nc" id="L84">        super(src._type);</span>
+<span class="nc" id="L85">        this._type = src._type;</span>
+<span class="nc" id="L86">        this._keyDeserializer = src._keyDeserializer;</span>
+<span class="nc" id="L87">        this._keyTypeDeserializer = src._keyTypeDeserializer;</span>
+<span class="nc" id="L88">        this._valueDeserializer = src._valueDeserializer;</span>
+<span class="nc" id="L89">        this._valueTypeDeserializer = src._valueTypeDeserializer;</span>
+<span class="nc" id="L90">    }</span>
+
+    protected PairDeserializer(
+        final PairDeserializer src,
+        final JsonDeserializer&lt;Object&gt; keyDeser,
+        final TypeDeserializer keyTypeDeserializer,
+        final JsonDeserializer&lt;Object&gt; valueDeser,
+        final TypeDeserializer valueTypeDeser
+    ) {
+<span class="fc" id="L99">        super(src._type);</span>
+<span class="fc" id="L100">        this._type = src._type;</span>
+<span class="fc" id="L101">        this._keyDeserializer = keyDeser;</span>
+<span class="fc" id="L102">        this._keyTypeDeserializer = keyTypeDeserializer;</span>
+<span class="fc" id="L103">        this._valueDeserializer = valueDeser;</span>
+<span class="fc" id="L104">        this._valueTypeDeserializer = valueTypeDeser;</span>
+<span class="fc" id="L105">    }</span>
+
+    /**
+     * Fluent factory method used to create a copy with slightly
+     * different settings. When sub-classing, MUST be overridden.
+     */
+    @SuppressWarnings(&quot;unchecked&quot;)
+    protected PairDeserializer withResolved(
+        final TypeDeserializer keyTypeDeserializer, final JsonDeserializer&lt;?&gt; keyDeser,
+        final TypeDeserializer valueTypeDeser, final JsonDeserializer&lt;?&gt; valueDeser
+    ) {
+<span class="pc bpc" id="L116" title="5 of 6 branches missed.">        if ((this._keyDeserializer == keyDeser) &amp;&amp; (this._valueDeserializer == valueDeser)</span>
+            &amp;&amp; (this._valueTypeDeserializer == valueTypeDeser)) {
+<span class="nc" id="L118">            return this;</span>
+        }
+<span class="fc" id="L120">        return new PairDeserializer(</span>
+            this,
+            (JsonDeserializer&lt;Object&gt;) keyDeser,
+            keyTypeDeserializer,
+            (JsonDeserializer&lt;Object&gt;) valueDeser,
+            valueTypeDeser);
+    }
+
+    /*
+    /**********************************************************
+    /* Validation, post-processing (ResolvableDeserializer)
+    /**********************************************************
+     */
+
+    /**
+     * Method called to finalize setup of this deserializer,
+     * when it is known for which property deserializer is needed for.
+     */
+    @Override
+    public JsonDeserializer&lt;?&gt; createContextual(
+        final DeserializationContext ctxt,
+        final BeanProperty property
+    ) throws JsonMappingException {
+<span class="fc" id="L143">        JsonDeserializer&lt;?&gt; kd = this._keyDeserializer;</span>
+<span class="fc" id="L144">        kd = findConvertingContentDeserializer(ctxt, property, kd);</span>
+<span class="fc" id="L145">        JavaType keyType = this._type.containedType(0);</span>
+<span class="pc bpc" id="L146" title="1 of 2 branches missed.">        if (kd == null) {</span>
+<span class="fc" id="L147">            kd = ctxt.findContextualValueDeserializer(keyType, property);</span>
+        } else { // if directly assigned, probably not yet contextual, so:
+<span class="nc" id="L149">            kd = ctxt.handleSecondaryContextualization(kd, property, keyType);</span>
+        }
+<span class="fc" id="L151">        TypeDeserializer ktd = this._keyTypeDeserializer;</span>
+<span class="pc bpc" id="L152" title="1 of 2 branches missed.">        if (ktd != null) {</span>
+<span class="nc" id="L153">            ktd = ktd.forProperty(property);</span>
+        }
+
+<span class="fc" id="L156">        JsonDeserializer&lt;?&gt; vd = this._valueDeserializer;</span>
+<span class="fc" id="L157">        vd = findConvertingContentDeserializer(ctxt, property, vd);</span>
+<span class="fc" id="L158">        JavaType valueType = this._type.containedType(1);</span>
+<span class="pc bpc" id="L159" title="1 of 2 branches missed.">        if (vd == null) {</span>
+<span class="fc" id="L160">            vd = ctxt.findContextualValueDeserializer(valueType, property);</span>
+        } else { // if directly assigned, probably not yet contextual, so:
+<span class="nc" id="L162">            vd = ctxt.handleSecondaryContextualization(vd, property, valueType);</span>
+        }
+<span class="fc" id="L164">        TypeDeserializer vtd = this._valueTypeDeserializer;</span>
+<span class="pc bpc" id="L165" title="1 of 2 branches missed.">        if (vtd != null) {</span>
+<span class="nc" id="L166">            vtd = vtd.forProperty(property);</span>
+        }
+<span class="fc" id="L168">        return withResolved(ktd, kd, vtd, vd);</span>
+    }
+
+    /*
+    /**********************************************************
+    /* JsonDeserializer API
+    /**********************************************************
+     */
+
+    @SuppressWarnings(&quot;unchecked&quot;)
+    @Override
+    public Pair&lt;Object, Object&gt; deserialize(final JsonParser p, final DeserializationContext ctxt) throws IOException {
+        // Ok: must point to START_OBJECT, FIELD_NAME or END_OBJECT
+<span class="fc" id="L181">        JsonToken t = p.getCurrentToken();</span>
+<span class="pc bpc" id="L182" title="5 of 6 branches missed.">        if (t != JsonToken.START_OBJECT &amp;&amp; t != JsonToken.FIELD_NAME &amp;&amp; t != JsonToken.END_OBJECT) {</span>
+            // String may be ok however:
+            // slightly redundant (since String was passed above), but
+<span class="nc" id="L185">            return _deserializeFromEmpty(p, ctxt);</span>
+        }
+<span class="pc bpc" id="L187" title="1 of 2 branches missed.">        if (t == JsonToken.START_OBJECT) {</span>
+<span class="fc" id="L188">            t = p.nextToken();</span>
+        }
+<span class="pc bpc" id="L190" title="1 of 2 branches missed.">        if (t != JsonToken.FIELD_NAME) {</span>
+<span class="nc bnc" id="L191" title="All 2 branches missed.">            if (t == JsonToken.END_OBJECT) {</span>
+<span class="nc" id="L192">                ctxt.reportMappingException(&quot;Can not deserialize a Pair out of empty JSON Object&quot;);</span>
+<span class="nc" id="L193">                return null;</span>
+            }
+<span class="nc" id="L195">            return (Pair&lt;Object, Object&gt;) ctxt.handleUnexpectedToken(handledType(), p);</span>
+        }
+
+<span class="fc" id="L198">        final JsonDeserializer&lt;Object&gt; keyDes = this._keyDeserializer;</span>
+<span class="fc" id="L199">        final TypeDeserializer keyTypeDeser = this._keyTypeDeserializer;</span>
+<span class="fc" id="L200">        final JsonDeserializer&lt;Object&gt; valueDes = this._valueDeserializer;</span>
+<span class="fc" id="L201">        final TypeDeserializer valueTypeDeser = this._valueTypeDeserializer;</span>
+
+<span class="fc" id="L203">        final String keyStr = p.getCurrentName();</span>
+<span class="fc" id="L204">        Object key = null;</span>
+        //Object key = keyDes.deserializeKey(keyStr, ctxt);
+<span class="fc" id="L206">        t = p.nextToken();</span>
+        try {
+            // Note: must handle null explicitly here; value deserializers won't
+<span class="pc bpc" id="L209" title="1 of 2 branches missed.">            if (t == JsonToken.VALUE_NULL) {</span>
+<span class="nc" id="L210">                key = keyDes.getNullValue(ctxt);</span>
+<span class="pc bpc" id="L211" title="1 of 2 branches missed.">            } else if (valueTypeDeser == null) {</span>
+<span class="fc" id="L212">                key = keyDes.deserialize(p, ctxt);</span>
+            } else {
+<span class="nc" id="L214">                key = keyDes.deserializeWithType(p, ctxt, keyTypeDeser);</span>
+            }
+<span class="nc" id="L216">        } catch (Exception e) {</span>
+<span class="nc" id="L217">            wrapAndThrow(e, Pair.class, keyStr);</span>
+<span class="fc" id="L218">        }</span>
+
+<span class="fc" id="L220">        t = p.nextToken();</span>
+<span class="fc" id="L221">        final String valueStr = p.getCurrentName();</span>
+<span class="fc" id="L222">        Object value = null;</span>
+        // And then the value...
+<span class="fc" id="L224">        t = p.nextToken();</span>
+        try {
+            // Note: must handle null explicitly here; value deserializers won't
+<span class="pc bpc" id="L227" title="1 of 2 branches missed.">            if (t == JsonToken.VALUE_NULL) {</span>
+<span class="nc" id="L228">                value = valueDes.getNullValue(ctxt);</span>
+<span class="pc bpc" id="L229" title="1 of 2 branches missed.">            } else if (valueTypeDeser == null) {</span>
+<span class="fc" id="L230">                value = valueDes.deserialize(p, ctxt);</span>
+            } else {
+<span class="nc" id="L232">                value = valueDes.deserializeWithType(p, ctxt, valueTypeDeser);</span>
+            }
+<span class="nc" id="L234">        } catch (Exception e) {</span>
+<span class="nc" id="L235">            wrapAndThrow(e, Pair.class, valueStr);</span>
+<span class="fc" id="L236">        }</span>
+
+        // Close, but also verify that we reached the END_OBJECT
+<span class="fc" id="L239">        t = p.nextToken();</span>
+<span class="pc bpc" id="L240" title="1 of 2 branches missed.">        if (t != JsonToken.END_OBJECT) {</span>
+<span class="nc bnc" id="L241" title="All 2 branches missed.">            if (t == JsonToken.FIELD_NAME) { // most likely</span>
+<span class="nc" id="L242">                ctxt.reportMappingException(&quot;Problem binding JSON into Pair: more than one entry in JSON (second field: '&quot; + p.getCurrentName() + &quot;')&quot;);</span>
+            } else {
+                // how would this occur?
+<span class="nc" id="L245">                ctxt.reportMappingException(&quot;Problem binding JSON into Pair: unexpected content after JSON Object entry: &quot; + t);</span>
+            }
+<span class="nc" id="L247">            return null;</span>
+        }
+<span class="fc" id="L249">        return new ImmutablePair&lt;&gt;(key, value);</span>
+    }
+
+    @Override
+    public Pair&lt;Object, Object&gt; deserialize(
+        final JsonParser p, final DeserializationContext ctxt, final Pair&lt;Object, Object&gt; result
+    ) throws IOException {
+<span class="nc" id="L256">        throw new IllegalStateException(&quot;Can not update Pair values&quot;);</span>
+    }
+
+    @Override
+    public Object deserializeWithType(
+        final JsonParser p,
+        final DeserializationContext ctxt,
+        final TypeDeserializer typeDeserializer
+    ) throws IOException, JsonProcessingException {
+        // In future could check current token... for now this should be enough:
+<span class="nc" id="L266">        return typeDeserializer.deserializeTypedFromObject(p, ctxt);</span>
+    }
+
+    /*
+    /**********************************************************
+    /* Other public accessors
+    /**********************************************************
+     */
+
+    @Override
+    public JavaType getValueType() {
+<span class="nc" id="L277">        return this._type;</span>
+    }
+
+    /*
+    /**********************************************************
+    /* Shared methods for sub-classes (from ContainerDeserializerBase)
+    /**********************************************************
+     */
+
+    /**
+     * Helper method called by various Map(-like) deserializers.
+     */
+    protected void wrapAndThrow(Throwable t, final Object ref, String key) throws IOException {
+        // to handle StackOverflow:
+<span class="nc bnc" id="L291" title="All 4 branches missed.">        while (t instanceof InvocationTargetException &amp;&amp; t.getCause() != null) {</span>
+<span class="nc" id="L292">            t = t.getCause();</span>
+        }
+        // Errors and &quot;plain&quot; IOExceptions to be passed as is
+<span class="nc bnc" id="L295" title="All 2 branches missed.">        if (t instanceof Error) {</span>
+<span class="nc" id="L296">            throw (Error) t;</span>
+        }
+        // ... except for mapping exceptions
+<span class="nc bnc" id="L299" title="All 4 branches missed.">        if (t instanceof IOException &amp;&amp; !(t instanceof JsonMappingException)) {</span>
+<span class="nc" id="L300">            throw (IOException) t;</span>
+        }
+        // for [databind#1141]
+<span class="nc bnc" id="L303" title="All 2 branches missed.">        if (key == null) {</span>
+<span class="nc" id="L304">            key = &quot;N/A&quot;;</span>
+        }
+<span class="nc" id="L306">        throw JsonMappingException.wrapWithPath(t, ref, key);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

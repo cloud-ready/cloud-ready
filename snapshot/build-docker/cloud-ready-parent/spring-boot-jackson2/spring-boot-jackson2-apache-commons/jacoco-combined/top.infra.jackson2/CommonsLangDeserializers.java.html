@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CommonsLangDeserializers.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Combined</a> &gt; <a href="index.source.html" class="el_package">top.infra.jackson2</a> &gt; <span class="el_source">CommonsLangDeserializers.java</span></div><h1>CommonsLangDeserializers.java</h1><pre class="source lang-java linenums">package top.infra.jackson2;
+
+import com.fasterxml.jackson.databind.BeanDescription;
+import com.fasterxml.jackson.databind.DeserializationConfig;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.deser.DeserializerFactory;
+import com.fasterxml.jackson.databind.deser.Deserializers;
+import com.fasterxml.jackson.databind.jsontype.TypeDeserializer;
+import com.fasterxml.jackson.databind.type.TypeFactory;
+
+import org.apache.commons.lang3.tuple.Pair;
+
+import top.infra.jackson2.deser.PairDeserializer;
+
+/**
+ * {@link com.fasterxml.jackson.databind.deser.BasicDeserializerFactory#findDefaultDeserializer(DeserializationContext, JavaType, BeanDescription)}
+ * {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory}
+ * com.fasterxml.jackson.datatype.guava.GuavaDeserializers
+ */
+public class CommonsLangDeserializers extends Deserializers.Base {
+
+    private final DeserializerFactory deserializerFactory;
+
+<span class="fc" id="L27">    public CommonsLangDeserializers(final DeserializerFactory deserializerFactory) {</span>
+<span class="fc" id="L28">        this.deserializerFactory = deserializerFactory;</span>
+<span class="fc" id="L29">    }</span>
+
+    @Override
+    public JsonDeserializer&lt;?&gt; findBeanDeserializer(
+        final JavaType type, final DeserializationConfig config, final BeanDescription beanDesc
+    ) throws JsonMappingException {
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        if (type.hasRawClass(Pair.class)) {</span>
+<span class="fc" id="L36">            JavaType kt = type.containedType(0);</span>
+<span class="pc bpc" id="L37" title="1 of 2 branches missed.">            if (kt == null) {</span>
+<span class="nc" id="L38">                kt = TypeFactory.unknownType();</span>
+            }
+<span class="fc" id="L40">            TypeDeserializer kts = (TypeDeserializer) kt.getTypeHandler();</span>
+<span class="pc bpc" id="L41" title="1 of 2 branches missed.">            if (kts == null) {</span>
+<span class="fc" id="L42">                kts = this.deserializerFactory.findTypeDeserializer(config, kt);</span>
+            }
+
+<span class="fc" id="L45">            JavaType vt = type.containedType(1);</span>
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">            if (vt == null) {</span>
+<span class="nc" id="L47">                vt = TypeFactory.unknownType();</span>
+            }
+<span class="fc" id="L49">            TypeDeserializer vts = (TypeDeserializer) vt.getTypeHandler();</span>
+<span class="pc bpc" id="L50" title="1 of 2 branches missed.">            if (vts == null) {</span>
+<span class="fc" id="L51">                vts = this.deserializerFactory.findTypeDeserializer(config, vt);</span>
+            }
+<span class="fc" id="L53">            JsonDeserializer&lt;Object&gt; valueDeser = vt.getValueHandler();</span>
+<span class="fc" id="L54">            JsonDeserializer&lt;Object&gt; keyDes = kt.getValueHandler();</span>
+<span class="fc" id="L55">            return new PairDeserializer(type, keyDes, kts, valueDeser, vts);</span>
+        }
+<span class="fc" id="L57">        return null;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>
