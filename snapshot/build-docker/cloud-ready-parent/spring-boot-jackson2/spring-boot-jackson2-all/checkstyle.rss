@@ -25,9 +25,9 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2018</copyright>
     <item>
-      <title>File: 3,
+      <title>File: 0,
              Errors: 0,
-             Warnings: 29,
+             Warnings: 0,
              Infos: 0
       </title>
             <link>https://github.com/ci-and-cd/maven-build/build-docker/cloud-ready-parent/spring-boot-jackson2/spring-boot-jackson2-all/checkstyle.html</link>
@@ -44,48 +44,6 @@ under the License.
             </tr>
           </thead>
           <tbody>
-                          <tr>
-                <td>
-                  <a href="https://github.com/ci-and-cd/maven-build/build-docker/cloud-ready-parent/spring-boot-jackson2/spring-boot-jackson2-all/checkstyle.html#top.infra.jackson2.FileAndClasspathUtils.java">top/infra/jackson2/FileAndClasspathUtils.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  10
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://github.com/ci-and-cd/maven-build/build-docker/cloud-ready-parent/spring-boot-jackson2/spring-boot-jackson2-all/checkstyle.html#top.infra.jackson2.Jackson2Utils.java">top/infra/jackson2/Jackson2Utils.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  8
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://github.com/ci-and-cd/maven-build/build-docker/cloud-ready-parent/spring-boot-jackson2/spring-boot-jackson2-all/checkstyle.html#commonsio.IOUtils.java">commonsio/IOUtils.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  11
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
                       </tbody>
         </table>
         
