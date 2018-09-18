@@ -5,3 +5,4 @@ top.infra.common
 top.infra.jackson2
 commonsio
 top.infra.jackson2.ser
+top.infra.jackson2.deser

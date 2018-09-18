@@ -1,6 +1,7 @@
 commonsio
 top.infra.common
 top.infra.jackson2
+top.infra.jackson2.deser
 top.infra.jackson2.ser
 top.infra.test.classloader
 top.infra.test.classloader.exclude
