@@ -19,21 +19,21 @@ import java.util.Arrays;
     }
 
     public static String printClassLoader(final Class&lt;?&gt; target) {
-<span class="fc" id="L22">        final ClassLoader classLoader = target.getClassLoader();</span>
+<span class="nc" id="L22">        final ClassLoader classLoader = target.getClassLoader();</span>
 
         final String result;
 
-<span class="pc bpc" id="L26" title="1 of 2 branches missed.">        if (classLoader instanceof URLClassLoader) {</span>
-<span class="fc" id="L27">            result = target.getName()</span>
+<span class="nc bnc" id="L26" title="All 2 branches missed.">        if (classLoader instanceof URLClassLoader) {</span>
+<span class="nc" id="L27">            result = target.getName()</span>
                 + &quot;/classLoader = &quot;
                 + classLoader
-<span class="fc" id="L30">                + &quot;/URLs/&quot; + Arrays.asList(((URLClassLoader) classLoader).getURLs());</span>
+<span class="nc" id="L30">                + &quot;/URLs/&quot; + Arrays.asList(((URLClassLoader) classLoader).getURLs());</span>
         } else {
 <span class="nc" id="L32">            result = target.getName() + &quot;/classLoader = &quot; + classLoader;</span>
         }
-<span class="fc" id="L34">        System.out.println(result);</span>
+<span class="nc" id="L34">        System.out.println(result);</span>
 
-<span class="fc" id="L36">        return result;</span>
+<span class="nc" id="L36">        return result;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

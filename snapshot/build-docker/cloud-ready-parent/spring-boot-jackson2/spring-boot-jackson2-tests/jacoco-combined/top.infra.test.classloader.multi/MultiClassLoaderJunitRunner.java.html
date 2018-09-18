@@ -18,38 +18,38 @@ public class MultiClassLoaderJunitRunner extends Suite {
     private static URLClassLoader currentClassLoader;
 
     static {
-<span class="fc" id="L21">        currentClassLoader = (URLClassLoader) Thread.currentThread().getContextClassLoader();</span>
-<span class="fc" id="L22">    }</span>
+<span class="nc" id="L21">        currentClassLoader = (URLClassLoader) Thread.currentThread().getContextClassLoader();</span>
+<span class="nc" id="L22">    }</span>
 
     public MultiClassLoaderJunitRunner(final Class&lt;?&gt; klass) throws InitializationError {
-<span class="fc" id="L25">        super(klass, buildRunners(klass));</span>
-<span class="fc" id="L26">    }</span>
+<span class="nc" id="L25">        super(klass, buildRunners(klass));</span>
+<span class="nc" id="L26">    }</span>
 
 <span class="nc" id="L28">    @SneakyThrows</span>
     private static List&lt;Runner&gt; buildRunners(Class&lt;?&gt; klass) {
-<span class="fc" id="L30">        final LibrarySets librarySet = klass.getAnnotation(LibrarySets.class);</span>
-<span class="pc bpc" id="L31" title="1 of 2 branches missed.">        if (librarySet == null) throw new IllegalArgumentException(&quot;Class &quot; + klass + &quot; is missing LibrarySets annotation&quot;);</span>
+<span class="nc" id="L30">        final LibrarySets librarySet = klass.getAnnotation(LibrarySets.class);</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">        if (librarySet == null) throw new IllegalArgumentException(&quot;Class &quot; + klass + &quot; is missing LibrarySets annotation&quot;);</span>
 
-<span class="fc" id="L33">        final List&lt;Runner&gt; runners = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L34">        int i = 0;</span>
-<span class="fc bfc" id="L35" title="All 2 branches covered.">        for (final String urlsList : librarySet.librarySets()) {</span>
-<span class="fc" id="L36">            final String suffix = String.valueOf(i);</span>
+<span class="nc" id="L33">        final List&lt;Runner&gt; runners = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L34">        int i = 0;</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">        for (final String urlsList : librarySet.librarySets()) {</span>
+<span class="nc" id="L36">            final String suffix = String.valueOf(i);</span>
 
-<span class="fc" id="L38">            final ClassLoader customClassLoader = new LibrarySetClassLoader(currentClassLoader, urlsList.split(&quot;,&quot;));</span>
+<span class="nc" id="L38">            final ClassLoader customClassLoader = new LibrarySetClassLoader(currentClassLoader, urlsList.split(&quot;,&quot;));</span>
 
-<span class="fc" id="L40">            final Class&lt;?&gt; testClass = customClassLoader.loadClass(klass.getName());</span>
+<span class="nc" id="L40">            final Class&lt;?&gt; testClass = customClassLoader.loadClass(klass.getName());</span>
 
-<span class="fc" id="L42">            final BlockJUnit4ClassRunner junit4Runner = new BlockJUnit4ClassRunner(testClass) {</span>
+<span class="nc" id="L42">            final BlockJUnit4ClassRunner junit4Runner = new BlockJUnit4ClassRunner(testClass) {</span>
                 @Override
                 protected String getName() {
-<span class="fc" id="L45">                    return super.getName() + suffix;</span>
+<span class="nc" id="L45">                    return super.getName() + suffix;</span>
                 }
             };
 
-<span class="fc" id="L49">            runners.add(new ClassLoaderChangerRunner(currentClassLoader, customClassLoader, junit4Runner));</span>
-<span class="fc" id="L50">            i++;</span>
+<span class="nc" id="L49">            runners.add(new ClassLoaderChangerRunner(currentClassLoader, customClassLoader, junit4Runner));</span>
+<span class="nc" id="L50">            i++;</span>
         }
-<span class="fc" id="L52">        return runners;</span>
+<span class="nc" id="L52">        return runners;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>
