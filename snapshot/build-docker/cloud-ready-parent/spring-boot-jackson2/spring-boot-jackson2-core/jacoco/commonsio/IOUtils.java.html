@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IOUtils.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spring-boot-jackson2-core</a> &gt; <a href="index.source.html" class="el_package">commonsio</a> &gt; <span class="el_source">IOUtils.java</span></div><h1>IOUtils.java</h1><pre class="source lang-java linenums">package commonsio;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * see: org.apache.commons.io.IOUtils and org.apache.commons.io.Charsets
+ */
+<span class="nc" id="L15">public class IOUtils {</span>
+
+    // readLines
+    //-----------------------------------------------------------------------
+
+    /**
+     * Gets the contents of an &lt;code&gt;InputStream&lt;/code&gt; as a list of Strings,
+     * one entry per line, using the default character encoding of the platform.
+     * &lt;p&gt;
+     * This method buffers the input internally, so there is no need to use a
+     * &lt;code&gt;BufferedInputStream&lt;/code&gt;.
+     *
+     * @param input the &lt;code&gt;InputStream&lt;/code&gt; to read from, not null
+     * @return the list of Strings, never null
+     * @throws NullPointerException if the input is null
+     * @throws IOException          if an I/O error occurs
+     * @since 1.1
+     * @deprecated 2.5 use {@link #readLines(InputStream, Charset)} instead
+     */
+    @Deprecated
+    public static List&lt;String&gt; readLines(final InputStream input) throws IOException {
+<span class="nc" id="L36">        return readLines(input, Charset.defaultCharset());</span>
+    }
+
+    /**
+     * Gets the contents of an &lt;code&gt;InputStream&lt;/code&gt; as a list of Strings,
+     * one entry per line, using the specified character encoding.
+     * &lt;p&gt;
+     * This method buffers the input internally, so there is no need to use a
+     * &lt;code&gt;BufferedInputStream&lt;/code&gt;.
+     *
+     * @param input the &lt;code&gt;InputStream&lt;/code&gt; to read from, not null
+     * @param encoding the encoding to use, null means platform default
+     * @return the list of Strings, never null
+     * @throws NullPointerException if the input is null
+     * @throws IOException          if an I/O error occurs
+     * @since 2.3
+     */
+    public static List&lt;String&gt; readLines(final InputStream input, final Charset encoding) throws IOException {
+<span class="nc" id="L54">        final InputStreamReader reader = new InputStreamReader(input, toCharset(encoding));</span>
+<span class="nc" id="L55">        return readLines(reader);</span>
+    }
+
+    /**
+     * Gets the contents of an &lt;code&gt;InputStream&lt;/code&gt; as a list of Strings,
+     * one entry per line, using the specified character encoding.
+     * &lt;p&gt;
+     * Character encoding names can be found at
+     * &lt;a href=&quot;http://www.iana.org/assignments/character-sets&quot;&gt;IANA&lt;/a&gt;.
+     * &lt;p&gt;
+     * This method buffers the input internally, so there is no need to use a
+     * &lt;code&gt;BufferedInputStream&lt;/code&gt;.
+     *
+     * @param input the &lt;code&gt;InputStream&lt;/code&gt; to read from, not null
+     * @param encoding the encoding to use, null means platform default
+     * @return the list of Strings, never null
+     * @throws NullPointerException                         if the input is null
+     * @throws IOException                                  if an I/O error occurs
+     * @throws java.nio.charset.UnsupportedCharsetException thrown instead of {@link java.io
+     *                                                      .UnsupportedEncodingException} in version 2.2 if the
+     *                                                      encoding is not supported.
+     * @since 1.1
+     */
+    public static List&lt;String&gt; readLines(final InputStream input, final String encoding) throws IOException {
+<span class="nc" id="L79">        return readLines(input, toCharset(encoding));</span>
+    }
+
+    /**
+     * Gets the contents of a &lt;code&gt;Reader&lt;/code&gt; as a list of Strings,
+     * one entry per line.
+     * &lt;p&gt;
+     * This method buffers the input internally, so there is no need to use a
+     * &lt;code&gt;BufferedReader&lt;/code&gt;.
+     *
+     * @param input the &lt;code&gt;Reader&lt;/code&gt; to read from, not null
+     * @return the list of Strings, never null
+     * @throws NullPointerException if the input is null
+     * @throws IOException          if an I/O error occurs
+     * @since 1.1
+     */
+    public static List&lt;String&gt; readLines(final Reader input) throws IOException {
+<span class="nc" id="L96">        final BufferedReader reader = toBufferedReader(input);</span>
+<span class="nc" id="L97">        final List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L98">        String line = reader.readLine();</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">        while (line != null) {</span>
+<span class="nc" id="L100">            list.add(line);</span>
+<span class="nc" id="L101">            line = reader.readLine();</span>
+        }
+<span class="nc" id="L103">        return list;</span>
+    }
+
+    /**
+     * Returns the given reader if it is a {@link BufferedReader}, otherwise creates a BufferedReader from the given
+     * reader.
+     *
+     * @param reader the reader to wrap or return (not null)
+     * @return the given reader or a new {@link BufferedReader} for the given reader
+     * @throws NullPointerException if the input parameter is null
+     * @since 2.2
+     */
+    public static BufferedReader toBufferedReader(final Reader reader) {
+<span class="nc bnc" id="L116" title="All 2 branches missed.">        return reader instanceof BufferedReader ? (BufferedReader) reader : new BufferedReader(reader);</span>
+    }
+
+    /**
+     * Returns the given Charset or the default Charset if the given Charset is null.
+     *
+     * @param charset
+     *            A charset or null.
+     * @return the given Charset or the default Charset if the given Charset is null
+     */
+    public static Charset toCharset(final Charset charset) {
+<span class="nc bnc" id="L127" title="All 2 branches missed.">        return charset == null ? Charset.defaultCharset() : charset;</span>
+    }
+
+    /**
+     * Returns a Charset for the named charset. If the name is null, return the default Charset.
+     *
+     * @param charset
+     *            The name of the requested charset, may be null.
+     * @return a Charset for the named charset
+     * @throws java.nio.charset.UnsupportedCharsetException
+     *             If the named charset is unavailable
+     */
+    public static Charset toCharset(final String charset) {
+<span class="nc bnc" id="L140" title="All 2 branches missed.">        return charset == null ? Charset.defaultCharset() : Charset.forName(charset);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

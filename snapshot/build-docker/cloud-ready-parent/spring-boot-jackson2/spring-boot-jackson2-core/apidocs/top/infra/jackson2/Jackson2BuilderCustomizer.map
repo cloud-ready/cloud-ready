@@ -1,8 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./Jackson2BuilderCustomizer.html" title="top.infra.jackson2.Jackson2BuilderCustomizer" alt="" coords="15,181,535,328"/>
-<area shape="rect" id="node1" href="./Jackson2BuilderCustomizer.html" title="&lt;TABLE&gt;" alt="" coords="4,176,545,333"/>
-<area shape="rect" id="node2_1" href="./Jackson2Customizer.html" title="top.infra.jackson2.Jackson2Customizer" alt="" coords="203,387,347,482"/>
-<area shape="rect" id="node2" href="./Jackson2Customizer.html" title="&lt;TABLE&gt;" alt="" coords="192,382,357,487"/>
+<area shape="rect" id="node1_0" href="./Jackson2BuilderCustomizer.html" title="top.infra.jackson2.Jackson2BuilderCustomizer" alt="" coords="15,182,535,346"/>
+<area shape="rect" id="node1" href="./Jackson2BuilderCustomizer.html" title="&lt;TABLE&gt;" alt="" coords="4,177,545,351"/>
+<area shape="rect" id="node2_1" href="./Jackson2Customizer.html" title="top.infra.jackson2.Jackson2Customizer" alt="" coords="203,406,347,501"/>
+<area shape="rect" id="node2" href="./Jackson2Customizer.html" title="&lt;TABLE&gt;" alt="" coords="192,401,357,506"/>
 <area shape="rect" id="node3_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/core/Ordered.html" title="org.springframework.core.Ordered" alt="" coords="164,11,385,123"/>
 <area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/core/Ordered.html" title="&lt;TABLE&gt;" alt="" coords="153,5,396,128"/>
 </map>
