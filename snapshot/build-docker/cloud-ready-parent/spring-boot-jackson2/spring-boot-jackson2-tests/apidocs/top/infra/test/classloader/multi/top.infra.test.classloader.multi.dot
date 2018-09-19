@@ -19,8 +19,8 @@ digraph G {
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + LibrarySetClassLoader(classLoader : ClassLoader, libraries : String[]) </td></tr>
-<tr><td align="left" balign="left"> + loadClass(name : String) : Class&lt;?&gt; </td></tr>
 <tr><td align="left" balign="left"> + toUrls(libraries : String[]) : URL[] </td></tr>
+<tr><td align="left" balign="left"> + loadClass(name : String) : Class&lt;?&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./LibrarySetClassLoader.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// top.infra.test.classloader.multi.LibrarySets

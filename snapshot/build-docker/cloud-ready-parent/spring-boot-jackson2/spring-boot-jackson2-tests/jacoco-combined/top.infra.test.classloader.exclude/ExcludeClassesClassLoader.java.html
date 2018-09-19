@@ -14,54 +14,53 @@ import java.util.Collection;
 <span class="fc" id="L14">@Slf4j</span>
 public class ExcludeClassesClassLoader extends URLClassLoader {
 
-    private Collection&lt;String&gt; excludes;
-
     private final ClassLoader parentClassLoader;
+    private Collection&lt;String&gt; excludes;
 
     public ExcludeClassesClassLoader(
         final ClassLoader parentClassLoader, final URL[] urls, final Collection&lt;String&gt; excludes) {
 
-<span class="fc" id="L24">        super(urls, null);</span>
+<span class="fc" id="L23">        super(urls, null);</span>
 
-<span class="fc" id="L26">        log.info(&quot;ExcludeClassesClassLoader parentClassLoader &quot; + parentClassLoader);</span>
+<span class="fc" id="L25">        log.info(&quot;ExcludeClassesClassLoader parentClassLoader &quot; + parentClassLoader);</span>
 
-<span class="fc" id="L28">        this.setExcludes(excludes);</span>
-<span class="fc" id="L29">        this.parentClassLoader = parentClassLoader;</span>
-<span class="fc" id="L30">    }</span>
+<span class="fc" id="L27">        this.setExcludes(excludes);</span>
+<span class="fc" id="L28">        this.parentClassLoader = parentClassLoader;</span>
+<span class="fc" id="L29">    }</span>
 
     @Override
     public synchronized Class&lt;?&gt; loadClass(final String name) throws ClassNotFoundException {
         //log.info(&quot;loadClass &quot; + name);
 
-<span class="fc bfc" id="L36" title="All 2 branches covered.">        if (!this.excludes.contains(name)) {</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        if (!this.excludes.contains(name)) {</span>
             // User's test class is already loaded by parentClassLoader
             // Must use parentClassLoader to load top.infra.test.classloader.exclude.ExcludeClasses.
-<span class="fc bfc" id="L39" title="All 2 branches covered.">            if (!name.startsWith(&quot;java.&quot;)</span>
-<span class="fc bfc" id="L40" title="All 2 branches covered.">                &amp;&amp; !name.startsWith(&quot;javax.&quot;)</span>
-<span class="fc bfc" id="L41" title="All 2 branches covered.">                &amp;&amp; !name.startsWith(&quot;org.junit.&quot;)</span>
-<span class="fc bfc" id="L42" title="All 2 branches covered.">                &amp;&amp; !name.startsWith(&quot;org.xml.&quot;)</span>
-<span class="fc bfc" id="L43" title="All 2 branches covered.">                &amp;&amp; !name.startsWith(&quot;org.w3c.&quot;)</span>
-<span class="fc bfc" id="L44" title="All 2 branches covered.">                &amp;&amp; !name.startsWith(&quot;sun.&quot;)</span>
-<span class="fc bfc" id="L45" title="All 2 branches covered.">                &amp;&amp; !&quot;top.infra.test.classloader.exclude.ExcludeClasses&quot;.equals(name)</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">            if (!name.startsWith(&quot;java.&quot;)</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">                &amp;&amp; !name.startsWith(&quot;javax.&quot;)</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">                &amp;&amp; !name.startsWith(&quot;org.junit.&quot;)</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">                &amp;&amp; !name.startsWith(&quot;org.xml.&quot;)</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">                &amp;&amp; !name.startsWith(&quot;org.w3c.&quot;)</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">                &amp;&amp; !name.startsWith(&quot;sun.&quot;)</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">                &amp;&amp; !&quot;top.infra.test.classloader.exclude.ExcludeClasses&quot;.equals(name)</span>
             ) {
                 final Class&lt;?&gt; result;
-<span class="fc" id="L48">                final Class&lt;?&gt; loadedClass = this.findLoadedClass(name);</span>
-<span class="fc bfc" id="L49" title="All 2 branches covered.">                if (loadedClass == null) {</span>
-<span class="fc" id="L50">                    result = this.findClass(name);</span>
+<span class="fc" id="L47">                final Class&lt;?&gt; loadedClass = this.findLoadedClass(name);</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">                if (loadedClass == null) {</span>
+<span class="fc" id="L49">                    result = this.findClass(name);</span>
                 } else {
-<span class="fc" id="L52">                    result = loadedClass;</span>
+<span class="fc" id="L51">                    result = loadedClass;</span>
                 }
-<span class="fc" id="L54">                return result;</span>
+<span class="fc" id="L53">                return result;</span>
             }
 
-<span class="fc" id="L57">            return this.parentClassLoader.loadClass(name);</span>
+<span class="fc" id="L56">            return this.parentClassLoader.loadClass(name);</span>
         } else {
-<span class="fc" id="L59">            throw new ClassNotFoundException(&quot;class &quot; + name + &quot; is excluded from classpath&quot;);</span>
+<span class="fc" id="L58">            throw new ClassNotFoundException(&quot;class &quot; + name + &quot; is excluded from classpath&quot;);</span>
         }
     }
 
     public void setExcludes(final Collection&lt;String&gt; excludes) {
-<span class="fc bfc" id="L64" title="All 2 branches covered.">        this.excludes = excludes != null ? excludes : ImmutableList.of();</span>
-<span class="fc" id="L65">    }</span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">        this.excludes = excludes != null ? excludes : ImmutableList.of();</span>
+<span class="fc" id="L64">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

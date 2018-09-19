@@ -16,26 +16,26 @@ public class LibrarySetClassLoader extends URLClassLoader {
 <span class="nc" id="L16">        this.classLoader = classLoader;</span>
 <span class="nc" id="L17">    }</span>
 
+    public static URL[] toUrls(final String[] libraries) throws IOException {
+<span class="nc" id="L20">        return Arrays.stream(libraries).map((s) -&gt; {</span>
+            try {
+<span class="nc bnc" id="L22" title="All 2 branches missed.">                if (s.startsWith(&quot;file:&quot;)) {</span>
+<span class="nc" id="L23">                    return new File(s.substring(&quot;file:&quot;.length())).toURI().toURL();</span>
+                }
+<span class="nc" id="L25">                return new URL(s);</span>
+<span class="nc" id="L26">            } catch (final MalformedURLException e) {</span>
+<span class="nc" id="L27">                throw new RuntimeException(e);</span>
+            }
+<span class="nc" id="L29">        }).toArray(URL[]::new);</span>
+    }
+
     @Override
     public Class&lt;?&gt; loadClass(final String name) throws ClassNotFoundException {
         try {
-<span class="nc" id="L22">            return super.loadClass(name);</span>
-<span class="nc" id="L23">        } catch (final ClassNotFoundException e) {</span>
-<span class="nc" id="L24">            return this.classLoader.loadClass(name);</span>
+<span class="nc" id="L35">            return super.loadClass(name);</span>
+<span class="nc" id="L36">        } catch (final ClassNotFoundException e) {</span>
+<span class="nc" id="L37">            return this.classLoader.loadClass(name);</span>
         }
-    }
-
-    public static URL[] toUrls(final String[] libraries) throws IOException {
-<span class="nc" id="L29">        return Arrays.stream(libraries).map((s) -&gt; {</span>
-            try {
-<span class="nc bnc" id="L31" title="All 2 branches missed.">                if (s.startsWith(&quot;file:&quot;)) {</span>
-<span class="nc" id="L32">                    return new File(s.substring(&quot;file:&quot;.length())).toURI().toURL();</span>
-                }
-<span class="nc" id="L34">                return new URL(s);</span>
-<span class="nc" id="L35">            } catch (final MalformedURLException e) {</span>
-<span class="nc" id="L36">                throw new RuntimeException(e);</span>
-            }
-<span class="nc" id="L38">        }).toArray(URL[]::new);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>
