@@ -195,65 +195,85 @@ public class PairDeserializer extends StdDeserializer&lt;Pair&lt;Object, Object&
 <span class="nc" id="L195">            return (Pair&lt;Object, Object&gt;) ctxt.handleUnexpectedToken(handledType(), p);</span>
         }
 
-<span class="fc" id="L198">        final JsonDeserializer&lt;Object&gt; keyDes = this._keyDeserializer;</span>
-<span class="fc" id="L199">        final TypeDeserializer keyTypeDeser = this._keyTypeDeserializer;</span>
-<span class="fc" id="L200">        final JsonDeserializer&lt;Object&gt; valueDes = this._valueDeserializer;</span>
-<span class="fc" id="L201">        final TypeDeserializer valueTypeDeser = this._valueTypeDeserializer;</span>
-
-<span class="fc" id="L203">        final String keyStr = p.getCurrentName();</span>
-<span class="fc" id="L204">        Object key = null;</span>
-        //Object key = keyDes.deserializeKey(keyStr, ctxt);
+<span class="fc" id="L198">        Object key = null;</span>
+<span class="fc" id="L199">        Object value = null;</span>
+<span class="fc" id="L200">        Pair&lt;String, Object&gt; field = this.deserializeField(p, ctxt);</span>
+<span class="fc bfc" id="L201" title="All 2 branches covered.">        if (&quot;left&quot;.equals(field.getKey())) {</span>
+<span class="fc" id="L202">            key = field.getRight();</span>
+        } else {
+<span class="fc" id="L204">            value = field.getRight();</span>
+        }
 <span class="fc" id="L206">        t = p.nextToken();</span>
-        try {
-            // Note: must handle null explicitly here; value deserializers won't
-<span class="pc bpc" id="L209" title="1 of 2 branches missed.">            if (t == JsonToken.VALUE_NULL) {</span>
-<span class="nc" id="L210">                key = keyDes.getNullValue(ctxt);</span>
-<span class="pc bpc" id="L211" title="1 of 2 branches missed.">            } else if (valueTypeDeser == null) {</span>
-<span class="fc" id="L212">                key = keyDes.deserialize(p, ctxt);</span>
-            } else {
-<span class="nc" id="L214">                key = keyDes.deserializeWithType(p, ctxt, keyTypeDeser);</span>
-            }
-<span class="nc" id="L216">        } catch (Exception e) {</span>
-<span class="nc" id="L217">            wrapAndThrow(e, Pair.class, keyStr);</span>
-<span class="fc" id="L218">        }</span>
-
-<span class="fc" id="L220">        t = p.nextToken();</span>
-<span class="fc" id="L221">        final String valueStr = p.getCurrentName();</span>
-<span class="fc" id="L222">        Object value = null;</span>
-        // And then the value...
-<span class="fc" id="L224">        t = p.nextToken();</span>
-        try {
-            // Note: must handle null explicitly here; value deserializers won't
-<span class="pc bpc" id="L227" title="1 of 2 branches missed.">            if (t == JsonToken.VALUE_NULL) {</span>
-<span class="nc" id="L228">                value = valueDes.getNullValue(ctxt);</span>
-<span class="pc bpc" id="L229" title="1 of 2 branches missed.">            } else if (valueTypeDeser == null) {</span>
-<span class="fc" id="L230">                value = valueDes.deserialize(p, ctxt);</span>
-            } else {
-<span class="nc" id="L232">                value = valueDes.deserializeWithType(p, ctxt, valueTypeDeser);</span>
-            }
-<span class="nc" id="L234">        } catch (Exception e) {</span>
-<span class="nc" id="L235">            wrapAndThrow(e, Pair.class, valueStr);</span>
-<span class="fc" id="L236">        }</span>
+<span class="fc" id="L207">        field = this.deserializeField(p, ctxt);</span>
+<span class="fc bfc" id="L208" title="All 2 branches covered.">        if (&quot;left&quot;.equals(field.getKey())) {</span>
+<span class="fc" id="L209">            key = field.getRight();</span>
+        } else {
+<span class="fc" id="L211">            value = field.getRight();</span>
+        }
 
         // Close, but also verify that we reached the END_OBJECT
-<span class="fc" id="L239">        t = p.nextToken();</span>
-<span class="pc bpc" id="L240" title="1 of 2 branches missed.">        if (t != JsonToken.END_OBJECT) {</span>
-<span class="nc bnc" id="L241" title="All 2 branches missed.">            if (t == JsonToken.FIELD_NAME) { // most likely</span>
-<span class="nc" id="L242">                ctxt.reportMappingException(&quot;Problem binding JSON into Pair: more than one entry in JSON (second field: '&quot; + p.getCurrentName() + &quot;')&quot;);</span>
+<span class="fc" id="L215">        t = p.nextToken();</span>
+<span class="pc bpc" id="L216" title="1 of 2 branches missed.">        if (t != JsonToken.END_OBJECT) {</span>
+<span class="nc bnc" id="L217" title="All 2 branches missed.">            if (t == JsonToken.FIELD_NAME) { // most likely</span>
+<span class="nc" id="L218">                ctxt.reportMappingException(&quot;Problem binding JSON into Pair: more than one entry in JSON (second field: '&quot; + p.getCurrentName() + &quot;')&quot;);</span>
             } else {
                 // how would this occur?
-<span class="nc" id="L245">                ctxt.reportMappingException(&quot;Problem binding JSON into Pair: unexpected content after JSON Object entry: &quot; + t);</span>
+<span class="nc" id="L221">                ctxt.reportMappingException(&quot;Problem binding JSON into Pair: unexpected content after JSON Object entry: &quot; + t);</span>
             }
-<span class="nc" id="L247">            return null;</span>
+<span class="nc" id="L223">            return null;</span>
         }
-<span class="fc" id="L249">        return new ImmutablePair&lt;&gt;(key, value);</span>
+<span class="fc" id="L225">        return new ImmutablePair&lt;&gt;(key, value);</span>
+    }
+
+    private Pair&lt;String, Object&gt; deserializeField(
+        final JsonParser p,
+        final DeserializationContext ctxt
+    ) throws IOException {
+<span class="fc" id="L232">        final String fieldName = p.getCurrentName();</span>
+<span class="fc" id="L233">        Object fieldValue = null;</span>
+<span class="fc bfc" id="L234" title="All 2 branches covered.">        if (&quot;left&quot;.equals(fieldName)) {</span>
+<span class="fc" id="L235">            final JsonDeserializer&lt;Object&gt; keyDes = this._keyDeserializer;</span>
+<span class="fc" id="L236">            final TypeDeserializer keyTypeDeser = this._keyTypeDeserializer;</span>
+<span class="fc" id="L237">            fieldValue = this.deserializeField(p, ctxt, fieldName, keyDes, keyTypeDeser);</span>
+<span class="pc bpc" id="L238" title="1 of 2 branches missed.">        } else if (&quot;right&quot;.equals(fieldName)) {</span>
+<span class="fc" id="L239">            final JsonDeserializer&lt;Object&gt; valueDes = this._valueDeserializer;</span>
+<span class="fc" id="L240">            final TypeDeserializer valueTypeDeser = this._valueTypeDeserializer;</span>
+<span class="fc" id="L241">            fieldValue = this.deserializeField(p, ctxt, fieldName, valueDes, valueTypeDeser);</span>
+<span class="fc" id="L242">        } else {</span>
+<span class="nc" id="L243">            ctxt.reportMappingException(&quot;Problem binding JSON into Pair: unknown field &quot; + fieldName + &quot;.&quot;);</span>
+        }
+<span class="fc" id="L245">        return new ImmutablePair&lt;&gt;(fieldName, fieldValue);</span>
+    }
+
+    private Object deserializeField(
+        final JsonParser p,
+        final DeserializationContext ctxt,
+        final String fieldName,
+        final JsonDeserializer&lt;Object&gt; des,
+        final TypeDeserializer typeDeser
+    ) throws IOException {
+<span class="fc" id="L255">        Object fieldValue = null;</span>
+<span class="fc" id="L256">        JsonToken t = p.nextToken();</span>
+        try {
+            // Note: must handle null explicitly here; value deserializers won't
+<span class="fc bfc" id="L259" title="All 2 branches covered.">            if (t == JsonToken.VALUE_NULL) {</span>
+<span class="fc" id="L260">                fieldValue = des.getNullValue(ctxt);</span>
+<span class="pc bpc" id="L261" title="1 of 2 branches missed.">            } else if (typeDeser == null) {</span>
+<span class="fc" id="L262">                fieldValue = des.deserialize(p, ctxt);</span>
+            } else {
+<span class="nc" id="L264">                fieldValue = des.deserializeWithType(p, ctxt, typeDeser);</span>
+            }
+<span class="nc" id="L266">        } catch (final Exception ex) {</span>
+<span class="nc" id="L267">            wrapAndThrow(ex, Pair.class, fieldName);</span>
+<span class="fc" id="L268">        }</span>
+<span class="fc" id="L269">        return fieldValue;</span>
     }
 
     @Override
     public Pair&lt;Object, Object&gt; deserialize(
         final JsonParser p, final DeserializationContext ctxt, final Pair&lt;Object, Object&gt; result
     ) throws IOException {
-<span class="nc" id="L256">        throw new IllegalStateException(&quot;Can not update Pair values&quot;);</span>
+<span class="nc" id="L276">        throw new IllegalStateException(&quot;Can not update Pair values&quot;);</span>
     }
 
     @Override
@@ -263,7 +283,7 @@ public class PairDeserializer extends StdDeserializer&lt;Pair&lt;Object, Object&
         final TypeDeserializer typeDeserializer
     ) throws IOException, JsonProcessingException {
         // In future could check current token... for now this should be enough:
-<span class="nc" id="L266">        return typeDeserializer.deserializeTypedFromObject(p, ctxt);</span>
+<span class="nc" id="L286">        return typeDeserializer.deserializeTypedFromObject(p, ctxt);</span>
     }
 
     /*
@@ -274,7 +294,7 @@ public class PairDeserializer extends StdDeserializer&lt;Pair&lt;Object, Object&
 
     @Override
     public JavaType getValueType() {
-<span class="nc" id="L277">        return this._type;</span>
+<span class="nc" id="L297">        return this._type;</span>
     }
 
     /*
@@ -288,22 +308,22 @@ public class PairDeserializer extends StdDeserializer&lt;Pair&lt;Object, Object&
      */
     protected void wrapAndThrow(Throwable t, final Object ref, String key) throws IOException {
         // to handle StackOverflow:
-<span class="nc bnc" id="L291" title="All 4 branches missed.">        while (t instanceof InvocationTargetException &amp;&amp; t.getCause() != null) {</span>
-<span class="nc" id="L292">            t = t.getCause();</span>
+<span class="nc bnc" id="L311" title="All 4 branches missed.">        while (t instanceof InvocationTargetException &amp;&amp; t.getCause() != null) {</span>
+<span class="nc" id="L312">            t = t.getCause();</span>
         }
         // Errors and &quot;plain&quot; IOExceptions to be passed as is
-<span class="nc bnc" id="L295" title="All 2 branches missed.">        if (t instanceof Error) {</span>
-<span class="nc" id="L296">            throw (Error) t;</span>
+<span class="nc bnc" id="L315" title="All 2 branches missed.">        if (t instanceof Error) {</span>
+<span class="nc" id="L316">            throw (Error) t;</span>
         }
         // ... except for mapping exceptions
-<span class="nc bnc" id="L299" title="All 4 branches missed.">        if (t instanceof IOException &amp;&amp; !(t instanceof JsonMappingException)) {</span>
-<span class="nc" id="L300">            throw (IOException) t;</span>
+<span class="nc bnc" id="L319" title="All 4 branches missed.">        if (t instanceof IOException &amp;&amp; !(t instanceof JsonMappingException)) {</span>
+<span class="nc" id="L320">            throw (IOException) t;</span>
         }
         // for [databind#1141]
-<span class="nc bnc" id="L303" title="All 2 branches missed.">        if (key == null) {</span>
-<span class="nc" id="L304">            key = &quot;N/A&quot;;</span>
+<span class="nc bnc" id="L323" title="All 2 branches missed.">        if (key == null) {</span>
+<span class="nc" id="L324">            key = &quot;N/A&quot;;</span>
         }
-<span class="nc" id="L306">        throw JsonMappingException.wrapWithPath(t, ref, key);</span>
+<span class="nc" id="L326">        throw JsonMappingException.wrapWithPath(t, ref, key);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>
