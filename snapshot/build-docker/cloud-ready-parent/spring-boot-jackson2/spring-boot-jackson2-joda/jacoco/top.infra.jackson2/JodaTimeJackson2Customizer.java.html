@@ -24,9 +24,9 @@ import java.util.List;
 
     @Override
     public void customize(final Jackson2Properties properties, final ObjectMapper mapper) {
-<span class="nc" id="L27">        final Module jodaDateTimeSerializationModule = this.jodaDateTimeSerializationModule(properties);</span>
-<span class="nc" id="L28">        mapper.registerModule(jodaDateTimeSerializationModule);</span>
-<span class="nc" id="L29">    }</span>
+<span class="fc" id="L27">        final Module jodaDateTimeSerializationModule = this.jodaDateTimeSerializationModule(properties);</span>
+<span class="fc" id="L28">        mapper.registerModule(jodaDateTimeSerializationModule);</span>
+<span class="fc" id="L29">    }</span>
 
     @Override
     public void customize(final Jackson2Properties properties, final Jackson2ObjectMapperBuilder builder) {
@@ -39,25 +39,25 @@ import java.util.List;
     public SimpleModule jodaDateTimeSerializationModule(final Jackson2Properties properties) {
 <span class="fc" id="L40">        SimpleModule module = new SimpleModule();</span>
 <span class="fc" id="L41">        JacksonJodaDateFormat jacksonJodaFormat = getJacksonJodaDateFormat(properties);</span>
-<span class="pc bpc" id="L42" title="1 of 2 branches missed.">        if (jacksonJodaFormat != null) {</span>
-<span class="nc" id="L43">            final DateTimeSerializer dateTimeSerializer = new DateTimeSerializer(jacksonJodaFormat); // jackson2 2.8.x</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        if (jacksonJodaFormat != null) {</span>
+<span class="fc" id="L43">            final DateTimeSerializer dateTimeSerializer = new DateTimeSerializer(jacksonJodaFormat); // jackson2 2.8.x</span>
             // since jackson2 2.9.x, see: JodaDateSerializerBase.FORMAT_STRING
             //final DateTimeSerializer dateTimeSerializer = new DateTimeSerializer(jacksonJodaFormat, 1); // since jackson2 2.9.x
-<span class="nc" id="L46">            module.addSerializer(DateTime.class, dateTimeSerializer);</span>
+<span class="fc" id="L46">            module.addSerializer(DateTime.class, dateTimeSerializer);</span>
         }
 <span class="fc" id="L48">        return module;</span>
     }
 
-    private JacksonJodaDateFormat getJacksonJodaDateFormat(final Jackson2Properties properties) {
-<span class="pc bpc" id="L52" title="1 of 2 branches missed.">        if (properties.getJodaDateTimeFormat() != null) {</span>
-<span class="nc" id="L53">            return new JacksonJodaDateFormat(DateTimeFormat.forPattern(properties.getJodaDateTimeFormat()).withZoneUTC());</span>
+    JacksonJodaDateFormat getJacksonJodaDateFormat(final Jackson2Properties properties) {
+<span class="fc bfc" id="L52" title="All 2 branches covered.">        if (properties.getJodaDateTimeFormat() != null) {</span>
+<span class="fc" id="L53">            return new JacksonJodaDateFormat(DateTimeFormat.forPattern(properties.getJodaDateTimeFormat()).withZoneUTC());</span>
         }
-<span class="pc bpc" id="L55" title="1 of 2 branches missed.">        if (properties.getDateFormat() != null) {</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        if (properties.getDateFormat() != null) {</span>
             try {
 <span class="nc" id="L57">                return new JacksonJodaDateFormat(DateTimeFormat.forPattern(this.dateFormat(properties)).withZoneUTC());</span>
-<span class="nc" id="L58">            } catch (final IllegalArgumentException ex) {</span>
-<span class="nc bnc" id="L59" title="All 2 branches missed.">                if (log.isWarnEnabled()) {</span>
-<span class="nc" id="L60">                    log.warn(&quot;spring.jackson.date-format could not be used to &quot;</span>
+<span class="fc" id="L58">            } catch (final IllegalArgumentException ex) {</span>
+<span class="pc bpc" id="L59" title="1 of 2 branches missed.">                if (log.isWarnEnabled()) {</span>
+<span class="fc" id="L60">                    log.warn(&quot;spring.jackson.date-format could not be used to &quot;</span>
                         + &quot;configure formatting of Joda's DateTime. You may want &quot;
                         + &quot;to configure spring.jackson.joda-date-time-format as &quot;
                         + &quot;well.&quot;);
