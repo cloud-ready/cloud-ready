@@ -72,9 +72,9 @@
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>          <strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>              <strong class="jxr_keyword">final</strong> Optional&lt;Module&gt; module;
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>              <strong class="jxr_keyword">final</strong> Optional&lt;Class&lt;?&gt;&gt; moduleClass = ClassUtils.forName(CLASS_JAXB_ANNOTATION_MODULE);
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>              <strong class="jxr_keyword">final</strong> Class&lt;?&gt; introspectorClass = ClassUtils.forName(CLASS_JAXB_ANNOTATION_INTROSPECTOR).get();
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>              <strong class="jxr_keyword">if</strong> (moduleClass.isPresent()) {
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>                  module = Optional.of((Module) moduleClass.get().getConstructor(introspectorClass) <em class="jxr_comment">//</em>
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>              <strong class="jxr_keyword">final</strong> Optional&lt;Class&lt;?&gt;&gt; introspectorClass = ClassUtils.forName(CLASS_JAXB_ANNOTATION_INTROSPECTOR);
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>              <strong class="jxr_keyword">if</strong> (moduleClass.isPresent() &amp;&amp; introspectorClass.isPresent()) {
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>                  module = Optional.of((Module) moduleClass.get().getConstructor(introspectorClass.get()) <em class="jxr_comment">//</em>
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>                      .newInstance(<strong class="jxr_keyword">new</strong> <a href="../../../top/infra/jackson2/HackedJackson2JaxbAnnotationIntrospector.html">HackedJackson2JaxbAnnotationIntrospector</a>()));
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>              } <strong class="jxr_keyword">else</strong> {
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>                  module = Optional.empty();
