@@ -27,13 +27,13 @@ import top.infra.common.EnumUtils;
 
     @Override
     public void customize(final Jackson2Properties properties, final ObjectMapper mapper) {
-<span class="nc" id="L30">        final Boolean isXmlMapper = this.isXmlMapper(mapper);</span>
+<span class="fc" id="L30">        final Boolean isXmlMapper = this.isXmlMapper(mapper);</span>
 
-<span class="nc bnc" id="L32" title="All 2 branches missed.">        if (properties.getJaxb().getEnabled()) {</span>
-<span class="nc" id="L33">            final Optional&lt;Module&gt; module = this.jaxbAnnotationModule(isXmlMapper);</span>
-<span class="nc" id="L34">            module.ifPresent(mapper::registerModule);</span>
+<span class="pc bpc" id="L32" title="1 of 2 branches missed.">        if (properties.getJaxb().getEnabled()) {</span>
+<span class="fc" id="L33">            final Optional&lt;Module&gt; module = this.jaxbAnnotationModule(isXmlMapper);</span>
+<span class="fc" id="L34">            module.ifPresent(mapper::registerModule);</span>
         }
-<span class="nc" id="L36">    }</span>
+<span class="fc" id="L36">    }</span>
 
     @Override
     public void customize(final Jackson2Properties properties, final Jackson2ObjectMapperBuilder builder) {
