@@ -64,9 +64,9 @@ import top.infra.common.EnumUtils;
         try {
             final Optional&lt;Module&gt; module;
 <span class="fc" id="L66">            final Optional&lt;Class&lt;?&gt;&gt; moduleClass = ClassUtils.forName(CLASS_JAXB_ANNOTATION_MODULE);</span>
-<span class="fc" id="L67">            final Class&lt;?&gt; introspectorClass = ClassUtils.forName(CLASS_JAXB_ANNOTATION_INTROSPECTOR).get();</span>
-<span class="pc bpc" id="L68" title="1 of 2 branches missed.">            if (moduleClass.isPresent()) {</span>
-<span class="fc" id="L69">                module = Optional.of((Module) moduleClass.get().getConstructor(introspectorClass) //</span>
+<span class="fc" id="L67">            final Optional&lt;Class&lt;?&gt;&gt; introspectorClass = ClassUtils.forName(CLASS_JAXB_ANNOTATION_INTROSPECTOR);</span>
+<span class="pc bpc" id="L68" title="2 of 4 branches missed.">            if (moduleClass.isPresent() &amp;&amp; introspectorClass.isPresent()) {</span>
+<span class="fc" id="L69">                module = Optional.of((Module) moduleClass.get().getConstructor(introspectorClass.get()) //</span>
 <span class="fc" id="L70">                    .newInstance(new HackedJackson2JaxbAnnotationIntrospector()));</span>
             } else {
 <span class="nc" id="L72">                module = Optional.empty();</span>
