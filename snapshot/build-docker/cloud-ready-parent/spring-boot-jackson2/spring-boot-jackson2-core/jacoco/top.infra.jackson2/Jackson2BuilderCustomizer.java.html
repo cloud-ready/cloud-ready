@@ -20,17 +20,17 @@ public interface Jackson2BuilderCustomizer extends Ordered {
     default boolean createXmlMapper(final Jackson2ObjectMapperBuilder builder) {
         try {
             final boolean result;
-<span class="nc" id="L23">            final Field fieldModules = builder.getClass().getDeclaredField(&quot;createXmlMapper&quot;);</span>
-<span class="nc" id="L24">            fieldModules.setAccessible(true);</span>
-<span class="nc" id="L25">            result = (boolean) fieldModules.get(builder);</span>
-<span class="nc" id="L26">            return result;</span>
+<span class="fc" id="L23">            final Field fieldModules = builder.getClass().getDeclaredField(&quot;createXmlMapper&quot;);</span>
+<span class="fc" id="L24">            fieldModules.setAccessible(true);</span>
+<span class="fc" id="L25">            result = (boolean) fieldModules.get(builder);</span>
+<span class="fc" id="L26">            return result;</span>
 <span class="nc" id="L27">        } catch (final NoSuchFieldException | IllegalAccessException | IllegalArgumentException ex) {</span>
 <span class="nc" id="L28">            return false;</span>
         }
     }
 
     default Boolean isXmlMapper(final Jackson2ObjectMapperBuilder builder) {
-<span class="nc" id="L33">        return this.createXmlMapper(builder);</span>
+<span class="fc" id="L33">        return this.createXmlMapper(builder);</span>
     }
 
     default ClassLoader moduleClassLoader(final Jackson2ObjectMapperBuilder builder) {

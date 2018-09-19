@@ -54,9 +54,9 @@ public abstract class Jackson2Utils {
         final ObjectMapper objectMapper, //
         final TypeReference&lt;T&gt; typeReference //
     ) {
-<span class="nc" id="L57">        return string -&gt; {</span>
+<span class="fc" id="L57">        return string -&gt; {</span>
             try {
-<span class="nc" id="L59">                return objectMapper.readValue(string, typeReference);</span>
+<span class="fc" id="L59">                return objectMapper.readValue(string, typeReference);</span>
 <span class="nc" id="L60">            } catch (final IOException wrapped) {</span>
 <span class="nc" id="L61">                throw new RuntimeJsonProcessingException(&quot;error read from JSON.&quot;, wrapped);</span>
             }
@@ -85,7 +85,7 @@ public abstract class Jackson2Utils {
     }
 
     public static Boolean isJackson2Present() {
-<span class="nc" id="L88">        return Jackson2Utils.JACKSON2_PRESENT;</span>
+<span class="fc" id="L88">        return Jackson2Utils.JACKSON2_PRESENT;</span>
     }
 
     static List&lt;Jackson2MapperCustomizer&gt; jackson2MapperCustomizers() {
@@ -117,10 +117,10 @@ public abstract class Jackson2Utils {
      * @return JSON
      */
     public static &lt;T&gt; Function&lt;T, String&gt; toJson(final ObjectMapper objectMapper) {
-<span class="nc" id="L120">        return object -&gt; {</span>
+<span class="fc" id="L120">        return object -&gt; {</span>
             try {
-<span class="nc bnc" id="L122" title="All 2 branches missed.">                if (object != null) {</span>
-<span class="nc" id="L123">                    return objectMapper.writeValueAsString(object);</span>
+<span class="pc bpc" id="L122" title="1 of 2 branches missed.">                if (object != null) {</span>
+<span class="fc" id="L123">                    return objectMapper.writeValueAsString(object);</span>
                 } else {
 <span class="nc" id="L125">                    return &quot;&quot;;</span>
                 }
@@ -131,7 +131,7 @@ public abstract class Jackson2Utils {
     }
 
     public static &lt;T&gt; String toJson(final ObjectMapper objectMapper, final T item) {
-<span class="nc" id="L134">        return toJson(objectMapper).apply(item);</span>
+<span class="fc" id="L134">        return toJson(objectMapper).apply(item);</span>
     }
 
     public static class RuntimeJsonProcessingException extends RuntimeException {

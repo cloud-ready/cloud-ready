@@ -110,7 +110,7 @@ import java.util.TimeZone;
 <span class="fc" id="L110">        properties.setDateFormat(this.dateFormat(properties));</span>
 
 <span class="fc" id="L112">        final ClassLoader moduleClassLoader = this.moduleClassLoader(builder);</span>
-<span class="pc bpc" id="L113" title="1 of 2 branches missed.">        if (isGuavaPresent(moduleClassLoader)) {</span>
+<span class="fc bfc" id="L113" title="All 2 branches covered.">        if (isGuavaPresent(moduleClassLoader)) {</span>
             try {
 <span class="fc" id="L115">                final Class&lt;? extends Module&gt; guavaModuleClass = (Class&lt;? extends Module&gt;)</span>
 <span class="fc" id="L116">                    ClassUtils.forName(&quot;com.fasterxml.jackson.datatype.guava.GuavaModule&quot;, moduleClassLoader);</span>
@@ -124,62 +124,66 @@ import java.util.TimeZone;
         }
 <span class="fc" id="L125">    }</span>
 
-    private boolean isGuavaPresent(final ClassLoader classLoader) {
-<span class="pc bpc" id="L128" title="1 of 2 branches missed.">        return ClassUtils.isPresent(&quot;com.google.common.collect.Multimap&quot;, classLoader)</span>
+    public boolean isGuavaPresent(final ClassLoader classLoader) {
+<span class="fc bfc" id="L128" title="All 2 branches covered.">        return ClassUtils.isPresent(&quot;com.google.common.collect.Multimap&quot;, classLoader)</span>
 <span class="pc bpc" id="L129" title="1 of 2 branches missed.">            &amp;&amp; ClassUtils.isPresent(&quot;com.fasterxml.jackson.datatype.guava.GuavaModule&quot;, classLoader);</span>
     }
 
+    /**
+     * see: {@link org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration}
+     * Jackson2ObjectMapperBuilderCustomizerConfiguration#configureDateFormat
+     */
     private void configureDateFormat(final Jackson2Properties properties, final ObjectMapper mapper) {
         // We support a fully qualified class name extending DateFormat or a date
         // pattern string value
-<span class="fc" id="L135">        String dateFormat = properties.getDateFormat();</span>
-<span class="pc bpc" id="L136" title="1 of 2 branches missed.">        if (dateFormat != null) {</span>
+<span class="fc" id="L139">        String dateFormat = properties.getDateFormat();</span>
+<span class="pc bpc" id="L140" title="1 of 2 branches missed.">        if (dateFormat != null) {</span>
             try {
-<span class="nc" id="L138">                Class&lt;?&gt; dateFormatClass = ClassUtils.forName(dateFormat, null);</span>
-<span class="nc" id="L139">                mapper.setDateFormat((DateFormat) BeanUtils.instantiateClass(dateFormatClass));</span>
-<span class="fc" id="L140">            } catch (ClassNotFoundException ex) {</span>
-<span class="fc" id="L141">                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(</span>
+<span class="nc" id="L142">                Class&lt;?&gt; dateFormatClass = ClassUtils.forName(dateFormat, null);</span>
+<span class="nc" id="L143">                mapper.setDateFormat((DateFormat) BeanUtils.instantiateClass(dateFormatClass));</span>
+<span class="fc" id="L144">            } catch (ClassNotFoundException ex) {</span>
+<span class="fc" id="L145">                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(</span>
                     dateFormat);
                 // Since Jackson 2.6.3 we always need to set a TimeZone (see
                 // gh-4170). If none in our properties fallback to the Jackson's
                 // default
-<span class="fc" id="L146">                TimeZone timeZone = properties.getTimeZone();</span>
-<span class="pc bpc" id="L147" title="1 of 2 branches missed.">                if (timeZone == null) {</span>
-<span class="fc" id="L148">                    timeZone = new ObjectMapper().getSerializationConfig()</span>
-<span class="fc" id="L149">                        .getTimeZone();</span>
+<span class="fc" id="L150">                TimeZone timeZone = properties.getTimeZone();</span>
+<span class="pc bpc" id="L151" title="1 of 2 branches missed.">                if (timeZone == null) {</span>
+<span class="fc" id="L152">                    timeZone = new ObjectMapper().getSerializationConfig()</span>
+<span class="fc" id="L153">                        .getTimeZone();</span>
                 }
-<span class="fc" id="L151">                simpleDateFormat.setTimeZone(timeZone);</span>
-<span class="fc" id="L152">                mapper.setDateFormat(simpleDateFormat);</span>
-<span class="nc" id="L153">            }</span>
+<span class="fc" id="L155">                simpleDateFormat.setTimeZone(timeZone);</span>
+<span class="fc" id="L156">                mapper.setDateFormat(simpleDateFormat);</span>
+<span class="nc" id="L157">            }</span>
         }
-<span class="fc" id="L155">    }</span>
+<span class="fc" id="L159">    }</span>
 
     private void feature(final Jackson2ObjectMapperBuilder builder, final Object feature, final Boolean enabled) {
-<span class="fc bfc" id="L158" title="All 2 branches covered.">        if (enabled) {</span>
-<span class="fc" id="L159">            builder.featuresToEnable(feature);</span>
+<span class="fc bfc" id="L162" title="All 2 branches covered.">        if (enabled) {</span>
+<span class="fc" id="L163">            builder.featuresToEnable(feature);</span>
         } else {
-<span class="fc" id="L161">            builder.featuresToDisable(feature);</span>
+<span class="fc" id="L165">            builder.featuresToDisable(feature);</span>
         }
-<span class="fc" id="L163">    }</span>
+<span class="fc" id="L167">    }</span>
 
-    private Boolean feature(final Jackson2Properties properties, final DeserializationFeature feature, final Boolean defaultValue) {
-<span class="fc" id="L166">        return properties.getDeserialization().getOrDefault(feature, defaultValue);</span>
+    Boolean feature(final Jackson2Properties properties, final DeserializationFeature feature, final Boolean defaultValue) {
+<span class="fc" id="L170">        return properties.getDeserialization().getOrDefault(feature, defaultValue);</span>
     }
 
-    private Boolean feature(final Jackson2Properties properties, final JsonGenerator.Feature feature, final Boolean defaultValue) {
-<span class="fc" id="L170">        return properties.getGenerator().getOrDefault(feature, defaultValue);</span>
+    Boolean feature(final Jackson2Properties properties, final JsonGenerator.Feature feature, final Boolean defaultValue) {
+<span class="fc" id="L174">        return properties.getGenerator().getOrDefault(feature, defaultValue);</span>
     }
 
-    private Boolean feature(final Jackson2Properties properties, final JsonParser.Feature feature, final Boolean defaultValue) {
-<span class="fc" id="L174">        return properties.getParser().getOrDefault(feature, defaultValue);</span>
+    Boolean feature(final Jackson2Properties properties, final JsonParser.Feature feature, final Boolean defaultValue) {
+<span class="fc" id="L178">        return properties.getParser().getOrDefault(feature, defaultValue);</span>
     }
 
-    private Boolean feature(final Jackson2Properties properties, final MapperFeature feature, final Boolean defaultValue) {
-<span class="nc" id="L178">        return properties.getMapper().getOrDefault(feature, defaultValue);</span>
+    Boolean feature(final Jackson2Properties properties, final MapperFeature feature, final Boolean defaultValue) {
+<span class="nc" id="L182">        return properties.getMapper().getOrDefault(feature, defaultValue);</span>
     }
 
-    private Boolean feature(final Jackson2Properties properties, final SerializationFeature feature, final Boolean defaultValue) {
-<span class="fc" id="L182">        return properties.getSerialization().getOrDefault(feature, defaultValue);</span>
+    Boolean feature(final Jackson2Properties properties, final SerializationFeature feature, final Boolean defaultValue) {
+<span class="fc" id="L186">        return properties.getSerialization().getOrDefault(feature, defaultValue);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

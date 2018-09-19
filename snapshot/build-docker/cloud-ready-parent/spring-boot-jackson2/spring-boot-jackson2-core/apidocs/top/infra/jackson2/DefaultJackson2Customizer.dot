@@ -21,6 +21,7 @@ digraph G {
 <tr><td align="left" balign="left"> + DefaultJackson2Customizer() </td></tr>
 <tr><td align="left" balign="left"> + customize(properties : Jackson2Properties, mapper : ObjectMapper) </td></tr>
 <tr><td align="left" balign="left"> + customize(properties : Jackson2Properties, builder : Jackson2ObjectMapperBuilder) </td></tr>
+<tr><td align="left" balign="left"> + isGuavaPresent(classLoader : ClassLoader) : boolean </td></tr>
 		</table></td></tr>
 		</table>>, URL="./DefaultJackson2Customizer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// top.infra.jackson2.Jackson2Customizer

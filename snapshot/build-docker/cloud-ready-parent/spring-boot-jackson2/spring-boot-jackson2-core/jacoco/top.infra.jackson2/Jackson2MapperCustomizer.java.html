@@ -29,17 +29,17 @@ public interface Jackson2MapperCustomizer extends Ordered {
 
     default String dateFormat(final Jackson2Properties properties) {
         final String dateFormat;
-<span class="pc bpc" id="L32" title="1 of 2 branches missed.">        if (properties.getDateFormat() == null) {</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        if (properties.getDateFormat() == null) {</span>
 <span class="fc" id="L33">            dateFormat = PATTERN_JAVA_ISO8601;</span>
         } else {
-<span class="nc" id="L35">            dateFormat = properties.getDateFormat();</span>
+<span class="fc" id="L35">            dateFormat = properties.getDateFormat();</span>
         }
 <span class="fc" id="L37">        return dateFormat;</span>
     }
 
     default Boolean isXmlMapper(final ObjectMapper mapper) {
-<span class="nc" id="L41">        final Optional&lt;Class&lt;?&gt;&gt; classOptional = ClassUtils.forName(CLASS_XML_MAPPER);</span>
-<span class="nc bnc" id="L42" title="All 4 branches missed.">        return mapper != null &amp;&amp; classOptional.map(xmlMapperClass -&gt; xmlMapperClass.isAssignableFrom(mapper.getClass())).orElse(FALSE);</span>
+<span class="fc" id="L41">        final Optional&lt;Class&lt;?&gt;&gt; classOptional = ClassUtils.forName(CLASS_XML_MAPPER);</span>
+<span class="pc bpc" id="L42" title="1 of 4 branches missed.">        return mapper != null &amp;&amp; classOptional.map(xmlMapperClass -&gt; xmlMapperClass.isAssignableFrom(mapper.getClass())).orElse(FALSE);</span>
     }
 
     default TimeZone timeZone(final Jackson2Properties properties) {
@@ -47,11 +47,11 @@ public interface Jackson2MapperCustomizer extends Ordered {
         // gh-4170). If none in our properties fallback to the Jackson's
         // default
         final TimeZone timeZone;
-<span class="pc bpc" id="L50" title="1 of 2 branches missed.">        if (properties.getTimeZone() == null) {</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        if (properties.getTimeZone() == null) {</span>
             //timeZone = DefaultTimeZone.DEFAULT_TIME_ZONE;
 <span class="fc" id="L52">            timeZone = new ObjectMapper().getSerializationConfig().getTimeZone();</span>
         } else {
-<span class="nc" id="L54">            timeZone = properties.getTimeZone();</span>
+<span class="fc" id="L54">            timeZone = properties.getTimeZone();</span>
         }
 <span class="fc" id="L56">        return timeZone;</span>
     }
