@@ -35,17 +35,6 @@ public class PairSerializer extends StdSerializer&lt;Pair&lt;?, ?&gt;&gt; implem
     protected final boolean _staticTyping;
 
     protected final JavaType _entryType, _keyType, _valueType;
-
-    /**
-     * Key serializer to use, if it can be statically determined
-     */
-    protected JsonSerializer&lt;Object&gt; _ks;
-
-    /**
-     * Value serializer to use, if it can be statically determined
-     */
-    protected JsonSerializer&lt;Object&gt; _vs;
-
     /**
      * keyTypeSerializer, Type identifier serializer used for keys, if any.
      */
@@ -54,7 +43,14 @@ public class PairSerializer extends StdSerializer&lt;Pair&lt;?, ?&gt;&gt; implem
      * valueTypeSerializer, Type identifier serializer used for values, if any.
      */
     protected final TypeSerializer _vts;
-
+    /**
+     * Key serializer to use, if it can be statically determined
+     */
+    protected JsonSerializer&lt;Object&gt; _ks;
+    /**
+     * Value serializer to use, if it can be statically determined
+     */
+    protected JsonSerializer&lt;Object&gt; _vs;
     /**
      * dynamicKeySerializers, If key type can not be statically determined, mapping from
      * runtime key types to serializers are stored in this object.
@@ -72,17 +68,17 @@ public class PairSerializer extends StdSerializer&lt;Pair&lt;?, ?&gt;&gt; implem
         final TypeSerializer kts, final TypeSerializer vts,
         final BeanProperty property
     ) {
-<span class="fc" id="L75">        super(type);</span>
-<span class="fc" id="L76">        this._entryType = type;</span>
-<span class="fc" id="L77">        this._keyType = keyType;</span>
-<span class="fc" id="L78">        this._valueType = valueType;</span>
-<span class="fc" id="L79">        this._staticTyping = staticTyping;</span>
-<span class="fc" id="L80">        this._kts = kts;</span>
-<span class="fc" id="L81">        this._vts = vts;</span>
-<span class="fc" id="L82">        this._dks = PropertySerializerMap.emptyForProperties();</span>
-<span class="fc" id="L83">        this._dvs = PropertySerializerMap.emptyForProperties();</span>
-<span class="fc" id="L84">        this._property = property;</span>
-<span class="fc" id="L85">    }</span>
+<span class="fc" id="L71">        super(type);</span>
+<span class="fc" id="L72">        this._entryType = type;</span>
+<span class="fc" id="L73">        this._keyType = keyType;</span>
+<span class="fc" id="L74">        this._valueType = valueType;</span>
+<span class="fc" id="L75">        this._staticTyping = staticTyping;</span>
+<span class="fc" id="L76">        this._kts = kts;</span>
+<span class="fc" id="L77">        this._vts = vts;</span>
+<span class="fc" id="L78">        this._dks = PropertySerializerMap.emptyForProperties();</span>
+<span class="fc" id="L79">        this._dvs = PropertySerializerMap.emptyForProperties();</span>
+<span class="fc" id="L80">        this._property = property;</span>
+<span class="fc" id="L81">    }</span>
 
     @SuppressWarnings(&quot;unchecked&quot;)
     protected PairSerializer(
@@ -92,174 +88,174 @@ public class PairSerializer extends StdSerializer&lt;Pair&lt;?, ?&gt;&gt; implem
         final JsonSerializer&lt;?&gt; keySer,
         final JsonSerializer&lt;?&gt; valueSer
     ) {
-<span class="fc" id="L95">        super(Map.class, false);</span>
-<span class="fc" id="L96">        this._entryType = src._entryType;</span>
-<span class="fc" id="L97">        this._keyType = src._keyType;</span>
-<span class="fc" id="L98">        this._valueType = src._valueType;</span>
-<span class="fc" id="L99">        this._staticTyping = src._staticTyping;</span>
-<span class="fc" id="L100">        this._kts = src._kts;</span>
-<span class="fc" id="L101">        this._vts = src._vts;</span>
-<span class="fc" id="L102">        this._ks = (JsonSerializer&lt;Object&gt;) keySer;</span>
-<span class="fc" id="L103">        this._vs = (JsonSerializer&lt;Object&gt;) valueSer;</span>
-<span class="fc" id="L104">        this._dks = src._dks;</span>
-<span class="fc" id="L105">        this._dvs = src._dvs;</span>
-<span class="fc" id="L106">        this._property = src._property;</span>
-<span class="fc" id="L107">    }</span>
+<span class="fc" id="L91">        super(Map.class, false);</span>
+<span class="fc" id="L92">        this._entryType = src._entryType;</span>
+<span class="fc" id="L93">        this._keyType = src._keyType;</span>
+<span class="fc" id="L94">        this._valueType = src._valueType;</span>
+<span class="fc" id="L95">        this._staticTyping = src._staticTyping;</span>
+<span class="fc" id="L96">        this._kts = src._kts;</span>
+<span class="fc" id="L97">        this._vts = src._vts;</span>
+<span class="fc" id="L98">        this._ks = (JsonSerializer&lt;Object&gt;) keySer;</span>
+<span class="fc" id="L99">        this._vs = (JsonSerializer&lt;Object&gt;) valueSer;</span>
+<span class="fc" id="L100">        this._dks = src._dks;</span>
+<span class="fc" id="L101">        this._dvs = src._dvs;</span>
+<span class="fc" id="L102">        this._property = src._property;</span>
+<span class="fc" id="L103">    }</span>
 
     @Override
     public JsonSerializer&lt;?&gt; createContextual(final SerializerProvider provider, final BeanProperty property) throws JsonMappingException {
-<span class="fc" id="L111">        JsonSerializer&lt;?&gt; vs = null;</span>
-<span class="fc" id="L112">        JsonSerializer&lt;?&gt; ks = null;</span>
+<span class="fc" id="L107">        JsonSerializer&lt;?&gt; vs = null;</span>
+<span class="fc" id="L108">        JsonSerializer&lt;?&gt; ks = null;</span>
 
-<span class="fc" id="L114">        final AnnotationIntrospector intr = provider.getAnnotationIntrospector();</span>
-<span class="fc bfc" id="L115" title="All 2 branches covered.">        final AnnotatedMember propertyAcc = (property == null) ? null : property.getMember();</span>
+<span class="fc" id="L110">        final AnnotationIntrospector intr = provider.getAnnotationIntrospector();</span>
+<span class="fc bfc" id="L111" title="All 2 branches covered.">        final AnnotatedMember propertyAcc = (property == null) ? null : property.getMember();</span>
 
         // First: if we have a property, may have property-annotation overrides
-<span class="pc bpc" id="L118" title="1 of 4 branches missed.">        if (propertyAcc != null &amp;&amp; intr != null) {</span>
-<span class="fc" id="L119">            Object serDef = intr.findKeySerializer(propertyAcc);</span>
-<span class="pc bpc" id="L120" title="1 of 2 branches missed.">            if (serDef != null) {</span>
-<span class="nc" id="L121">                ks = provider.serializerInstance(propertyAcc, serDef);</span>
+<span class="pc bpc" id="L114" title="1 of 4 branches missed.">        if (propertyAcc != null &amp;&amp; intr != null) {</span>
+<span class="fc" id="L115">            Object serDef = intr.findKeySerializer(propertyAcc);</span>
+<span class="pc bpc" id="L116" title="1 of 2 branches missed.">            if (serDef != null) {</span>
+<span class="nc" id="L117">                ks = provider.serializerInstance(propertyAcc, serDef);</span>
             }
-<span class="fc" id="L123">            serDef = intr.findContentSerializer(propertyAcc);</span>
-<span class="pc bpc" id="L124" title="1 of 2 branches missed.">            if (serDef != null) {</span>
-<span class="nc" id="L125">                vs = provider.serializerInstance(propertyAcc, serDef);</span>
+<span class="fc" id="L119">            serDef = intr.findContentSerializer(propertyAcc);</span>
+<span class="pc bpc" id="L120" title="1 of 2 branches missed.">            if (serDef != null) {</span>
+<span class="nc" id="L121">                vs = provider.serializerInstance(propertyAcc, serDef);</span>
             }
         }
 
-<span class="pc bpc" id="L129" title="1 of 2 branches missed.">        if (vs == null) {</span>
-<span class="fc" id="L130">            vs = this._vs;</span>
+<span class="pc bpc" id="L125" title="1 of 2 branches missed.">        if (vs == null) {</span>
+<span class="fc" id="L126">            vs = this._vs;</span>
         }
         // [databind#124]: May have a content converter
-<span class="fc" id="L133">        vs = findConvertingContentSerializer(provider, property, vs);</span>
-<span class="pc bpc" id="L134" title="1 of 2 branches missed.">        if (vs == null) {</span>
+<span class="fc" id="L129">        vs = findConvertingContentSerializer(provider, property, vs);</span>
+<span class="pc bpc" id="L130" title="1 of 2 branches missed.">        if (vs == null) {</span>
             // 30-Sep-2012, tatu: One more thing -- if explicit content type is annotated,
             //   we can consider it a static case as well.
             // 20-Aug-2013, tatu: Need to avoid trying to access serializer for java.lang.Object tho
-<span class="pc bpc" id="L138" title="3 of 4 branches missed.">            if (this._staticTyping &amp;&amp; !this._valueType.isJavaLangObject()) {</span>
-<span class="nc" id="L139">                vs = provider.findValueSerializer(this._valueType, property);</span>
+<span class="pc bpc" id="L134" title="3 of 4 branches missed.">            if (this._staticTyping &amp;&amp; !this._valueType.isJavaLangObject()) {</span>
+<span class="nc" id="L135">                vs = provider.findValueSerializer(this._valueType, property);</span>
             }
         } else {
-<span class="nc" id="L142">            vs = provider.handleSecondaryContextualization(vs, property);</span>
+<span class="nc" id="L138">            vs = provider.handleSecondaryContextualization(vs, property);</span>
         }
 
+<span class="pc bpc" id="L141" title="1 of 2 branches missed.">        if (ks == null) {</span>
+<span class="fc" id="L142">            ks = this._ks;</span>
+        }
+<span class="fc" id="L144">        ks = findConvertingContentSerializer(provider, property, ks);</span>
 <span class="pc bpc" id="L145" title="1 of 2 branches missed.">        if (ks == null) {</span>
-<span class="fc" id="L146">            ks = this._ks;</span>
-        }
-<span class="fc" id="L148">        ks = findConvertingContentSerializer(provider, property, ks);</span>
-<span class="pc bpc" id="L149" title="1 of 2 branches missed.">        if (ks == null) {</span>
-<span class="pc bpc" id="L150" title="3 of 4 branches missed.">            if (this._staticTyping &amp;&amp; !this._valueType.isJavaLangObject()) {</span>
-<span class="nc" id="L151">                ks = provider.findValueSerializer(this._valueType, property);</span>
+<span class="pc bpc" id="L146" title="3 of 4 branches missed.">            if (this._staticTyping &amp;&amp; !this._valueType.isJavaLangObject()) {</span>
+<span class="nc" id="L147">                ks = provider.findValueSerializer(this._valueType, property);</span>
             }
         } else {
-<span class="nc" id="L154">            ks = provider.handleSecondaryContextualization(ks, property);</span>
+<span class="nc" id="L150">            ks = provider.handleSecondaryContextualization(ks, property);</span>
         }
 
-<span class="fc" id="L157">        PairSerializer mser = withResolved(property, ks, vs);</span>
+<span class="fc" id="L153">        PairSerializer mser = withResolved(property, ks, vs);</span>
         // but note: no filtering, ignored entries or sorting (unlike Maps)
-<span class="fc" id="L159">        return mser;</span>
+<span class="fc" id="L155">        return mser;</span>
     }
 
     public PairSerializer withResolved(BeanProperty property, JsonSerializer&lt;?&gt; ks, JsonSerializer&lt;?&gt; vs) {
-<span class="fc" id="L163">        return new PairSerializer(this, property, this._vts, ks, vs);</span>
+<span class="fc" id="L159">        return new PairSerializer(this, property, this._vts, ks, vs);</span>
     }
 
     @Override
     public void serialize(
         final Pair&lt;?, ?&gt; value, final JsonGenerator gen, final SerializerProvider provider
     ) throws IOException {
-<span class="fc" id="L170">        gen.writeStartObject(value);</span>
+<span class="fc" id="L166">        gen.writeStartObject(value);</span>
         //if (this._vs != null) {
         //    serializeUsing(value, gen, provider, _vs);
         //} else {
-<span class="fc" id="L174">        serializeDynamic(value, gen, provider);</span>
+<span class="fc" id="L170">        serializeDynamic(value, gen, provider);</span>
         //}
-<span class="fc" id="L176">        gen.writeEndObject();</span>
-<span class="fc" id="L177">    }</span>
+<span class="fc" id="L172">        gen.writeEndObject();</span>
+<span class="fc" id="L173">    }</span>
 
     @Override
     public void serializeWithType(
         final Pair&lt;?, ?&gt; value, final JsonGenerator gen, final SerializerProvider provider, final TypeSerializer typeSer
     ) throws IOException {
-<span class="nc" id="L183">        typeSer.writeTypePrefixForObject(value, gen);</span>
+<span class="nc" id="L179">        typeSer.writeTypePrefixForObject(value, gen);</span>
         // [databind#631]: Assign current value, to be accessible by custom serializers
-<span class="nc" id="L185">        gen.setCurrentValue(value);</span>
+<span class="nc" id="L181">        gen.setCurrentValue(value);</span>
         //if (this._vs != null) {
         //    serializeUsing(value, gen, provider, _vs);
         //} else {
-<span class="nc" id="L189">        serializeDynamic(value, gen, provider);</span>
+<span class="nc" id="L185">        serializeDynamic(value, gen, provider);</span>
         //}
-<span class="nc" id="L191">        typeSer.writeTypeSuffixForObject(value, gen);</span>
-<span class="nc" id="L192">    }</span>
+<span class="nc" id="L187">        typeSer.writeTypeSuffixForObject(value, gen);</span>
+<span class="nc" id="L188">    }</span>
 
     protected void serializeDynamic(
         final Pair&lt;?, ?&gt; value, final JsonGenerator jgen, final SerializerProvider provider
     ) throws IOException {
         //final JsonSerializer&lt;Object&gt; keySerializer = this._ks;
         //final boolean skipNulls = !provider.isEnabled(SerializationFeature.WRITE_NULL_MAP_VALUES);
-<span class="fc" id="L199">        final TypeSerializer vts = this._vts;</span>
-<span class="fc" id="L200">        final TypeSerializer kts = this._kts;</span>
+<span class="fc" id="L195">        final TypeSerializer vts = this._vts;</span>
+<span class="fc" id="L196">        final TypeSerializer kts = this._kts;</span>
 
-<span class="fc" id="L202">        PropertySerializerMap dvs = this._dvs;</span>
-<span class="fc" id="L203">        PropertySerializerMap dks = this._dks;</span>
+<span class="fc" id="L198">        PropertySerializerMap dvs = this._dvs;</span>
+<span class="fc" id="L199">        PropertySerializerMap dks = this._dks;</span>
 
-<span class="fc" id="L205">        Object valueElem = value.getValue();</span>
-<span class="fc" id="L206">        Object keyElem = value.getKey();</span>
+<span class="fc" id="L201">        Object valueElem = value.getValue();</span>
+<span class="fc" id="L202">        Object keyElem = value.getKey();</span>
 
-<span class="fc" id="L208">        jgen.writeFieldName(&quot;left&quot;);</span>
-<span class="fc bfc" id="L209" title="All 2 branches covered.">        if (keyElem == null) {</span>
-<span class="fc" id="L210">            provider.defaultSerializeNull(jgen);</span>
+<span class="fc" id="L204">        jgen.writeFieldName(&quot;left&quot;);</span>
+<span class="fc bfc" id="L205" title="All 2 branches covered.">        if (keyElem == null) {</span>
+<span class="fc" id="L206">            provider.defaultSerializeNull(jgen);</span>
         } else {
-<span class="fc" id="L212">            Class&lt;?&gt; cc = keyElem.getClass();</span>
-<span class="fc" id="L213">            JsonSerializer&lt;Object&gt; ser = dks.serializerFor(cc);</span>
-<span class="fc bfc" id="L214" title="All 2 branches covered.">            if (ser == null) {</span>
-<span class="fc bfc" id="L215" title="All 2 branches covered.">                if (this._valueType.hasGenericTypes()) {</span>
-<span class="fc" id="L216">                    ser = _findAndAddDynamicKeySerializer(dks, provider.constructSpecializedType(this._keyType, cc), provider);</span>
+<span class="fc" id="L208">            Class&lt;?&gt; cc = keyElem.getClass();</span>
+<span class="fc" id="L209">            JsonSerializer&lt;Object&gt; ser = dks.serializerFor(cc);</span>
+<span class="fc bfc" id="L210" title="All 2 branches covered.">            if (ser == null) {</span>
+<span class="fc bfc" id="L211" title="All 2 branches covered.">                if (this._valueType.hasGenericTypes()) {</span>
+<span class="fc" id="L212">                    ser = _findAndAddDynamicKeySerializer(dks, provider.constructSpecializedType(this._keyType, cc), provider);</span>
                 } else {
-<span class="fc" id="L218">                    ser = _findAndAddDynamicKeySerializer(dks, cc, provider);</span>
+<span class="fc" id="L214">                    ser = _findAndAddDynamicKeySerializer(dks, cc, provider);</span>
                 }
-<span class="fc" id="L220">                dks = this._dks;</span>
+<span class="fc" id="L216">                dks = this._dks;</span>
             }
             try {
-<span class="pc bpc" id="L223" title="1 of 2 branches missed.">                if (kts == null) {</span>
-<span class="fc" id="L224">                    ser.serialize(keyElem, jgen, provider);</span>
+<span class="pc bpc" id="L219" title="1 of 2 branches missed.">                if (kts == null) {</span>
+<span class="fc" id="L220">                    ser.serialize(keyElem, jgen, provider);</span>
                 } else {
-<span class="nc" id="L226">                    ser.serializeWithType(keyElem, jgen, provider, kts);</span>
+<span class="nc" id="L222">                    ser.serializeWithType(keyElem, jgen, provider, kts);</span>
                 }
-<span class="nc" id="L228">            } catch (final Exception e) {</span>
+<span class="nc" id="L224">            } catch (final Exception e) {</span>
                 // [JACKSON-55] Need to add reference information
-<span class="nc" id="L230">                String keyDesc = &quot;&quot; + keyElem;</span>
-<span class="nc" id="L231">                wrapAndThrow(provider, e, value, keyDesc);</span>
-<span class="fc" id="L232">            }</span>
+<span class="nc" id="L226">                String keyDesc = &quot;&quot; + keyElem;</span>
+<span class="nc" id="L227">                wrapAndThrow(provider, e, value, keyDesc);</span>
+<span class="fc" id="L228">            }</span>
         }
 
         // And then value
-<span class="fc" id="L236">        jgen.writeFieldName(&quot;right&quot;);</span>
-<span class="fc bfc" id="L237" title="All 2 branches covered.">        if (valueElem == null) {</span>
-<span class="fc" id="L238">            provider.defaultSerializeNull(jgen);</span>
+<span class="fc" id="L232">        jgen.writeFieldName(&quot;right&quot;);</span>
+<span class="fc bfc" id="L233" title="All 2 branches covered.">        if (valueElem == null) {</span>
+<span class="fc" id="L234">            provider.defaultSerializeNull(jgen);</span>
         } else {
-<span class="fc" id="L240">            Class&lt;?&gt; cc = valueElem.getClass();</span>
-<span class="fc" id="L241">            JsonSerializer&lt;Object&gt; ser = dvs.serializerFor(cc);</span>
-<span class="fc bfc" id="L242" title="All 2 branches covered.">            if (ser == null) {</span>
-<span class="fc bfc" id="L243" title="All 2 branches covered.">                if (this._valueType.hasGenericTypes()) {</span>
-<span class="fc" id="L244">                    ser = _findAndAddDynamicValueSerializer(dvs, provider.constructSpecializedType(this._valueType, cc), provider);</span>
+<span class="fc" id="L236">            Class&lt;?&gt; cc = valueElem.getClass();</span>
+<span class="fc" id="L237">            JsonSerializer&lt;Object&gt; ser = dvs.serializerFor(cc);</span>
+<span class="fc bfc" id="L238" title="All 2 branches covered.">            if (ser == null) {</span>
+<span class="fc bfc" id="L239" title="All 2 branches covered.">                if (this._valueType.hasGenericTypes()) {</span>
+<span class="fc" id="L240">                    ser = _findAndAddDynamicValueSerializer(dvs, provider.constructSpecializedType(this._valueType, cc), provider);</span>
                 } else {
-<span class="fc" id="L246">                    ser = _findAndAddDynamicValueSerializer(dvs, cc, provider);</span>
+<span class="fc" id="L242">                    ser = _findAndAddDynamicValueSerializer(dvs, cc, provider);</span>
                 }
-<span class="fc" id="L248">                dvs = this._dvs;</span>
+<span class="fc" id="L244">                dvs = this._dvs;</span>
             }
             try {
-<span class="pc bpc" id="L251" title="1 of 2 branches missed.">                if (vts == null) {</span>
-<span class="fc" id="L252">                    ser.serialize(valueElem, jgen, provider);</span>
+<span class="pc bpc" id="L247" title="1 of 2 branches missed.">                if (vts == null) {</span>
+<span class="fc" id="L248">                    ser.serialize(valueElem, jgen, provider);</span>
                 } else {
-<span class="nc" id="L254">                    ser.serializeWithType(valueElem, jgen, provider, vts);</span>
+<span class="nc" id="L250">                    ser.serializeWithType(valueElem, jgen, provider, vts);</span>
                 }
-<span class="nc" id="L256">            } catch (final Exception e) {</span>
+<span class="nc" id="L252">            } catch (final Exception e) {</span>
                 // [JACKSON-55] Need to add reference information
-<span class="nc" id="L258">                String keyDesc = &quot;&quot; + keyElem;</span>
-<span class="nc" id="L259">                wrapAndThrow(provider, e, value, keyDesc);</span>
-<span class="fc" id="L260">            }</span>
+<span class="nc" id="L254">                String keyDesc = &quot;&quot; + keyElem;</span>
+<span class="nc" id="L255">                wrapAndThrow(provider, e, value, keyDesc);</span>
+<span class="fc" id="L256">            }</span>
         }
-<span class="fc" id="L262">    }</span>
+<span class="fc" id="L258">    }</span>
 
 
     protected final JsonSerializer&lt;Object&gt; _findAndAddDynamicKeySerializer(
@@ -267,11 +263,11 @@ public class PairSerializer extends StdSerializer&lt;Pair&lt;?, ?&gt;&gt; implem
         final Class&lt;?&gt; type,
         final SerializerProvider provider
     ) throws JsonMappingException {
-<span class="fc" id="L270">        final PropertySerializerMap.SerializerAndMapResult result = map.findAndAddSecondarySerializer(type, provider, this._property);</span>
-<span class="pc bpc" id="L271" title="1 of 2 branches missed.">        if (map != result.map) {</span>
-<span class="fc" id="L272">            this._dks = result.map;</span>
+<span class="fc" id="L266">        final PropertySerializerMap.SerializerAndMapResult result = map.findAndAddSecondarySerializer(type, provider, this._property);</span>
+<span class="pc bpc" id="L267" title="1 of 2 branches missed.">        if (map != result.map) {</span>
+<span class="fc" id="L268">            this._dks = result.map;</span>
         }
-<span class="fc" id="L274">        return result.serializer;</span>
+<span class="fc" id="L270">        return result.serializer;</span>
     }
 
     protected final JsonSerializer&lt;Object&gt; _findAndAddDynamicKeySerializer(
@@ -279,11 +275,11 @@ public class PairSerializer extends StdSerializer&lt;Pair&lt;?, ?&gt;&gt; implem
         final JavaType type,
         final SerializerProvider provider
     ) throws JsonMappingException {
-<span class="fc" id="L282">        final PropertySerializerMap.SerializerAndMapResult result = map.findAndAddSecondarySerializer(type, provider, this._property);</span>
-<span class="pc bpc" id="L283" title="1 of 2 branches missed.">        if (map != result.map) {</span>
-<span class="fc" id="L284">            this._dks = result.map;</span>
+<span class="fc" id="L278">        final PropertySerializerMap.SerializerAndMapResult result = map.findAndAddSecondarySerializer(type, provider, this._property);</span>
+<span class="pc bpc" id="L279" title="1 of 2 branches missed.">        if (map != result.map) {</span>
+<span class="fc" id="L280">            this._dks = result.map;</span>
         }
-<span class="fc" id="L286">        return result.serializer;</span>
+<span class="fc" id="L282">        return result.serializer;</span>
     }
 
     protected final JsonSerializer&lt;Object&gt; _findAndAddDynamicValueSerializer(
@@ -291,11 +287,11 @@ public class PairSerializer extends StdSerializer&lt;Pair&lt;?, ?&gt;&gt; implem
         final Class&lt;?&gt; type,
         final SerializerProvider provider
     ) throws JsonMappingException {
-<span class="fc" id="L294">        final PropertySerializerMap.SerializerAndMapResult result = map.findAndAddSecondarySerializer(type, provider, this._property);</span>
-<span class="pc bpc" id="L295" title="1 of 2 branches missed.">        if (map != result.map) {</span>
-<span class="fc" id="L296">            this._dvs = result.map;</span>
+<span class="fc" id="L290">        final PropertySerializerMap.SerializerAndMapResult result = map.findAndAddSecondarySerializer(type, provider, this._property);</span>
+<span class="pc bpc" id="L291" title="1 of 2 branches missed.">        if (map != result.map) {</span>
+<span class="fc" id="L292">            this._dvs = result.map;</span>
         }
-<span class="fc" id="L298">        return result.serializer;</span>
+<span class="fc" id="L294">        return result.serializer;</span>
     }
 
     protected final JsonSerializer&lt;Object&gt; _findAndAddDynamicValueSerializer(
@@ -303,11 +299,11 @@ public class PairSerializer extends StdSerializer&lt;Pair&lt;?, ?&gt;&gt; implem
         final JavaType type,
         final SerializerProvider provider
     ) throws JsonMappingException {
-<span class="fc" id="L306">        final PropertySerializerMap.SerializerAndMapResult result = map.findAndAddSecondarySerializer(type, provider, this._property);</span>
-<span class="pc bpc" id="L307" title="1 of 2 branches missed.">        if (map != result.map) {</span>
-<span class="fc" id="L308">            this._dvs = result.map;</span>
+<span class="fc" id="L302">        final PropertySerializerMap.SerializerAndMapResult result = map.findAndAddSecondarySerializer(type, provider, this._property);</span>
+<span class="pc bpc" id="L303" title="1 of 2 branches missed.">        if (map != result.map) {</span>
+<span class="fc" id="L304">            this._dvs = result.map;</span>
         }
-<span class="fc" id="L310">        return result.serializer;</span>
+<span class="fc" id="L306">        return result.serializer;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

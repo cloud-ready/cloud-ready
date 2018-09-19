@@ -20,10 +20,10 @@ digraph G {
 <tr><td align="left" balign="left"> # _entryType : JavaType </td></tr>
 <tr><td align="left" balign="left"> # _keyType : JavaType </td></tr>
 <tr><td align="left" balign="left"> # _valueType : JavaType </td></tr>
-<tr><td align="left" balign="left"> # _ks : JsonSerializer&lt;Object&gt; </td></tr>
-<tr><td align="left" balign="left"> # _vs : JsonSerializer&lt;Object&gt; </td></tr>
 <tr><td align="left" balign="left"> # _kts : TypeSerializer </td></tr>
 <tr><td align="left" balign="left"> # _vts : TypeSerializer </td></tr>
+<tr><td align="left" balign="left"> # _ks : JsonSerializer&lt;Object&gt; </td></tr>
+<tr><td align="left" balign="left"> # _vs : JsonSerializer&lt;Object&gt; </td></tr>
 <tr><td align="left" balign="left"> # _dks : PropertySerializerMap </td></tr>
 <tr><td align="left" balign="left"> # _dvs : PropertySerializerMap </td></tr>
 		</table></td></tr>
