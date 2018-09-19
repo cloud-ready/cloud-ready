@@ -1,4 +1,4 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-Combined,top.infra.jackson2,HalJackson2Customizer,61,61,7,3,14,13,7,5,2,5
+Combined,top.infra.jackson2,HalJackson2Customizer,16,106,5,5,7,20,5,7,0,7
 Combined,top.infra.jackson2,HalJackson2MapperCustomizerFactory,0,18,0,0,0,3,0,2,0,2
 Combined,top.infra.jackson2,HalJackson2AutoConfiguration,0,7,0,0,0,2,0,2,0,2

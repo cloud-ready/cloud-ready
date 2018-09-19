@@ -47,6 +47,8 @@ digraph G {
 <tr><td align="left" balign="left"> + HalJackson2Customizer() </td></tr>
 <tr><td align="left" balign="left"> + customize(properties : Jackson2Properties, mapper : ObjectMapper) </td></tr>
 <tr><td align="left" balign="left"> + customize(properties : Jackson2Properties, builder : Jackson2ObjectMapperBuilder) </td></tr>
+<tr><td align="left" balign="left"> + isAlreadyRegisteredIn(mapper : ObjectMapper, jackson2HalModuleClass : Class&lt;?&gt;) : Boolean </td></tr>
+<tr><td align="left" balign="left"> + jackson2HalModule() : Optional&lt;Module&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./HalJackson2Customizer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//top.infra.jackson2.HalJackson2MapperCustomizerFactory implements top.infra.jackson2.Jackson2MapperCustomizerFactory

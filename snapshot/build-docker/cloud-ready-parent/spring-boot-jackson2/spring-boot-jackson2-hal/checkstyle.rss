@@ -27,7 +27,7 @@ under the License.
     <item>
       <title>File: 1,
              Errors: 0,
-             Warnings: 4,
+             Warnings: 6,
              Infos: 0
       </title>
             <link>https://github.com/ci-and-cd/maven-build/build-docker/cloud-ready-parent/spring-boot-jackson2/spring-boot-jackson2-hal/checkstyle.html</link>
@@ -52,7 +52,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  4
+                  6
                 </td>
                 <td>
                   0
