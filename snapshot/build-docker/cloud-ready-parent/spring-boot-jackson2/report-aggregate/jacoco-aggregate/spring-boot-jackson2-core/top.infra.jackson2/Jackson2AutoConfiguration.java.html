@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>Jackson2AutoConfiguration.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">JaCoCo report-aggregate</a> &gt; <a href="../index.html" class="el_bundle">spring-boot-jackson2-core</a> &gt; <a href="index.source.html" class="el_package">top.infra.jackson2</a> &gt; <span class="el_source">Jackson2AutoConfiguration.java</span></div><h1>Jackson2AutoConfiguration.java</h1><pre class="source lang-java linenums">package top.infra.jackson2;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
+import org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import java.util.List;
+
+@AutoConfigureBefore({JacksonAutoConfiguration.class})
+@ConditionalOnClass({ObjectMapper.class})
+@ConditionalOnWebApplication
+@Configuration
+@EnableConfigurationProperties({Jackson2Properties.class})
+<span class="fc" id="L21">public class Jackson2AutoConfiguration {</span>
+
+    @Bean
+    public DefaultJackson2Customizer defaultJackson2Customizer() {
+<span class="fc" id="L25">        return new DefaultJackson2Customizer();</span>
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(DefaultJackson2ObjectMapperBuilderCustomizer.class)
+    public DefaultJackson2ObjectMapperBuilderCustomizer defaultJackson2ObjectMapperBuilderCustomizer(
+        final List&lt;Jackson2Customizer&gt; customizers,
+        final Jackson2Properties properties
+    ) {
+<span class="fc" id="L34">        return new DefaultJackson2ObjectMapperBuilderCustomizer(customizers, properties);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span>Code Coverage Report for report-aggregate 0.0.1-SNAPSHOT</div></body></html>

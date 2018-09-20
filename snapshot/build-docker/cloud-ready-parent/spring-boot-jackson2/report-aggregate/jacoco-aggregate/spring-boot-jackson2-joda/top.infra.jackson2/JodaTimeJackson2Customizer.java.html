@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>JodaTimeJackson2Customizer.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">JaCoCo report-aggregate</a> &gt; <a href="../index.html" class="el_bundle">spring-boot-jackson2-joda</a> &gt; <a href="index.source.html" class="el_package">top.infra.jackson2</a> &gt; <span class="el_source">JodaTimeJackson2Customizer.java</span></div><h1>JodaTimeJackson2Customizer.java</h1><pre class="source lang-java linenums">package top.infra.jackson2;
+
+import com.fasterxml.jackson.databind.Module;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.datatype.joda.JodaModule;
+import com.fasterxml.jackson.datatype.joda.cfg.JacksonJodaDateFormat;
+import com.fasterxml.jackson.datatype.joda.ser.DateTimeSerializer;
+
+import lombok.extern.slf4j.Slf4j;
+
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+
+import java.util.List;
+
+/**
+ * see: {@link org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration}.
+ * {@link JodaModule} will auto installed by {@link Jackson2ObjectMapperBuilder}
+ */
+<span class="fc" id="L22">@Slf4j</span>
+<span class="fc" id="L23">public class JodaTimeJackson2Customizer implements Jackson2Customizer {</span>
+
+    @Override
+    public void customize(final Jackson2Properties properties, final ObjectMapper mapper) {
+<span class="fc" id="L27">        final Module jodaDateTimeSerializationModule = this.jodaDateTimeSerializationModule(properties);</span>
+<span class="fc" id="L28">        mapper.registerModule(jodaDateTimeSerializationModule);</span>
+<span class="fc" id="L29">    }</span>
+
+    @Override
+    public void customize(final Jackson2Properties properties, final Jackson2ObjectMapperBuilder builder) {
+<span class="fc" id="L33">        final Module jodaDateTimeSerializationModule = this.jodaDateTimeSerializationModule(properties);</span>
+<span class="fc" id="L34">        final List&lt;Module&gt; modules = this.modules(builder);</span>
+<span class="fc" id="L35">        modules.add(jodaDateTimeSerializationModule);</span>
+<span class="fc" id="L36">        builder.modulesToInstall(modules.toArray(new Module[0]));</span>
+<span class="fc" id="L37">    }</span>
+
+    public SimpleModule jodaDateTimeSerializationModule(final Jackson2Properties properties) {
+<span class="fc" id="L40">        SimpleModule module = new SimpleModule();</span>
+<span class="fc" id="L41">        JacksonJodaDateFormat jacksonJodaFormat = getJacksonJodaDateFormat(properties);</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        if (jacksonJodaFormat != null) {</span>
+<span class="fc" id="L43">            final DateTimeSerializer dateTimeSerializer = new DateTimeSerializer(jacksonJodaFormat); // jackson2 2.8.x</span>
+            // since jackson2 2.9.x, see: JodaDateSerializerBase.FORMAT_STRING
+            //final DateTimeSerializer dateTimeSerializer = new DateTimeSerializer(jacksonJodaFormat, 1); // since jackson2 2.9.x
+<span class="fc" id="L46">            module.addSerializer(DateTime.class, dateTimeSerializer);</span>
+        }
+<span class="fc" id="L48">        return module;</span>
+    }
+
+    JacksonJodaDateFormat getJacksonJodaDateFormat(final Jackson2Properties properties) {
+<span class="fc bfc" id="L52" title="All 2 branches covered.">        if (properties.getJodaDateTimeFormat() != null) {</span>
+<span class="fc" id="L53">            return new JacksonJodaDateFormat(DateTimeFormat.forPattern(properties.getJodaDateTimeFormat()).withZoneUTC());</span>
+        }
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        if (properties.getDateFormat() != null) {</span>
+            try {
+<span class="nc" id="L57">                return new JacksonJodaDateFormat(DateTimeFormat.forPattern(this.dateFormat(properties)).withZoneUTC());</span>
+<span class="fc" id="L58">            } catch (final IllegalArgumentException ex) {</span>
+<span class="pc bpc" id="L59" title="1 of 2 branches missed.">                if (log.isWarnEnabled()) {</span>
+<span class="fc" id="L60">                    log.warn(&quot;spring.jackson.date-format could not be used to &quot;</span>
+                        + &quot;configure formatting of Joda's DateTime. You may want &quot;
+                        + &quot;to configure spring.jackson.joda-date-time-format as &quot;
+                        + &quot;well.&quot;);
+                }
+            }
+        }
+<span class="fc" id="L67">        return null;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span>Code Coverage Report for report-aggregate 0.0.1-SNAPSHOT</div></body></html>
