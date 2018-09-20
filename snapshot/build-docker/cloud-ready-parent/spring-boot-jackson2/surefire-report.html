@@ -47,6 +47,15 @@
             <li><a href="spring-boot-jackson2-jaxb/index.html" title="spring-boot-jackson2-jaxb">spring-boot-jackson2-jaxb</a></li>
             <li><a href="spring-boot-jackson2-joda/index.html" title="spring-boot-jackson2-joda">spring-boot-jackson2-joda</a></li>
             <li><a href="spring-boot-jackson2-tests/index.html" title="spring-boot-jackson2-tests">spring-boot-jackson2-tests</a></li>
+            <li><a href="report-aggregate/index.html" title="report-aggregate">report-aggregate</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">aggregated reports <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li><a href="report-aggregate/jacoco-aggregate/index.html" title="aggregated jacoco report">aggregated jacoco report</a></li>
+            <li><a href="report-aggregate/findbugs.html" title="aggregated findbugs report">aggregated findbugs report</a></li>
+            <li><a href="report-aggregate/jdepend-report.html" title="aggregated jdepend report">aggregated jdepend report</a></li>
         </ul>
       </li>
       <li class="dropdown">
@@ -76,8 +85,12 @@
               <ul class="dropdown-menu">
                   <li><a href="surefire-report.html" title="Surefire Report">Surefire Report</a></li>
                   <li><a href="checkstyle.html" title="Checkstyle">Checkstyle</a></li>
+                  <li><a href="checkstyle-aggregate.html" title="Checkstyle">Checkstyle</a></li>
+                  <li><a href="apidocs/index.html" title="Javadoc">Javadoc</a></li>
                   <li><a href="xref/index.html" title="Source Xref">Source Xref</a></li>
                   <li><a href="xref-test/index.html" title="Test Source Xref">Test Source Xref</a></li>
+                  <li><a href="taglist.html" title="Tag List">Tag List</a></li>
+                  <li><a href="pmd.html" title="PMD">PMD</a></li>
               </ul>
             </li>
         </ul>
@@ -119,14 +132,23 @@
     <li><a href="spring-boot-jackson2-jaxb/index.html" title="spring-boot-jackson2-jaxb"><span class="none"></span>spring-boot-jackson2-jaxb</a></li>
     <li><a href="spring-boot-jackson2-joda/index.html" title="spring-boot-jackson2-joda"><span class="none"></span>spring-boot-jackson2-joda</a></li>
     <li><a href="spring-boot-jackson2-tests/index.html" title="spring-boot-jackson2-tests"><span class="none"></span>spring-boot-jackson2-tests</a></li>
+    <li><a href="report-aggregate/index.html" title="report-aggregate"><span class="none"></span>report-aggregate</a></li>
+      <li class="nav-header">aggregated reports</li>
+    <li><a href="report-aggregate/jacoco-aggregate/index.html" title="aggregated jacoco report"><span class="none"></span>aggregated jacoco report</a></li>
+    <li><a href="report-aggregate/findbugs.html" title="aggregated findbugs report"><span class="none"></span>aggregated findbugs report</a></li>
+    <li><a href="report-aggregate/jdepend-report.html" title="aggregated jdepend report"><span class="none"></span>aggregated jdepend report</a></li>
       <li class="nav-header">Project Documentation</li>
     <li><a href="project-info.html" title="Project Information"><span class="icon-chevron-right"></span>Project Information</a></li>
     <li><a href="project-reports.html" title="Project Reports"><span class="icon-chevron-down"></span>Project Reports</a>
     <ul class="nav nav-list">
     <li class="active"><a href="#"><span class="none"></span>Surefire Report</a></li>
     <li><a href="checkstyle.html" title="Checkstyle"><span class="none"></span>Checkstyle</a></li>
+    <li><a href="checkstyle-aggregate.html" title="Checkstyle"><span class="none"></span>Checkstyle</a></li>
+    <li><a href="apidocs/index.html" title="Javadoc"><span class="none"></span>Javadoc</a></li>
     <li><a href="xref/index.html" title="Source Xref"><span class="none"></span>Source Xref</a></li>
     <li><a href="xref-test/index.html" title="Test Source Xref"><span class="none"></span>Test Source Xref</a></li>
+    <li><a href="taglist.html" title="Tag List"><span class="none"></span>Tag List</a></li>
+    <li><a href="pmd.html" title="PMD"><span class="none"></span>PMD</a></li>
     </ul>
 </li>
 </ul>
@@ -164,7 +186,8 @@ function toggleDisplay(elementId) {
 <div class="section">
 <h2><a name="Surefire_Report"></a>Surefire Report</h2></div>
 <div class="section">
-<h2><a name="Summary"></a>Summary</h2><a name="Summary"></a><br />
+<h2><a name="Summary"></a>Summary</h2><a name="Summary"></a>
+<p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p><br />
 <table border="1" class="table table-striped">
 <tr class="a">
 <th>Tests</th>
@@ -174,13 +197,597 @@ function toggleDisplay(elementId) {
 <th>Success Rate</th>
 <th>Time</th></tr>
 <tr class="b">
+<td>37</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
-<td>0</td>
-<td>0%</td>
-<td>0</td></tr></table><br />
+<td>100%</td>
+<td>137.779</td></tr></table><br />
 <p>Note: failures are anticipated and checked for with assertions while errors are unanticipated.</p><br /></div>
+<div class="section">
+<h2><a name="Package_List"></a>Package List</h2><a name="Package_List"></a>
+<p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p><br />
+<table border="1" class="table table-striped">
+<tr class="a">
+<th>Package</th>
+<th>Tests</th>
+<th>Errors </th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td><a href="#top.infra.test">top.infra.test</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>6.845</td></tr>
+<tr class="a">
+<td><a href="#top.infra.jackson2">top.infra.jackson2</a></td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>1.871</td></tr>
+<tr class="b">
+<td><a href="#top.infra.jackson2.tests">top.infra.jackson2.tests</a></td>
+<td>33</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>129.063</td></tr></table><br />
+<p>Note: package statistics are not computed recursively, they only sum up all of its testsuites numbers.</p>
+<div class="section">
+<h3><a name="top.infra.test"></a>top.infra.test</h3><a name="top.infra.test"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<th></th>
+<th>Class</th>
+<th>Tests</th>
+<th>Errors </th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td><a href="#top.infra.test.ExcludeClassJunitRunnerTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#top.infra.test.ExcludeClassJunitRunnerTest">ExcludeClassJunitRunnerTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>6.845</td></tr></table></div>
+<div class="section">
+<h3><a name="top.infra.jackson2"></a>top.infra.jackson2</h3><a name="top.infra.jackson2"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<th></th>
+<th>Class</th>
+<th>Tests</th>
+<th>Errors </th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td><a href="#top.infra.jackson2.DefaultJackson2CustomizerTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#top.infra.jackson2.DefaultJackson2CustomizerTest">DefaultJackson2CustomizerTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.214</td></tr>
+<tr class="a">
+<td><a href="#top.infra.jackson2.JodaDateFormatTests"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#top.infra.jackson2.JodaDateFormatTests">JodaDateFormatTests</a></td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>1.657</td></tr></table></div>
+<div class="section">
+<h3><a name="top.infra.jackson2.tests"></a>top.infra.jackson2.tests</h3><a name="top.infra.jackson2.tests"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<th></th>
+<th>Class</th>
+<th>Tests</th>
+<th>Errors </th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td><a href="#top.infra.jackson2.tests.UnpairedGetterSetterTests"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#top.infra.jackson2.tests.UnpairedGetterSetterTests">UnpairedGetterSetterTests</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>7.357</td></tr>
+<tr class="a">
+<td><a href="#top.infra.jackson2.tests.Jackson2PropertiesTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#top.infra.jackson2.tests.Jackson2PropertiesTest">Jackson2PropertiesTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>6.814</td></tr>
+<tr class="b">
+<td><a href="#top.infra.jackson2.tests.DateFormatTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#top.infra.jackson2.tests.DateFormatTest">DateFormatTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>6.883</td></tr>
+<tr class="a">
+<td><a href="#top.infra.jackson2.tests.GuavaMultimapTests"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#top.infra.jackson2.tests.GuavaMultimapTests">GuavaMultimapTests</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>7.476</td></tr>
+<tr class="b">
+<td><a href="#top.infra.jackson2.tests.Jackson2UtilsTests"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#top.infra.jackson2.tests.Jackson2UtilsTests">Jackson2UtilsTests</a></td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>6.781</td></tr>
+<tr class="a">
+<td><a href="#top.infra.jackson2.tests.Jackson2AbsentTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#top.infra.jackson2.tests.Jackson2AbsentTest">Jackson2AbsentTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>6.173</td></tr>
+<tr class="b">
+<td><a href="#top.infra.jackson2.tests.DefaultJackson2CustomizerTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#top.infra.jackson2.tests.DefaultJackson2CustomizerTest">DefaultJackson2CustomizerTest</a></td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>6.752</td></tr>
+<tr class="a">
+<td><a href="#top.infra.jackson2.tests.GuavaAbsentTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#top.infra.jackson2.tests.GuavaAbsentTest">GuavaAbsentTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>6.824</td></tr>
+<tr class="b">
+<td><a href="#top.infra.jackson2.tests.Jsr310Tests"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#top.infra.jackson2.tests.Jsr310Tests">Jsr310Tests</a></td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>6.998</td></tr>
+<tr class="a">
+<td><a href="#top.infra.jackson2.tests.DefaultJackson2MapperCustomizerFactoryTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#top.infra.jackson2.tests.DefaultJackson2MapperCustomizerFactoryTest">DefaultJackson2MapperCustomizerFactoryTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.243</td></tr>
+<tr class="b">
+<td><a href="#top.infra.jackson2.tests.CommonsLangJackson2CustomizerTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#top.infra.jackson2.tests.CommonsLangJackson2CustomizerTest">CommonsLangJackson2CustomizerTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>6.596</td></tr>
+<tr class="a">
+<td><a href="#top.infra.jackson2.tests.CommonsLangAbsentCommonsLangJackson2CustomizerTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#top.infra.jackson2.tests.CommonsLangAbsentCommonsLangJackson2CustomizerTest">CommonsLangAbsentCommonsLangJackson2CustomizerTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>6.801</td></tr>
+<tr class="b">
+<td><a href="#top.infra.jackson2.tests.CommonsLangAbsentCommonsLangJackson2MapperCustomizerFactoryTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#top.infra.jackson2.tests.CommonsLangAbsentCommonsLangJackson2MapperCustomizerFactoryTest">CommonsLangAbsentCommonsLangJackson2MapperCustomizerFactoryTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.886</td></tr>
+<tr class="a">
+<td><a href="#top.infra.jackson2.tests.PairTests"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#top.infra.jackson2.tests.PairTests">PairTests</a></td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>7.306</td></tr>
+<tr class="b">
+<td><a href="#top.infra.jackson2.tests.CommonsLangJackson2MapperCustomizerFactoryTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#top.infra.jackson2.tests.CommonsLangJackson2MapperCustomizerFactoryTest">CommonsLangJackson2MapperCustomizerFactoryTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.261</td></tr>
+<tr class="a">
+<td><a href="#top.infra.jackson2.tests.HalAbsentHalJackson2MapperCustomizerFactoryTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#top.infra.jackson2.tests.HalAbsentHalJackson2MapperCustomizerFactoryTest">HalAbsentHalJackson2MapperCustomizerFactoryTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.804</td></tr>
+<tr class="b">
+<td><a href="#top.infra.jackson2.tests.HalJackson2CustomizerTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#top.infra.jackson2.tests.HalJackson2CustomizerTest">HalJackson2CustomizerTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>6.617</td></tr>
+<tr class="a">
+<td><a href="#top.infra.jackson2.tests.HalAbsentHalJackson2CustomizerTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#top.infra.jackson2.tests.HalAbsentHalJackson2CustomizerTest">HalAbsentHalJackson2CustomizerTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>6.519</td></tr>
+<tr class="b">
+<td><a href="#top.infra.jackson2.tests.HalJackson2MapperCustomizerFactoryTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#top.infra.jackson2.tests.HalJackson2MapperCustomizerFactoryTest">HalJackson2MapperCustomizerFactoryTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.74</td></tr>
+<tr class="a">
+<td><a href="#top.infra.jackson2.tests.JaxbAnnotationJackson2CustomizerTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#top.infra.jackson2.tests.JaxbAnnotationJackson2CustomizerTest">JaxbAnnotationJackson2CustomizerTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>6.563</td></tr>
+<tr class="b">
+<td><a href="#top.infra.jackson2.tests.JaxbAbsentJaxbAnnotationJackson2CustomizerTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#top.infra.jackson2.tests.JaxbAbsentJaxbAnnotationJackson2CustomizerTest">JaxbAbsentJaxbAnnotationJackson2CustomizerTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>6.966</td></tr>
+<tr class="a">
+<td><a href="#top.infra.jackson2.tests.JaxbAnnotationJackson2MapperCustomizerFactoryTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#top.infra.jackson2.tests.JaxbAnnotationJackson2MapperCustomizerFactoryTest">JaxbAnnotationJackson2MapperCustomizerFactoryTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.731</td></tr>
+<tr class="b">
+<td><a href="#top.infra.jackson2.tests.JaxbAbsentJaxbAnnotationJackson2MapperCustomizerFactoryTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#top.infra.jackson2.tests.JaxbAbsentJaxbAnnotationJackson2MapperCustomizerFactoryTest">JaxbAbsentJaxbAnnotationJackson2MapperCustomizerFactoryTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.821</td></tr>
+<tr class="a">
+<td><a href="#top.infra.jackson2.tests.JodaAbsentJodaTimeJackson2MapperCustomizerFactoryTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#top.infra.jackson2.tests.JodaAbsentJodaTimeJackson2MapperCustomizerFactoryTest">JodaAbsentJodaTimeJackson2MapperCustomizerFactoryTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.813</td></tr>
+<tr class="b">
+<td><a href="#top.infra.jackson2.tests.JodaTimeJackson2CustomizerTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#top.infra.jackson2.tests.JodaTimeJackson2CustomizerTest">JodaTimeJackson2CustomizerTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>6.597</td></tr>
+<tr class="a">
+<td><a href="#top.infra.jackson2.tests.JodaTimeJackson2MapperCustomizerFactoryTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#top.infra.jackson2.tests.JodaTimeJackson2MapperCustomizerFactoryTest">JodaTimeJackson2MapperCustomizerFactoryTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.803</td></tr>
+<tr class="b">
+<td><a href="#top.infra.jackson2.tests.JodaAbsentJodaTimeJackson2CustomizerTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#top.infra.jackson2.tests.JodaAbsentJodaTimeJackson2CustomizerTest">JodaAbsentJodaTimeJackson2CustomizerTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>6.938</td></tr></table></div><br /></div>
+<div class="section">
+<h2><a name="Test_Cases"></a>Test Cases</h2><a name="Test_Cases"></a>
+<p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p>
+<div class="section">
+<h3><a name="ExcludeClassJunitRunnerTest"></a>ExcludeClassJunitRunnerTest</h3><a name="top.infra.test.ExcludeClassJunitRunnerTest"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.test.ExcludeClassJunitRunnerTest.testExcludeClassesInTest"></a>testExcludeClassesInTest</td>
+<td>0.105</td></tr></table></div>
+<div class="section">
+<h3><a name="DefaultJackson2CustomizerTest"></a>DefaultJackson2CustomizerTest</h3><a name="top.infra.jackson2.DefaultJackson2CustomizerTest"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.DefaultJackson2CustomizerTest.testDefaultFeatures"></a>testDefaultFeatures</td>
+<td>0.025</td></tr></table></div>
+<div class="section">
+<h3><a name="UnpairedGetterSetterTests"></a>UnpairedGetterSetterTests</h3><a name="top.infra.jackson2.tests.UnpairedGetterSetterTests"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.UnpairedGetterSetterTests.testMissingSetter"></a>testMissingSetter</td>
+<td>0.577</td></tr></table></div>
+<div class="section">
+<h3><a name="Jackson2PropertiesTest"></a>Jackson2PropertiesTest</h3><a name="top.infra.jackson2.tests.Jackson2PropertiesTest"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.Jackson2PropertiesTest.testJaxbEnabled"></a>testJaxbEnabled</td>
+<td>0.099</td></tr></table></div>
+<div class="section">
+<h3><a name="DateFormatTest"></a>DateFormatTest</h3><a name="top.infra.jackson2.tests.DateFormatTest"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.DateFormatTest.testDateFormat"></a>testDateFormat</td>
+<td>0.188</td></tr></table></div>
+<div class="section">
+<h3><a name="GuavaMultimapTests"></a>GuavaMultimapTests</h3><a name="top.infra.jackson2.tests.GuavaMultimapTests"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.GuavaMultimapTests.testMultimapSerialize"></a>testMultimapSerialize</td>
+<td>0.45</td></tr></table></div>
+<div class="section">
+<h3><a name="Jackson2UtilsTests"></a>Jackson2UtilsTests</h3><a name="top.infra.jackson2.tests.Jackson2UtilsTests"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.Jackson2UtilsTests.testIsJackson2Present"></a>testIsJackson2Present</td>
+<td>0.117</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.Jackson2UtilsTests.testFromToJson"></a>testFromToJson</td>
+<td>0.221</td></tr></table></div>
+<div class="section">
+<h3><a name="Jackson2AbsentTest"></a>Jackson2AbsentTest</h3><a name="top.infra.jackson2.tests.Jackson2AbsentTest"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.Jackson2AbsentTest.testJackson2Absent"></a>testJackson2Absent</td>
+<td>0.088</td></tr></table></div>
+<div class="section">
+<h3><a name="DefaultJackson2CustomizerTest"></a>DefaultJackson2CustomizerTest</h3><a name="top.infra.jackson2.tests.DefaultJackson2CustomizerTest"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.DefaultJackson2CustomizerTest.smokeTest"></a>smokeTest</td>
+<td>0.103</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.DefaultJackson2CustomizerTest.testJackson2MapperCustomizer"></a>testJackson2MapperCustomizer</td>
+<td>0.018</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.DefaultJackson2CustomizerTest.testJackson2BuilderCustomizer"></a>testJackson2BuilderCustomizer</td>
+<td>0.012</td></tr></table></div>
+<div class="section">
+<h3><a name="GuavaAbsentTest"></a>GuavaAbsentTest</h3><a name="top.infra.jackson2.tests.GuavaAbsentTest"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.GuavaAbsentTest.testJackson2Absent"></a>testJackson2Absent</td>
+<td>0.092</td></tr></table></div>
+<div class="section">
+<h3><a name="Jsr310Tests"></a>Jsr310Tests</h3><a name="top.infra.jackson2.tests.Jsr310Tests"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.Jsr310Tests.testJsr310LocalDate"></a>testJsr310LocalDate</td>
+<td>0.415</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.Jsr310Tests.testYearMonth"></a>testYearMonth</td>
+<td>0.09</td></tr></table></div>
+<div class="section">
+<h3><a name="DefaultJackson2MapperCustomizerFactoryTest"></a>DefaultJackson2MapperCustomizerFactoryTest</h3><a name="top.infra.jackson2.tests.DefaultJackson2MapperCustomizerFactoryTest"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.DefaultJackson2MapperCustomizerFactoryTest.testGetObject"></a>testGetObject</td>
+<td>0.106</td></tr></table></div>
+<div class="section">
+<h3><a name="CommonsLangJackson2CustomizerTest"></a>CommonsLangJackson2CustomizerTest</h3><a name="top.infra.jackson2.tests.CommonsLangJackson2CustomizerTest"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.CommonsLangJackson2CustomizerTest.smokeTest"></a>smokeTest</td>
+<td>0.1</td></tr></table></div>
+<div class="section">
+<h3><a name="CommonsLangAbsentCommonsLangJackson2CustomizerTest"></a>CommonsLangAbsentCommonsLangJackson2CustomizerTest</h3><a name="top.infra.jackson2.tests.CommonsLangAbsentCommonsLangJackson2CustomizerTest"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.CommonsLangAbsentCommonsLangJackson2CustomizerTest.smokeTest"></a>smokeTest</td>
+<td>0.089</td></tr></table></div>
+<div class="section">
+<h3><a name="CommonsLangAbsentCommonsLangJackson2MapperCustomizerFactoryTest"></a>CommonsLangAbsentCommonsLangJackson2MapperCustomizerFactoryTest</h3><a name="top.infra.jackson2.tests.CommonsLangAbsentCommonsLangJackson2MapperCustomizerFactoryTest"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.CommonsLangAbsentCommonsLangJackson2MapperCustomizerFactoryTest.testGetObject"></a>testGetObject</td>
+<td>0.078</td></tr></table></div>
+<div class="section">
+<h3><a name="PairTests"></a>PairTests</h3><a name="top.infra.jackson2.tests.PairTests"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.PairTests.testPairInBean"></a>testPairInBean</td>
+<td>0.557</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.PairTests.testNestedPair"></a>testNestedPair</td>
+<td>0.072</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.PairTests.testPair"></a>testPair</td>
+<td>0.095</td></tr></table></div>
+<div class="section">
+<h3><a name="CommonsLangJackson2MapperCustomizerFactoryTest"></a>CommonsLangJackson2MapperCustomizerFactoryTest</h3><a name="top.infra.jackson2.tests.CommonsLangJackson2MapperCustomizerFactoryTest"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.CommonsLangJackson2MapperCustomizerFactoryTest.testGetObject"></a>testGetObject</td>
+<td>0.107</td></tr></table></div>
+<div class="section">
+<h3><a name="HalAbsentHalJackson2MapperCustomizerFactoryTest"></a>HalAbsentHalJackson2MapperCustomizerFactoryTest</h3><a name="top.infra.jackson2.tests.HalAbsentHalJackson2MapperCustomizerFactoryTest"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.HalAbsentHalJackson2MapperCustomizerFactoryTest.testGetObject"></a>testGetObject</td>
+<td>0.071</td></tr></table></div>
+<div class="section">
+<h3><a name="HalJackson2CustomizerTest"></a>HalJackson2CustomizerTest</h3><a name="top.infra.jackson2.tests.HalJackson2CustomizerTest"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.HalJackson2CustomizerTest.smokeTest"></a>smokeTest</td>
+<td>0.105</td></tr></table></div>
+<div class="section">
+<h3><a name="HalAbsentHalJackson2CustomizerTest"></a>HalAbsentHalJackson2CustomizerTest</h3><a name="top.infra.jackson2.tests.HalAbsentHalJackson2CustomizerTest"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.HalAbsentHalJackson2CustomizerTest.smokeTest"></a>smokeTest</td>
+<td>0.096</td></tr></table></div>
+<div class="section">
+<h3><a name="HalJackson2MapperCustomizerFactoryTest"></a>HalJackson2MapperCustomizerFactoryTest</h3><a name="top.infra.jackson2.tests.HalJackson2MapperCustomizerFactoryTest"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.HalJackson2MapperCustomizerFactoryTest.testGetObject"></a>testGetObject</td>
+<td>0.587</td></tr></table></div>
+<div class="section">
+<h3><a name="JaxbAnnotationJackson2CustomizerTest"></a>JaxbAnnotationJackson2CustomizerTest</h3><a name="top.infra.jackson2.tests.JaxbAnnotationJackson2CustomizerTest"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.JaxbAnnotationJackson2CustomizerTest.smokeTest"></a>smokeTest</td>
+<td>0.157</td></tr></table></div>
+<div class="section">
+<h3><a name="JaxbAbsentJaxbAnnotationJackson2CustomizerTest"></a>JaxbAbsentJaxbAnnotationJackson2CustomizerTest</h3><a name="top.infra.jackson2.tests.JaxbAbsentJaxbAnnotationJackson2CustomizerTest"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.JaxbAbsentJaxbAnnotationJackson2CustomizerTest.smokeTest"></a>smokeTest</td>
+<td>0.09</td></tr></table></div>
+<div class="section">
+<h3><a name="JaxbAnnotationJackson2MapperCustomizerFactoryTest"></a>JaxbAnnotationJackson2MapperCustomizerFactoryTest</h3><a name="top.infra.jackson2.tests.JaxbAnnotationJackson2MapperCustomizerFactoryTest"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.JaxbAnnotationJackson2MapperCustomizerFactoryTest.testGetObject"></a>testGetObject</td>
+<td>0.58</td></tr></table></div>
+<div class="section">
+<h3><a name="JaxbAbsentJaxbAnnotationJackson2MapperCustomizerFactoryTest"></a>JaxbAbsentJaxbAnnotationJackson2MapperCustomizerFactoryTest</h3><a name="top.infra.jackson2.tests.JaxbAbsentJaxbAnnotationJackson2MapperCustomizerFactoryTest"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.JaxbAbsentJaxbAnnotationJackson2MapperCustomizerFactoryTest.testGetObject"></a>testGetObject</td>
+<td>0.07</td></tr></table></div>
+<div class="section">
+<h3><a name="JodaDateFormatTests"></a>JodaDateFormatTests</h3><a name="top.infra.jackson2.JodaDateFormatTests"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.JodaDateFormatTests.testDateFormat"></a>testDateFormat</td>
+<td>0.908</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.JodaDateFormatTests.testJodaDateTimeFormat"></a>testJodaDateTimeFormat</td>
+<td>0.042</td></tr></table></div>
+<div class="section">
+<h3><a name="JodaAbsentJodaTimeJackson2MapperCustomizerFactoryTest"></a>JodaAbsentJodaTimeJackson2MapperCustomizerFactoryTest</h3><a name="top.infra.jackson2.tests.JodaAbsentJodaTimeJackson2MapperCustomizerFactoryTest"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.JodaAbsentJodaTimeJackson2MapperCustomizerFactoryTest.testGetObject"></a>testGetObject</td>
+<td>0.095</td></tr></table></div>
+<div class="section">
+<h3><a name="JodaTimeJackson2CustomizerTest"></a>JodaTimeJackson2CustomizerTest</h3><a name="top.infra.jackson2.tests.JodaTimeJackson2CustomizerTest"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.JodaTimeJackson2CustomizerTest.smokeTest"></a>smokeTest</td>
+<td>0.125</td></tr></table></div>
+<div class="section">
+<h3><a name="JodaTimeJackson2MapperCustomizerFactoryTest"></a>JodaTimeJackson2MapperCustomizerFactoryTest</h3><a name="top.infra.jackson2.tests.JodaTimeJackson2MapperCustomizerFactoryTest"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.JodaTimeJackson2MapperCustomizerFactoryTest.testGetObject"></a>testGetObject</td>
+<td>0.623</td></tr></table></div>
+<div class="section">
+<h3><a name="JodaAbsentJodaTimeJackson2CustomizerTest"></a>JodaAbsentJodaTimeJackson2CustomizerTest</h3><a name="top.infra.jackson2.tests.JodaAbsentJodaTimeJackson2CustomizerTest"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_top.infra.jackson2.tests.JodaAbsentJodaTimeJackson2CustomizerTest.smokeTest"></a>smokeTest</td>
+<td>0.104</td></tr></table></div><br /></div>
         </div>
       </div>
     </div>
