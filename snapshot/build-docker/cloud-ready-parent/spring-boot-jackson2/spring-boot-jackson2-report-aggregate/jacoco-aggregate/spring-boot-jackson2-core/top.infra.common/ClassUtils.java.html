@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>ClassUtils.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">JaCoCo spring-boot-jackson2-report-aggregate</a> &gt; <a href="../index.html" class="el_bundle">spring-boot-jackson2-core</a> &gt; <a href="index.source.html" class="el_package">top.infra.common</a> &gt; <span class="el_source">ClassUtils.java</span></div><h1>ClassUtils.java</h1><pre class="source lang-java linenums">package top.infra.common;
+
+import static com.google.common.base.Charsets.UTF_8;
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkState;
+import static com.google.common.collect.Sets.newLinkedHashSetWithExpectedSize;
+import static java.util.stream.Collectors.toList;
+import static org.apache.commons.lang3.ArrayUtils.contains;
+import static org.apache.commons.lang3.StringUtils.isNotBlank;
+
+import lombok.SneakyThrows;
+
+import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.io.Resource;
+import org.springframework.core.type.ClassMetadata;
+import org.springframework.core.type.classreading.MetadataReader;
+import org.springframework.core.type.classreading.MetadataReaderFactory;
+import org.springframework.core.type.filter.AbstractClassTestingTypeFilter;
+import org.springframework.core.type.filter.AssignableTypeFilter;
+import org.springframework.core.type.filter.TypeFilter;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URLClassLoader;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Function;
+
+import commonsio.IOUtils;
+
+public abstract class ClassUtils {
+
+    private ClassUtils() {
+    }
+
+    public static boolean isPresent(final String className) {
+<span class="fc" id="L42">        return isPresent(className, null);</span>
+    }
+
+    /**
+     * see: {@link org.springframework.boot.autoconfigure.condition.OnClassCondition}
+     *
+     * @param className   className
+     * @param classLoader classLoader
+     * @return isPresent
+     */
+    public static boolean isPresent(final String className, ClassLoader classLoader) {
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">        if (classLoader == null) {</span>
+<span class="fc" id="L54">            classLoader = org.springframework.util.ClassUtils.getDefaultClassLoader();</span>
+        }
+        try {
+<span class="fc" id="L57">            forName(className, classLoader);</span>
+<span class="fc" id="L58">            return true;</span>
+<span class="fc" id="L59">        } catch (final Throwable ex) {</span>
+<span class="fc" id="L60">            return false;</span>
+        }
+    }
+
+    public static Class&lt;?&gt; forName(final String className, final ClassLoader classLoader) throws ClassNotFoundException {
+<span class="pc bpc" id="L65" title="1 of 2 branches missed.">        if (classLoader != null) {</span>
+<span class="fc" id="L66">            return classLoader.loadClass(className);</span>
+        }
+<span class="nc" id="L68">        return Class.forName(className);</span>
+    }
+
+    public static Optional&lt;Class&lt;?&gt;&gt; forName(final String className) {
+        try {
+<span class="fc" id="L73">            final ClassLoader classLoader = org.springframework.util.ClassUtils.getDefaultClassLoader();</span>
+            final Class&lt;?&gt; result;
+<span class="pc bpc" id="L75" title="1 of 2 branches missed.">            if (classLoader != null) {</span>
+<span class="fc" id="L76">                result = classLoader.loadClass(className);</span>
+            } else {
+<span class="nc" id="L78">                result = Class.forName(className);</span>
+            }
+<span class="fc" id="L80">            return Optional.ofNullable(result);</span>
+<span class="fc" id="L81">        } catch (final ClassNotFoundException ex) {</span>
+<span class="fc" id="L82">            return Optional.empty();</span>
+        }
+    }
+
+    public static void printClassLoader(final Class&lt;?&gt; target) {
+<span class="nc" id="L87">        ClassLoader classLoader = target.getClassLoader();</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">        if (classLoader instanceof URLClassLoader) {</span>
+<span class="nc" id="L89">            System.out.println(target.getName()</span>
+                + &quot;/classLoader = &quot;
+                + classLoader
+<span class="nc" id="L92">                + &quot;/URLs/&quot; + Arrays.asList(((URLClassLoader) classLoader).getURLs()));</span>
+        } else {
+<span class="nc" id="L94">            System.out.println(target.getName() + &quot;/classLoader = &quot; + classLoader);</span>
+        }
+<span class="nc" id="L96">    }</span>
+
+    public static final class FileAndClasspathUtils {
+
+        private FileAndClasspathUtils() {
+        }
+
+        /**
+         * Create if not exists.
+         *
+         * @param fileFullPath path
+         */
+<span class="nc" id="L108">        @SneakyThrows</span>
+        public static void ensureFile(final String fileFullPath) {
+<span class="nc" id="L110">            checkState(isNotBlank(fileFullPath), &quot;file undefined. file: %s&quot;, fileFullPath);</span>
+<span class="nc" id="L111">            final File file = new File(fileFullPath);</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">            if (!file.exists()) {</span>
+<span class="nc" id="L113">                checkState(file.createNewFile(), &quot;file create failed. file: %s&quot;, fileFullPath);</span>
+            }
+<span class="nc bnc" id="L115" title="All 4 branches missed.">            checkState(file.canRead() &amp;&amp; file.canWrite(),</span>
+                &quot;file can't read or write. file: %s&quot;, fileFullPath);
+<span class="nc" id="L117">        }</span>
+
+        /**
+         * Parse file lines.
+         *
+         * @param resource resource
+         * @param mapper   line mapper
+         * @param &lt;T&gt;      type
+         * @return list
+         */
+<span class="nc" id="L127">        @SneakyThrows</span>
+        public static &lt;T&gt; List&lt;T&gt; parseFile(final Resource resource, final Function&lt;String, T&gt; mapper) {
+<span class="nc" id="L129">            return parseFile(resource.getInputStream(), mapper);</span>
+        }
+
+        /**
+         * Parse file lines.
+         *
+         * @param inputStream stream
+         * @param mapper      line mapper
+         * @param &lt;T&gt;         type
+         * @return list
+         */
+<span class="nc" id="L140">        @SneakyThrows</span>
+        public static &lt;T&gt; List&lt;T&gt; parseFile(final InputStream inputStream, final Function&lt;String, T&gt; mapper) {
+<span class="nc" id="L142">            return IOUtils.readLines(inputStream, UTF_8).stream() //</span>
+<span class="nc bnc" id="L143" title="All 4 branches missed.">                .filter(line -&gt; isNotBlank(line) &amp;&amp; line.trim().charAt(0) != '#') //</span>
+<span class="nc" id="L144">                .map(mapper) //</span>
+<span class="nc" id="L145">                .collect(toList());</span>
+        }
+
+<span class="nc" id="L148">        @SneakyThrows</span>
+        @SuppressWarnings(&quot;unchecked&quot;)
+        private static &lt;T&gt; Class&lt;T&gt; classForName(final String className) {
+<span class="fc" id="L151">            return (Class&lt;T&gt;) Class.forName(className);</span>
+        }
+
+        /**
+         * scan.
+         *
+         * @param basePackage   from where (package)
+         * @param includeFilter filter
+         * @param &lt;T&gt;           type
+         * @return classes found
+         */
+        public static &lt;T&gt; Set&lt;Class&lt;T&gt;&gt; scan(final String basePackage, final TypeFilter includeFilter) {
+<span class="fc" id="L163">            checkArgument(isNotBlank(basePackage));</span>
+            // log.info(&quot;domainEnums basePackage: {}&quot;, basePackage);
+
+<span class="fc" id="L166">            final ClassPathScanningCandidateProvider provider = new ClassPathScanningCandidateProvider();</span>
+<span class="fc" id="L167">            provider.addIncludeFilter(includeFilter);</span>
+<span class="fc" id="L168">            final Set&lt;BeanDefinition&gt; beanDefinitions =</span>
+<span class="fc" id="L169">                provider.findCandidateComponents(basePackage.replaceAll(&quot;\\.&quot;, &quot;/&quot;));</span>
+
+<span class="fc" id="L171">            final Set&lt;Class&lt;T&gt;&gt; result = newLinkedHashSetWithExpectedSize(beanDefinitions.size());</span>
+<span class="fc bfc" id="L172" title="All 2 branches covered.">            for (final BeanDefinition beanDefinition : beanDefinitions) {</span>
+<span class="fc" id="L173">                result.add(classForName(beanDefinition.getBeanClassName()));</span>
+<span class="fc" id="L174">            }</span>
+<span class="fc" id="L175">            return result;</span>
+        }
+
+        public static class InterfaceFilter extends AbstractClassTestingTypeFilter {
+
+            private final Class&lt;?&gt; type;
+            private final boolean includeInterface;
+
+            /**
+             * filter find types of interface type.
+             *
+             * @param type             type
+             * @param includeInterface include interface
+             */
+            public InterfaceFilter(final Class&lt;?&gt; type, final boolean includeInterface) {
+<span class="nc" id="L190">                super();</span>
+<span class="nc" id="L191">                this.type = type;</span>
+<span class="nc" id="L192">                this.includeInterface = includeInterface;</span>
+<span class="nc" id="L193">            }</span>
+
+            @Override
+            protected boolean match(final ClassMetadata metadata) {
+<span class="nc bnc" id="L197" title="All 4 branches missed.">                return contains(metadata.getInterfaceNames(), this.type.getName())</span>
+<span class="nc bnc" id="L198" title="All 2 branches missed.">                    &amp;&amp; (this.includeInterface || !metadata.isInterface());</span>
+            }
+        }
+
+        public static class AssignableFilter extends AssignableTypeFilter {
+
+            private final boolean includeInterface;
+            private final boolean includeAbstract;
+
+            public AssignableFilter(final Class&lt;?&gt; targetType, final boolean includeInterface, final boolean includeAbstract) {
+<span class="fc" id="L208">                super(targetType);</span>
+<span class="fc" id="L209">                this.includeInterface = includeInterface;</span>
+<span class="fc" id="L210">                this.includeAbstract = includeAbstract;</span>
+<span class="fc" id="L211">            }</span>
+
+            @Override
+            public boolean match(final MetadataReader reader, final MetadataReaderFactory readerFactory) throws IOException {
+<span class="fc" id="L215">                final ClassMetadata metadata = reader.getClassMetadata();</span>
+<span class="fc" id="L216">                final boolean match = super.match(reader, readerFactory);</span>
+<span class="pc bpc" id="L217" title="1 of 4 branches missed.">                return match &amp;&amp; //</span>
+<span class="pc bpc" id="L218" title="1 of 4 branches missed.">                    (this.includeInterface || !metadata.isInterface()) &amp;&amp; //</span>
+<span class="pc bpc" id="L219" title="1 of 2 branches missed.">                    (this.includeAbstract || !metadata.isAbstract());</span>
+            }
+        }
+
+        /**
+         * A ClassPathScanningCandidateComponentProvider.
+         *
+         * @author zhanghaolun
+         */
+        public static class ClassPathScanningCandidateProvider
+            extends ClassPathScanningCandidateComponentProvider {
+
+            /**
+             * new a ClassPathScanningCandidateProvider.
+             */
+            public ClassPathScanningCandidateProvider() {
+<span class="fc" id="L235">                super(false);</span>
+<span class="fc" id="L236">            }</span>
+
+            @Override
+            protected boolean isCandidateComponent(final AnnotatedBeanDefinition beanDefinition) {
+<span class="fc" id="L240">                return beanDefinition.getMetadata().isIndependent();</span>
+            }
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span>Code Coverage Report for spring-boot-jackson2-report-aggregate 0.0.1-SNAPSHOT</div></body></html>

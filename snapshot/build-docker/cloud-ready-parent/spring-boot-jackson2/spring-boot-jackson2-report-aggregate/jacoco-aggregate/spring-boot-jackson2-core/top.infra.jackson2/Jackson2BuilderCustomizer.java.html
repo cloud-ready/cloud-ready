@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>Jackson2BuilderCustomizer.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">JaCoCo spring-boot-jackson2-report-aggregate</a> &gt; <a href="../index.html" class="el_bundle">spring-boot-jackson2-core</a> &gt; <a href="index.source.html" class="el_package">top.infra.jackson2</a> &gt; <span class="el_source">Jackson2BuilderCustomizer.java</span></div><h1>Jackson2BuilderCustomizer.java</h1><pre class="source lang-java linenums">package top.infra.jackson2;
+
+import static com.google.common.collect.Lists.newLinkedList;
+
+import com.fasterxml.jackson.databind.Module;
+
+import org.springframework.core.Ordered;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+
+import java.lang.reflect.Field;
+import java.util.List;
+
+/**
+ * Created by zhanghaolun on 16/7/28.
+ */
+public interface Jackson2BuilderCustomizer extends Ordered {
+
+    void customize(Jackson2Properties properties, Jackson2ObjectMapperBuilder builder);
+
+    default boolean createXmlMapper(final Jackson2ObjectMapperBuilder builder) {
+        try {
+            final boolean result;
+<span class="fc" id="L23">            final Field fieldModules = builder.getClass().getDeclaredField(&quot;createXmlMapper&quot;);</span>
+<span class="fc" id="L24">            fieldModules.setAccessible(true);</span>
+<span class="fc" id="L25">            result = (boolean) fieldModules.get(builder);</span>
+<span class="fc" id="L26">            return result;</span>
+<span class="nc" id="L27">        } catch (final NoSuchFieldException | IllegalAccessException | IllegalArgumentException ex) {</span>
+<span class="nc" id="L28">            return false;</span>
+        }
+    }
+
+    default Boolean isXmlMapper(final Jackson2ObjectMapperBuilder builder) {
+<span class="fc" id="L33">        return this.createXmlMapper(builder);</span>
+    }
+
+    default ClassLoader moduleClassLoader(final Jackson2ObjectMapperBuilder builder) {
+        try {
+            final ClassLoader result;
+<span class="fc" id="L39">            final Field fieldModuleClassLoader = builder.getClass().getDeclaredField(&quot;moduleClassLoader&quot;);</span>
+<span class="fc" id="L40">            fieldModuleClassLoader.setAccessible(true);</span>
+<span class="fc" id="L41">            result = (ClassLoader) fieldModuleClassLoader.get(builder);</span>
+<span class="fc" id="L42">            return result;</span>
+<span class="nc" id="L43">        } catch (final NoSuchFieldException | IllegalAccessException | IllegalArgumentException ex) {</span>
+<span class="nc" id="L44">            return builder.getClass().getClassLoader();</span>
+        }
+    }
+
+    @SuppressWarnings(&quot;unchecked&quot;)
+    default List&lt;Module&gt; modules(final Jackson2ObjectMapperBuilder builder) {
+        try {
+            final List&lt;Module&gt; result;
+<span class="fc" id="L52">            final Field fieldModules = builder.getClass().getDeclaredField(&quot;modules&quot;);</span>
+<span class="fc" id="L53">            fieldModules.setAccessible(true);</span>
+<span class="fc" id="L54">            result = (List&lt;Module&gt;) fieldModules.get(builder);</span>
+<span class="fc" id="L55">            return newLinkedList(result);</span>
+<span class="nc" id="L56">        } catch (final NoSuchFieldException | IllegalAccessException | IllegalArgumentException ex) {</span>
+<span class="nc" id="L57">            return newLinkedList();</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span>Code Coverage Report for spring-boot-jackson2-report-aggregate 0.0.1-SNAPSHOT</div></body></html>
