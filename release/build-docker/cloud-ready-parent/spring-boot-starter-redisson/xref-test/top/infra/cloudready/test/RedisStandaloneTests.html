@@ -33,28 +33,28 @@
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>  @ContextConfiguration(initializers = GenericContainerInitializer.<strong class="jxr_keyword">class</strong>)
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../top/infra/cloudready/test/RedisStandaloneTests.html">RedisStandaloneTests</a> {
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>  
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>    @ClassRule
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> GenericContainer container = <strong class="jxr_keyword">new</strong> GenericContainer(<span class="jxr_string">"redis:3.0.2"</span>)
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>        .withExposedPorts(6379);
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>      @ClassRule
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> GenericContainer container = <strong class="jxr_keyword">new</strong> GenericContainer(<span class="jxr_string">"redis:3.0.2"</span>)
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>          .withExposedPorts(6379);
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>    <strong class="jxr_keyword">static</strong> {
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>      GenericContainerInitializer.onInitialize(container, InitializerCallbacks.SPRING_DATA_REDIS);
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>    }
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>      <strong class="jxr_keyword">static</strong> {
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>          GenericContainerInitializer.onInitialize(container, InitializerCallbacks.SPRING_DATA_REDIS);
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>      }
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>  
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>    @Autowired
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>    <strong class="jxr_keyword">private</strong> RedissonClient redissonClient;
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>      @Autowired
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>      <strong class="jxr_keyword">private</strong> RedissonClient redissonClient;
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>  
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>    @Test
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testRedisson() {
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>      <strong class="jxr_keyword">final</strong> RMap&lt;String, String&gt; map = <strong class="jxr_keyword">this</strong>.redissonClient.getMap(<span class="jxr_string">"map"</span>);
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>      @Test
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testRedisson() {
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>          <strong class="jxr_keyword">final</strong> RMap&lt;String, String&gt; map = <strong class="jxr_keyword">this</strong>.redissonClient.getMap(<span class="jxr_string">"map"</span>);
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>  
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>      <strong class="jxr_keyword">final</strong> String key = <span class="jxr_string">"key"</span>;
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>      <strong class="jxr_keyword">final</strong> String value = <span class="jxr_string">"value"</span>;
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>          <strong class="jxr_keyword">final</strong> String key = <span class="jxr_string">"key"</span>;
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>          <strong class="jxr_keyword">final</strong> String value = <span class="jxr_string">"value"</span>;
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>  
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>      map.put(key, value);
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>      assertEquals(value, map.get(key));
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>      map.remove(key);
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>    }
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>          map.put(key, value);
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>          assertEquals(value, map.get(key));
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>          map.remove(key);
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>      }
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>  }
 </pre>
 <hr/>

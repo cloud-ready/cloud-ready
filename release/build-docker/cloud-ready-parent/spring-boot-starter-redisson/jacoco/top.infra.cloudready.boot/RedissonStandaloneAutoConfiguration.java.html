@@ -23,41 +23,41 @@ import org.springframework.data.redis.core.RedisTemplate;
 <span class="fc" id="L23">@Slf4j</span>
 <span class="fc" id="L24">public class RedissonStandaloneAutoConfiguration {</span>
 
-  private RedisProperties redisProperties;
+    private RedisProperties redisProperties;
 
-  @Autowired(required = false)
-  public void setRedisProperties(final RedisProperties redisProperties) {
-<span class="fc" id="L30">    this.redisProperties = redisProperties;</span>
-<span class="fc" id="L31">  }</span>
+    @Autowired(required = false)
+    public void setRedisProperties(final RedisProperties redisProperties) {
+<span class="fc" id="L30">        this.redisProperties = redisProperties;</span>
+<span class="fc" id="L31">    }</span>
 
-  public String getRedisAddress() {
-    //should add schema prefix &quot;redis://&quot; or &quot;rediss://&quot; for redisson version &gt;= 3.7.0
-<span class="pc bpc" id="L35" title="1 of 2 branches missed.">    final String schema = this.redisProperties.isSsl() ? &quot;rediss://&quot; : &quot;redis://&quot;;</span>
-<span class="fc" id="L36">    final String redisAddress = schema + this.redisProperties.getHost() + &quot;:&quot; + this.redisProperties.getPort();</span>
-<span class="fc" id="L37">    log.info(&quot;redisAddress: {}&quot;, redisAddress);</span>
-<span class="fc" id="L38">    return redisAddress;</span>
-  }
-
-  private SingleServerConfig singleServer(final Config config) {
-<span class="fc" id="L42">    final SingleServerConfig singleServerConfig = config.useSingleServer();</span>
-
-<span class="fc" id="L44">    final String redisAddress = this.getRedisAddress();</span>
-<span class="fc" id="L45">    final int redisDatabase = this.redisProperties.getDatabase();</span>
-<span class="fc" id="L46">    final String redisPassword = this.redisProperties.getPassword();</span>
-
-<span class="fc" id="L48">    singleServerConfig.setAddress(redisAddress).setDatabase(redisDatabase);</span>
-<span class="pc bpc" id="L49" title="1 of 2 branches missed.">    if (redisPassword != null) { //StringUtils.isNotBlank(redisPassword)</span>
-<span class="nc" id="L50">      singleServerConfig.setPassword(redisPassword);</span>
+    public String getRedisAddress() {
+        //should add schema prefix &quot;redis://&quot; or &quot;rediss://&quot; for redisson version &gt;= 3.7.0
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">        final String schema = this.redisProperties.isSsl() ? &quot;rediss://&quot; : &quot;redis://&quot;;</span>
+<span class="fc" id="L36">        final String redisAddress = schema + this.redisProperties.getHost() + &quot;:&quot; + this.redisProperties.getPort();</span>
+<span class="fc" id="L37">        log.info(&quot;redisAddress: {}&quot;, redisAddress);</span>
+<span class="fc" id="L38">        return redisAddress;</span>
     }
 
-<span class="fc" id="L53">    return singleServerConfig;</span>
-  }
+    private SingleServerConfig singleServer(final Config config) {
+<span class="fc" id="L42">        final SingleServerConfig singleServerConfig = config.useSingleServer();</span>
 
-  @Bean
-  public RedissonClient redissonClient() {
-<span class="fc" id="L58">    final Config config = new Config();</span>
-<span class="fc" id="L59">    this.singleServer(config);</span>
-<span class="fc" id="L60">    return Redisson.create(config);</span>
-  }
+<span class="fc" id="L44">        final String redisAddress = this.getRedisAddress();</span>
+<span class="fc" id="L45">        final int redisDatabase = this.redisProperties.getDatabase();</span>
+<span class="fc" id="L46">        final String redisPassword = this.redisProperties.getPassword();</span>
+
+<span class="fc" id="L48">        singleServerConfig.setAddress(redisAddress).setDatabase(redisDatabase);</span>
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">        if (redisPassword != null) { //StringUtils.isNotBlank(redisPassword)</span>
+<span class="nc" id="L50">            singleServerConfig.setPassword(redisPassword);</span>
+        }
+
+<span class="fc" id="L53">        return singleServerConfig;</span>
+    }
+
+    @Bean
+    public RedissonClient redissonClient() {
+<span class="fc" id="L58">        final Config config = new Config();</span>
+<span class="fc" id="L59">        this.singleServer(config);</span>
+<span class="fc" id="L60">        return Redisson.create(config);</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>
