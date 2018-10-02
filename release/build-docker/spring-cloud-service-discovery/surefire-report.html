@@ -46,6 +46,7 @@
         <ul class="dropdown-menu">
             <li><a href="spring-cloud-eureka/index.html" title="spring-cloud-eureka">spring-cloud-eureka</a></li>
             <li><a href="spring-cloud-multi-registration/index.html" title="spring-cloud-multi-registration">spring-cloud-multi-registration</a></li>
+            <li><a href="spring-cloud-service-filter/index.html" title="spring-cloud-service-filter">spring-cloud-service-filter</a></li>
         </ul>
       </li>
       <li class="dropdown">
@@ -119,6 +120,7 @@
       <li class="nav-header">Modules</li>
     <li><a href="spring-cloud-eureka/index.html" title="spring-cloud-eureka"><span class="none"></span>spring-cloud-eureka</a></li>
     <li><a href="spring-cloud-multi-registration/index.html" title="spring-cloud-multi-registration"><span class="none"></span>spring-cloud-multi-registration</a></li>
+    <li><a href="spring-cloud-service-filter/index.html" title="spring-cloud-service-filter"><span class="none"></span>spring-cloud-service-filter</a></li>
       <li class="nav-header">Project Documentation</li>
     <li><a href="project-info.html" title="Project Information"><span class="icon-chevron-right"></span>Project Information</a></li>
     <li><a href="project-reports.html" title="Project Reports"><span class="icon-chevron-down"></span>Project Reports</a>
@@ -177,12 +179,12 @@ function toggleDisplay(elementId) {
 <th>Success Rate</th>
 <th>Time</th></tr>
 <tr class="b">
-<td>3</td>
+<td>7</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.96</td></tr></table><br />
+<td>63.441</td></tr></table><br />
 <p>Note: failures are anticipated and checked for with assertions while errors are unanticipated.</p><br /></div>
 <div class="section">
 <h2><a name="Package_List"></a>Package List</h2><a name="Package_List"></a>
@@ -203,7 +205,23 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.96</td></tr></table><br />
+<td>0.726</td></tr>
+<tr class="a">
+<td><a href="#cn.home1.test">cn.home1.test</a></td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>10.41</td></tr>
+<tr class="b">
+<td><a href="#cn.home1.cloud.netflix.eureka.client">cn.home1.cloud.netflix.eureka.client</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>52.305</td></tr></table><br />
 <p>Note: package statistics are not computed recursively, they only sum up all of its testsuites numbers.</p>
 <div class="section">
 <h3><a name="cn.home1.cloud"></a>cn.home1.cloud</h3><a name="cn.home1.cloud"></a>
@@ -225,7 +243,58 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.96</td></tr></table></div><br /></div>
+<td>0.726</td></tr></table></div>
+<div class="section">
+<h3><a name="cn.home1.test"></a>cn.home1.test</h3><a name="cn.home1.test"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<th></th>
+<th>Class</th>
+<th>Tests</th>
+<th>Errors </th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td><a href="#cn.home1.test.CopyOutputStreamTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#cn.home1.test.CopyOutputStreamTest">CopyOutputStreamTest</a></td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>9.758</td></tr>
+<tr class="a">
+<td><a href="#cn.home1.test.IsAliveTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#cn.home1.test.IsAliveTest">IsAliveTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.652</td></tr></table></div>
+<div class="section">
+<h3><a name="cn.home1.cloud.netflix.eureka.client"></a>cn.home1.cloud.netflix.eureka.client</h3><a name="cn.home1.cloud.netflix.eureka.client"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<th></th>
+<th>Class</th>
+<th>Tests</th>
+<th>Errors </th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td><a href="#cn.home1.cloud.netflix.eureka.client.EurekaInstanceTests"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#cn.home1.cloud.netflix.eureka.client.EurekaInstanceTests">EurekaInstanceTests</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>52.305</td></tr></table></div><br /></div>
 <div class="section">
 <h2><a name="Test_Cases"></a>Test Cases</h2><a name="Test_Cases"></a>
 <p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p>
@@ -235,7 +304,7 @@ function toggleDisplay(elementId) {
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td><a name="TC_cn.home1.cloud.CloudInetUtilsTest.testPreferredNetworks"></a>testPreferredNetworks</td>
-<td>0.014</td></tr>
+<td>0.013</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td><a name="TC_cn.home1.cloud.CloudInetUtilsTest.testFindNonLoopbackAddress"></a>testFindNonLoopbackAddress</td>
@@ -243,7 +312,32 @@ function toggleDisplay(elementId) {
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td><a name="TC_cn.home1.cloud.CloudInetUtilsTest.testIgnoredInterfaces"></a>testIgnoredInterfaces</td>
-<td>0.001</td></tr></table></div><br /></div>
+<td>0.002</td></tr></table></div>
+<div class="section">
+<h3><a name="CopyOutputStreamTest"></a>CopyOutputStreamTest</h3><a name="cn.home1.test.CopyOutputStreamTest"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_cn.home1.test.CopyOutputStreamTest.testNotFound"></a>testNotFound</td>
+<td>6.665</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_cn.home1.test.CopyOutputStreamTest.testFound"></a>testFound</td>
+<td>3.005</td></tr></table></div>
+<div class="section">
+<h3><a name="EurekaInstanceTests"></a>EurekaInstanceTests</h3><a name="cn.home1.cloud.netflix.eureka.client.EurekaInstanceTests"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_cn.home1.cloud.netflix.eureka.client.EurekaInstanceTests.testEurekaInstance"></a>testEurekaInstance</td>
+<td>30.19</td></tr></table></div>
+<div class="section">
+<h3><a name="IsAliveTest"></a>IsAliveTest</h3><a name="cn.home1.test.IsAliveTest"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_cn.home1.test.IsAliveTest.testIsAlive"></a>testIsAlive</td>
+<td>0.02</td></tr></table></div><br /></div>
         </div>
       </div>
     </div>
