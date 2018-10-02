@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.springframework.cloud.client.serviceregistry.endpoint.MultiServiceRegistryEndpoint
-	c80 [label=<<table title="org.springframework.cloud.client.serviceregistry.endpoint.MultiServiceRegistryEndpoint" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MultiServiceRegistryEndpoint.html">
+	c82 [label=<<table title="org.springframework.cloud.client.serviceregistry.endpoint.MultiServiceRegistryEndpoint" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MultiServiceRegistryEndpoint.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MultiServiceRegistryEndpoint </td></tr>
 		</table></td></tr>
@@ -28,7 +28,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="./MultiServiceRegistryEndpoint.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.springframework.cloud.client.serviceregistry.endpoint.MultiServiceRegistryEndpoint implements org.springframework.boot.actuate.endpoint.mvc.MvcEndpoint
-	c83:p -> c80:p [dir=back,arrowtail=empty,style=dashed];
+	c83:p -> c82:p [dir=back,arrowtail=empty,style=dashed];
 	// org.springframework.boot.actuate.endpoint.mvc.MvcEndpoint
 	c83 [label=<<table title="org.springframework.boot.actuate.endpoint.mvc.MvcEndpoint" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/boot/actuate/endpoint/mvc/MvcEndpoint.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
