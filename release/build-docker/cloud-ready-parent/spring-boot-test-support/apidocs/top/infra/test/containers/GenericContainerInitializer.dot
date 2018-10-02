@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// top.infra.test.containers.GenericContainerInitializer
-	c16 [label=<<table title="top.infra.test.containers.GenericContainerInitializer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./GenericContainerInitializer.html">
+	c15 [label=<<table title="top.infra.test.containers.GenericContainerInitializer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./GenericContainerInitializer.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> GenericContainerInitializer </td></tr>
 		</table></td></tr>
@@ -24,7 +24,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="./GenericContainerInitializer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//top.infra.test.containers.GenericContainerInitializer implements org.springframework.context.ApplicationContextInitializer<C extends org.springframework.context.ConfigurableApplicationContext>
-	c18:p -> c16:p [dir=back,arrowtail=empty,style=dashed];
+	c18:p -> c15:p [dir=back,arrowtail=empty,style=dashed];
 	// org.springframework.context.ApplicationContextInitializer<C extends org.springframework.context.ConfigurableApplicationContext>
 	c18 [label=<<table title="org.springframework.context.ApplicationContextInitializer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/context/ApplicationContextInitializer.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">

@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./RedisContainerTests.html" title="test.top.infra.test.containers.RedisContainerTests" alt="" coords="16,11,229,104"/>
-<area shape="rect" id="node1" href="./RedisContainerTests.html" title="&lt;TABLE&gt;" alt="" coords="5,5,240,109"/>
-<area shape="rect" id="node2_1" href="./RedisContainerTests.TestApplication.html" title="test.top.infra.test.containers.RedisContainerTests.TestApplication" alt="" coords="275,11,440,104"/>
-<area shape="rect" id="node2" href="./RedisContainerTests.TestApplication.html" title="&lt;TABLE&gt;" alt="" coords="264,5,451,109"/>
+<area shape="rect" id="node1_0" href="./RedisContainerTests.html" title="test.top.infra.test.containers.RedisContainerTests" alt="" coords="15,11,204,106"/>
+<area shape="rect" id="node1" href="./RedisContainerTests.html" title="&lt;TABLE&gt;" alt="" coords="4,6,215,111"/>
+<area shape="rect" id="node2_1" href="./RedisContainerTests.TestApplication.html" title="test.top.infra.test.containers.RedisContainerTests.TestApplication" alt="" coords="250,11,398,106"/>
+<area shape="rect" id="node2" href="./RedisContainerTests.TestApplication.html" title="&lt;TABLE&gt;" alt="" coords="239,6,409,111"/>
 </map>
