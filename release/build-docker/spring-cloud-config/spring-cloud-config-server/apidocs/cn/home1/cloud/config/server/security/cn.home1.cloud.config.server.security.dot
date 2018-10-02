@@ -9,68 +9,8 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// cn.home1.cloud.config.server.security.ConfigSecurity
-	c37 [label=<<table title="cn.home1.cloud.config.server.security.ConfigSecurity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConfigSecurity.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> ConfigSecurity </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left">  </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + ConfigSecurity() </td></tr>
-<tr><td align="left" balign="left"> + setEncryptorLocator(encryptorLocator : TextEncryptorLocator) </td></tr>
-<tr><td align="left" balign="left"> + init() </td></tr>
-<tr><td align="left" balign="left"> + encryptParentPassword(application : String, parentApplication : String, parentPassword : String) : String </td></tr>
-<tr><td align="left" balign="left"> + verifyParentPassword(application : String, parentApplication : String, token : String, expectedParentPassword : String) : Boolean </td></tr>
-		</table></td></tr>
-		</table>>, URL="./ConfigSecurity.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// cn.home1.cloud.config.server.security.GitFileConfigUserDetailsService
-	c38 [label=<<table title="cn.home1.cloud.config.server.security.GitFileConfigUserDetailsService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./GitFileConfigUserDetailsService.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> GitFileConfigUserDetailsService </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left">  </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + GitFileConfigUserDetailsService() </td></tr>
-<tr><td align="left" balign="left"> + loadUserByUsername(username : String) : UserDetails </td></tr>
-		</table></td></tr>
-		</table>>, URL="./GitFileConfigUserDetailsService.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// cn.home1.cloud.config.server.security.Role
-	c39 [label=<<table title="cn.home1.cloud.config.server.security.Role" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Role.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
-<tr><td align="center" balign="center"> Role </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left">  </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> ACTUATOR </td></tr>
-<tr><td align="left" balign="left"> ADMIN </td></tr>
-<tr><td align="left" balign="left"> HOOK </td></tr>
-<tr><td align="left" balign="left"> USER </td></tr>
-		</table></td></tr>
-		</table>>, URL="./Role.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// cn.home1.cloud.config.server.security.PrivilegedUserProperties
-	c40 [label=<<table title="cn.home1.cloud.config.server.security.PrivilegedUserProperties" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./PrivilegedUserProperties.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> PrivilegedUserProperties </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left">  </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + PrivilegedUserProperties() </td></tr>
-<tr><td align="left" balign="left"> + getAdminName() : String </td></tr>
-<tr><td align="left" balign="left"> + getAdminPassword() : String </td></tr>
-<tr><td align="left" balign="left"> + getAdminRoles() : List&lt;String&gt; </td></tr>
-		</table></td></tr>
-		</table>>, URL="./PrivilegedUserProperties.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// cn.home1.cloud.config.server.security.ApplicationWebSecurityConfigurerAdapter
-	c41 [label=<<table title="cn.home1.cloud.config.server.security.ApplicationWebSecurityConfigurerAdapter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ApplicationWebSecurityConfigurerAdapter.html">
+	c38 [label=<<table title="cn.home1.cloud.config.server.security.ApplicationWebSecurityConfigurerAdapter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ApplicationWebSecurityConfigurerAdapter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ApplicationWebSecurityConfigurerAdapter </td></tr>
 		</table></td></tr>
@@ -88,7 +28,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="./ApplicationWebSecurityConfigurerAdapter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// cn.home1.cloud.config.server.security.ApplicationConfigSecurity
-	c42 [label=<<table title="cn.home1.cloud.config.server.security.ApplicationConfigSecurity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ApplicationConfigSecurity.html">
+	c39 [label=<<table title="cn.home1.cloud.config.server.security.ApplicationConfigSecurity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ApplicationConfigSecurity.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ApplicationConfigSecurity </td></tr>
 		</table></td></tr>
@@ -100,5 +40,65 @@ digraph G {
 <tr><td align="left" balign="left"> + checkAuthentication(pathApplication : String, pathProfiles : String) : boolean </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ApplicationConfigSecurity.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// cn.home1.cloud.config.server.security.Role
+	c40 [label=<<table title="cn.home1.cloud.config.server.security.Role" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Role.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
+<tr><td align="center" balign="center"> Role </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> ACTUATOR </td></tr>
+<tr><td align="left" balign="left"> ADMIN </td></tr>
+<tr><td align="left" balign="left"> HOOK </td></tr>
+<tr><td align="left" balign="left"> USER </td></tr>
+		</table></td></tr>
+		</table>>, URL="./Role.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// cn.home1.cloud.config.server.security.PrivilegedUserProperties
+	c41 [label=<<table title="cn.home1.cloud.config.server.security.PrivilegedUserProperties" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./PrivilegedUserProperties.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> PrivilegedUserProperties </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + PrivilegedUserProperties() </td></tr>
+<tr><td align="left" balign="left"> + getAdminName() : String </td></tr>
+<tr><td align="left" balign="left"> + getAdminPassword() : String </td></tr>
+<tr><td align="left" balign="left"> + getAdminRoles() : List&lt;String&gt; </td></tr>
+		</table></td></tr>
+		</table>>, URL="./PrivilegedUserProperties.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// cn.home1.cloud.config.server.security.GitFileConfigUserDetailsService
+	c42 [label=<<table title="cn.home1.cloud.config.server.security.GitFileConfigUserDetailsService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./GitFileConfigUserDetailsService.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> GitFileConfigUserDetailsService </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + GitFileConfigUserDetailsService() </td></tr>
+<tr><td align="left" balign="left"> + loadUserByUsername(username : String) : UserDetails </td></tr>
+		</table></td></tr>
+		</table>>, URL="./GitFileConfigUserDetailsService.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// cn.home1.cloud.config.server.security.ConfigSecurity
+	c43 [label=<<table title="cn.home1.cloud.config.server.security.ConfigSecurity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConfigSecurity.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> ConfigSecurity </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + ConfigSecurity() </td></tr>
+<tr><td align="left" balign="left"> + setEncryptorLocator(encryptorLocator : TextEncryptorLocator) </td></tr>
+<tr><td align="left" balign="left"> + init() </td></tr>
+<tr><td align="left" balign="left"> + encryptParentPassword(application : String, parentApplication : String, parentPassword : String) : String </td></tr>
+<tr><td align="left" balign="left"> + verifyParentPassword(application : String, parentApplication : String, token : String, expectedParentPassword : String) : Boolean </td></tr>
+		</table></td></tr>
+		</table>>, URL="./ConfigSecurity.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 
