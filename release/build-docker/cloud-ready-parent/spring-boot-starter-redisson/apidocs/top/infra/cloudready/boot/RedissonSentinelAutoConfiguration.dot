@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// top.infra.cloudready.boot.RedissonSentinelAutoConfiguration
-	c3 [label=<<table title="top.infra.cloudready.boot.RedissonSentinelAutoConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./RedissonSentinelAutoConfiguration.html">
+	c5 [label=<<table title="top.infra.cloudready.boot.RedissonSentinelAutoConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./RedissonSentinelAutoConfiguration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RedissonSentinelAutoConfiguration </td></tr>
 		</table></td></tr>
