@@ -88,20 +88,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/cloud-ready/spring-cloud-config/spring-cloud-config-server/checkstyle.html#cn.home1.cloud.config.server.environment.GitParentSupportMultipleJGitEnvironmentRepository.java">cn/home1/cloud/config/server/environment/GitParentSupportMultipleJGitEnvironmentRepository.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  3
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://github.com/cloud-ready/spring-cloud-config/spring-cloud-config-server/checkstyle.html#cn.home1.cloud.config.server.security.ConfigSecurity.java">cn/home1/cloud/config/server/security/ConfigSecurity.java</a>
                 </td>
                 <td>
@@ -109,6 +95,20 @@ under the License.
                 </td>
                 <td>
                   18
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/cloud-ready/spring-cloud-config/spring-cloud-config-server/checkstyle.html#cn.home1.cloud.config.server.environment.GitParentSupportMultipleJGitEnvironmentRepository.java">cn/home1/cloud/config/server/environment/GitParentSupportMultipleJGitEnvironmentRepository.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
                 </td>
                 <td>
                   0
