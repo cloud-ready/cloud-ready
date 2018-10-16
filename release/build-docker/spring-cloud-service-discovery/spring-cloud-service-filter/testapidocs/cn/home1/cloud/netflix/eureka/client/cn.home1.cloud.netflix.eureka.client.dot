@@ -9,19 +9,19 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// cn.home1.cloud.netflix.eureka.client.EurekaInstanceServiceGroupAutoConfiguration
-	c34 [label=<<table title="cn.home1.cloud.netflix.eureka.client.EurekaInstanceServiceGroupAutoConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EurekaInstanceServiceGroupAutoConfiguration.html">
+	// cn.home1.cloud.netflix.eureka.client.EurekaInstanceBuildVersionAutoConfiguration
+	c34 [label=<<table title="cn.home1.cloud.netflix.eureka.client.EurekaInstanceBuildVersionAutoConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EurekaInstanceBuildVersionAutoConfiguration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> EurekaInstanceServiceGroupAutoConfiguration </td></tr>
+<tr><td align="center" balign="center"> EurekaInstanceBuildVersionAutoConfiguration </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + EurekaInstanceServiceGroupAutoConfiguration() </td></tr>
+<tr><td align="left" balign="left"> + EurekaInstanceBuildVersionAutoConfiguration() </td></tr>
 <tr><td align="left" balign="left"> + init() </td></tr>
 		</table></td></tr>
-		</table>>, URL="./EurekaInstanceServiceGroupAutoConfiguration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./EurekaInstanceBuildVersionAutoConfiguration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// cn.home1.cloud.netflix.eureka.client.EurekaInstanceTestApplication
 	c35 [label=<<table title="cn.home1.cloud.netflix.eureka.client.EurekaInstanceTestApplication" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EurekaInstanceTestApplication.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -51,18 +51,18 @@ digraph G {
 <tr><td align="left" balign="left"> + testEurekaInstance() </td></tr>
 		</table></td></tr>
 		</table>>, URL="./EurekaInstanceTests.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// cn.home1.cloud.netflix.eureka.client.EurekaInstanceBuildVersionAutoConfiguration
-	c37 [label=<<table title="cn.home1.cloud.netflix.eureka.client.EurekaInstanceBuildVersionAutoConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EurekaInstanceBuildVersionAutoConfiguration.html">
+	// cn.home1.cloud.netflix.eureka.client.EurekaInstanceServiceGroupAutoConfiguration
+	c37 [label=<<table title="cn.home1.cloud.netflix.eureka.client.EurekaInstanceServiceGroupAutoConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EurekaInstanceServiceGroupAutoConfiguration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> EurekaInstanceBuildVersionAutoConfiguration </td></tr>
+<tr><td align="center" balign="center"> EurekaInstanceServiceGroupAutoConfiguration </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + EurekaInstanceBuildVersionAutoConfiguration() </td></tr>
+<tr><td align="left" balign="left"> + EurekaInstanceServiceGroupAutoConfiguration() </td></tr>
 <tr><td align="left" balign="left"> + init() </td></tr>
 		</table></td></tr>
-		</table>>, URL="./EurekaInstanceBuildVersionAutoConfiguration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./EurekaInstanceServiceGroupAutoConfiguration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

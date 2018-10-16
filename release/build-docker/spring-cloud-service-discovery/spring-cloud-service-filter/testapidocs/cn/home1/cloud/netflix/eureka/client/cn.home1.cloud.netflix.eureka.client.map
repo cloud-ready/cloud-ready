@@ -1,10 +1,10 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./EurekaInstanceServiceGroupAutoConfiguration.html" title="cn.home1.cloud.netflix.eureka.client.EurekaInstanceServiceGroupAutoConfiguration" alt="" coords="16,37,331,131"/>
-<area shape="rect" id="node1" href="./EurekaInstanceServiceGroupAutoConfiguration.html" title="&lt;TABLE&gt;" alt="" coords="5,31,341,137"/>
-<area shape="rect" id="node2_1" href="./EurekaInstanceTestApplication.html" title="cn.home1.cloud.netflix.eureka.client.EurekaInstanceTestApplication" alt="" coords="376,37,597,131"/>
-<area shape="rect" id="node2" href="./EurekaInstanceTestApplication.html" title="&lt;TABLE&gt;" alt="" coords="365,31,608,137"/>
-<area shape="rect" id="node3_2" href="./EurekaInstanceTests.html" title="cn.home1.cloud.netflix.eureka.client.EurekaInstanceTests" alt="" coords="643,11,901,157"/>
-<area shape="rect" id="node3" href="./EurekaInstanceTests.html" title="&lt;TABLE&gt;" alt="" coords="633,5,911,163"/>
-<area shape="rect" id="node4_3" href="./EurekaInstanceBuildVersionAutoConfiguration.html" title="cn.home1.cloud.netflix.eureka.client.EurekaInstanceBuildVersionAutoConfiguration" alt="" coords="947,37,1256,131"/>
-<area shape="rect" id="node4" href="./EurekaInstanceBuildVersionAutoConfiguration.html" title="&lt;TABLE&gt;" alt="" coords="936,31,1267,137"/>
+<area shape="rect" id="node1_0" href="./EurekaInstanceBuildVersionAutoConfiguration.html" title="cn.home1.cloud.netflix.eureka.client.EurekaInstanceBuildVersionAutoConfiguration" alt="" coords="16,37,359,130"/>
+<area shape="rect" id="node1" href="./EurekaInstanceBuildVersionAutoConfiguration.html" title="&lt;TABLE&gt;" alt="" coords="5,31,369,135"/>
+<area shape="rect" id="node2_1" href="./EurekaInstanceTestApplication.html" title="cn.home1.cloud.netflix.eureka.client.EurekaInstanceTestApplication" alt="" coords="404,37,648,130"/>
+<area shape="rect" id="node2" href="./EurekaInstanceTestApplication.html" title="&lt;TABLE&gt;" alt="" coords="393,31,659,135"/>
+<area shape="rect" id="node3_2" href="./EurekaInstanceTests.html" title="cn.home1.cloud.netflix.eureka.client.EurekaInstanceTests" alt="" coords="693,11,977,156"/>
+<area shape="rect" id="node3" href="./EurekaInstanceTests.html" title="&lt;TABLE&gt;" alt="" coords="683,5,988,161"/>
+<area shape="rect" id="node4_3" href="./EurekaInstanceServiceGroupAutoConfiguration.html" title="cn.home1.cloud.netflix.eureka.client.EurekaInstanceServiceGroupAutoConfiguration" alt="" coords="1023,37,1371,130"/>
+<area shape="rect" id="node4" href="./EurekaInstanceServiceGroupAutoConfiguration.html" title="&lt;TABLE&gt;" alt="" coords="1012,31,1381,135"/>
 </map>
