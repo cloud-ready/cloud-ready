@@ -9,8 +9,65 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
+	// cn.home1.test.IsAlive
+	c14 [label=<<table title="cn.home1.test.IsAlive" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./IsAlive.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> IsAlive </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + IsAlive() </td></tr>
+<tr><td align="left" balign="left"> + isSocketAlive(hostName : String, port : int) : boolean </td></tr>
+<tr><td align="left" balign="left"> + isSocketAlive(hostName : String, port : int, timeoutInSeconds : int) : boolean </td></tr>
+		</table></td></tr>
+		</table>>, URL="./IsAlive.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// cn.home1.test.CopyOutputStreamTest
+	c15 [label=<<table title="cn.home1.test.CopyOutputStreamTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./CopyOutputStreamTest.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> CopyOutputStreamTest </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + CopyOutputStreamTest() </td></tr>
+<tr><td align="left" balign="left"> + setUp() </td></tr>
+<tr><td align="left" balign="left"> + cleanUp() </td></tr>
+<tr><td align="left" balign="left"> + testNotFound() </td></tr>
+<tr><td align="left" balign="left"> + testFound() </td></tr>
+		</table></td></tr>
+		</table>>, URL="./CopyOutputStreamTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// cn.home1.test.WaitForIt
+	c16 [label=<<table title="cn.home1.test.WaitForIt" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./WaitForIt.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> WaitForIt </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + WaitForIt() </td></tr>
+<tr><td align="left" balign="left"> + waitForIt(port : String, timeoutInSeconds : int) : boolean </td></tr>
+<tr><td align="left" balign="left"> + waitForIt(port : int, timeoutInSeconds : int) : boolean </td></tr>
+		</table></td></tr>
+		</table>>, URL="./WaitForIt.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// cn.home1.test.IsAliveTest
+	c17 [label=<<table title="cn.home1.test.IsAliveTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./IsAliveTest.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> IsAliveTest </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + IsAliveTest() </td></tr>
+<tr><td align="left" balign="left"> + testIsAlive() </td></tr>
+		</table></td></tr>
+		</table>>, URL="./IsAliveTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// cn.home1.test.EurekaTestContainer
-	c14 [label=<<table title="cn.home1.test.EurekaTestContainer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EurekaTestContainer.html">
+	c18 [label=<<table title="cn.home1.test.EurekaTestContainer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EurekaTestContainer.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EurekaTestContainer </td></tr>
 		</table></td></tr>
@@ -28,80 +85,8 @@ digraph G {
 <tr><td align="left" balign="left"> + remove() </td></tr>
 		</table></td></tr>
 		</table>>, URL="./EurekaTestContainer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// cn.home1.test.IsAliveTest
-	c15 [label=<<table title="cn.home1.test.IsAliveTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./IsAliveTest.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> IsAliveTest </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left">  </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + IsAliveTest() </td></tr>
-<tr><td align="left" balign="left"> + testIsAlive() </td></tr>
-		</table></td></tr>
-		</table>>, URL="./IsAliveTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// cn.home1.test.CopyOutputStreamTest
-	c16 [label=<<table title="cn.home1.test.CopyOutputStreamTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./CopyOutputStreamTest.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> CopyOutputStreamTest </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left">  </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + CopyOutputStreamTest() </td></tr>
-<tr><td align="left" balign="left"> + setUp() </td></tr>
-<tr><td align="left" balign="left"> + cleanUp() </td></tr>
-<tr><td align="left" balign="left"> + testNotFound() </td></tr>
-<tr><td align="left" balign="left"> + testFound() </td></tr>
-		</table></td></tr>
-		</table>>, URL="./CopyOutputStreamTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// cn.home1.test.IsAlive
-	c17 [label=<<table title="cn.home1.test.IsAlive" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./IsAlive.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> IsAlive </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left">  </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + IsAlive() </td></tr>
-<tr><td align="left" balign="left"> + isSocketAlive(hostName : String, port : int) : boolean </td></tr>
-<tr><td align="left" balign="left"> + isSocketAlive(hostName : String, port : int, timeoutInSeconds : int) : boolean </td></tr>
-		</table></td></tr>
-		</table>>, URL="./IsAlive.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// cn.home1.test.WaitForIt
-	c18 [label=<<table title="cn.home1.test.WaitForIt" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./WaitForIt.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> WaitForIt </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left">  </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + WaitForIt() </td></tr>
-<tr><td align="left" balign="left"> + waitForIt(port : String, timeoutInSeconds : int) : boolean </td></tr>
-<tr><td align="left" balign="left"> + waitForIt(port : int, timeoutInSeconds : int) : boolean </td></tr>
-		</table></td></tr>
-		</table>>, URL="./WaitForIt.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// cn.home1.test.DemoIntegrationTestWithDocker
-	c19 [label=<<table title="cn.home1.test.DemoIntegrationTestWithDocker" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DemoIntegrationTestWithDocker.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> DemoIntegrationTestWithDocker </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left">  </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + DemoIntegrationTestWithDocker() </td></tr>
-<tr><td align="left" balign="left"> + eurekaStart() </td></tr>
-<tr><td align="left" balign="left"> + eurekaRemove() </td></tr>
-<tr><td align="left" balign="left"> + testEurekaClient() </td></tr>
-		</table></td></tr>
-		</table>>, URL="./DemoIntegrationTestWithDocker.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// cn.home1.test.CopyOutputStream
-	c20 [label=<<table title="cn.home1.test.CopyOutputStream" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./CopyOutputStream.html">
+	c19 [label=<<table title="cn.home1.test.CopyOutputStream" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./CopyOutputStream.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> CopyOutputStream </td></tr>
 		</table></td></tr>
@@ -119,5 +104,20 @@ digraph G {
 <tr><td align="left" balign="left"> + write(buf : byte[], off : int, len : int) </td></tr>
 		</table></td></tr>
 		</table>>, URL="./CopyOutputStream.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// cn.home1.test.DemoIntegrationTestWithDocker
+	c20 [label=<<table title="cn.home1.test.DemoIntegrationTestWithDocker" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DemoIntegrationTestWithDocker.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> DemoIntegrationTestWithDocker </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + DemoIntegrationTestWithDocker() </td></tr>
+<tr><td align="left" balign="left"> + eurekaStart() </td></tr>
+<tr><td align="left" balign="left"> + eurekaRemove() </td></tr>
+<tr><td align="left" balign="left"> + testEurekaClient() </td></tr>
+		</table></td></tr>
+		</table>>, URL="./DemoIntegrationTestWithDocker.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 
