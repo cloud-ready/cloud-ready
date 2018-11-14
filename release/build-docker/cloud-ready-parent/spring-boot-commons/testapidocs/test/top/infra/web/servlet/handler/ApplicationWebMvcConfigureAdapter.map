@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./ApplicationWebMvcConfigureAdapter.html" title="test.top.infra.web.servlet.handler.ApplicationWebMvcConfigureAdapter" alt="" coords="16,180,475,291"/>
-<area shape="rect" id="node1" href="./ApplicationWebMvcConfigureAdapter.html" title="&lt;TABLE&gt;" alt="" coords="5,175,485,296"/>
-<area shape="rect" id="node2_1" href="http://java.sun.com/j2se/1.4.2/docs/api/top/infra/web/servlet/handler/OrderedHandlerInterceptorWebMvcConfigureAdapter.html" title="top.infra.web.servlet.handler.OrderedHandlerInterceptorWebMvcConfigureAdapter" alt="" coords="16,11,475,121"/>
-<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/top/infra/web/servlet/handler/OrderedHandlerInterceptorWebMvcConfigureAdapter.html" title="&lt;TABLE&gt;" alt="" coords="5,5,485,127"/>
+<area shape="rect" id="node1_0" href="./ApplicationWebMvcConfigureAdapter.html" title="test.top.infra.web.servlet.handler.ApplicationWebMvcConfigureAdapter" alt="" coords="15,181,417,293"/>
+<area shape="rect" id="node1" href="./ApplicationWebMvcConfigureAdapter.html" title="&lt;TABLE&gt;" alt="" coords="5,176,427,299"/>
+<area shape="rect" id="node2_1" href="http://java.sun.com/j2se/1.4.2/docs/api/top/infra/web/servlet/handler/OrderedHandlerInterceptorWebMvcConfigureAdapter.html" title="top.infra.web.servlet.handler.OrderedHandlerInterceptorWebMvcConfigureAdapter" alt="" coords="15,11,417,123"/>
+<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/top/infra/web/servlet/handler/OrderedHandlerInterceptorWebMvcConfigureAdapter.html" title="&lt;TABLE&gt;" alt="" coords="5,5,427,128"/>
 </map>
