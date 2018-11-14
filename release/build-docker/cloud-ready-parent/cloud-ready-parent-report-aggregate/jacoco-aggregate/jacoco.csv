@@ -1,8 +1,1 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-JaCoCo cloud-ready-parent-report-aggregate/spring-boot-commons,top.infra.web.servlet.handler,OrderedHandlerInterceptor,106,15,16,0,2,3,15,3,7,3
-JaCoCo cloud-ready-parent-report-aggregate/spring-boot-commons,top.infra.web.servlet.handler,OrderedHandlerInterceptorWebMvcConfigureAdapter,4,26,0,0,0,8,1,4,1,4
-JaCoCo cloud-ready-parent-report-aggregate/spring-boot-commons,top.infra.web.servlet.handler,OrderedHandlerInterceptorAdapter,0,3,0,0,0,1,0,1,0,1
-JaCoCo cloud-ready-parent-report-aggregate/spring-boot-test-support,top.infra.test.contract,ContractRule,95,0,6,0,30,0,12,0,9,0
-JaCoCo cloud-ready-parent-report-aggregate/spring-boot-test-support,top.infra.test.contract,ContractRule.new Statement() {...},48,0,0,0,11,0,2,0,2,0
-JaCoCo cloud-ready-parent-report-aggregate/spring-boot-test-support,top.infra.test.containers,InitializerCallbacks,0,41,0,0,0,5,0,2,0,2
-JaCoCo cloud-ready-parent-report-aggregate/spring-boot-test-support,top.infra.test.containers,GenericContainerInitializer,3,42,1,3,0,12,1,5,0,4
