@@ -22,49 +22,49 @@ import java.util.regex.Pattern;
 @ConditionalOnClass({Redisson.class, RedisTemplate.class})
 @ConditionalOnProperty(name = {&quot;spring.redis.sentinel.master&quot;, &quot;spring.redis.sentinel.nodes&quot;})
 @Configuration
-<span class="nc" id="L25">@Slf4j</span>
-<span class="nc" id="L26">public class RedissonSentinelAutoConfiguration {</span>
+<span class="fc" id="L25">@Slf4j</span>
+<span class="fc" id="L26">public class RedissonSentinelAutoConfiguration {</span>
 
     private RedisProperties redisProperties;
 
     @Autowired(required = false)
     public void setRedisProperties(final RedisProperties redisProperties) {
-<span class="nc" id="L32">        this.redisProperties = redisProperties;</span>
-<span class="nc" id="L33">    }</span>
+<span class="fc" id="L32">        this.redisProperties = redisProperties;</span>
+<span class="fc" id="L33">    }</span>
 
     public String[] getRedisSentinelNodes() {
         //should add schema prefix &quot;redis://&quot; or &quot;rediss://&quot; for redisson version &gt;= 3.7.0
-<span class="nc bnc" id="L37" title="All 2 branches missed.">        final String schema = this.redisProperties.isSsl() ? &quot;rediss://&quot; : &quot;redis://&quot;;</span>
-<span class="nc" id="L38">        final String[] redisSentinelNodes = Pattern.compile(&quot;,&quot;) //</span>
-<span class="nc" id="L39">            .splitAsStream(this.redisProperties.getSentinel().getNodes()) //</span>
-<span class="nc" id="L40">            .map(node -&gt; schema + node) //</span>
-<span class="nc" id="L41">            .toArray(String[]::new);</span>
-<span class="nc" id="L42">        log.info(&quot;redisNodes: {}&quot;, (Object) redisSentinelNodes);</span>
-<span class="nc" id="L43">        return redisSentinelNodes;</span>
+<span class="pc bpc" id="L37" title="1 of 2 branches missed.">        final String schema = this.redisProperties.isSsl() ? &quot;rediss://&quot; : &quot;redis://&quot;;</span>
+<span class="fc" id="L38">        final String[] redisSentinelNodes = Pattern.compile(&quot;,&quot;) //</span>
+<span class="fc" id="L39">            .splitAsStream(this.redisProperties.getSentinel().getNodes()) //</span>
+<span class="fc" id="L40">            .map(node -&gt; schema + node) //</span>
+<span class="fc" id="L41">            .toArray(String[]::new);</span>
+<span class="fc" id="L42">        log.info(&quot;redisNodes: {}&quot;, (Object) redisSentinelNodes);</span>
+<span class="fc" id="L43">        return redisSentinelNodes;</span>
     }
 
     private SentinelServersConfig sentinelServers(final Config config) {
-<span class="nc" id="L47">        final int redisDatabase = this.redisProperties.getDatabase();</span>
-<span class="nc" id="L48">        final String redisPassword = this.redisProperties.getPassword();</span>
-<span class="nc" id="L49">        final String redisSentinelMaster = this.redisProperties.getSentinel().getMaster();</span>
-<span class="nc" id="L50">        final String[] redisSentinelNodes = this.getRedisSentinelNodes();</span>
+<span class="fc" id="L47">        final int redisDatabase = this.redisProperties.getDatabase();</span>
+<span class="fc" id="L48">        final String redisPassword = this.redisProperties.getPassword();</span>
+<span class="fc" id="L49">        final String redisSentinelMaster = this.redisProperties.getSentinel().getMaster();</span>
+<span class="fc" id="L50">        final String[] redisSentinelNodes = this.getRedisSentinelNodes();</span>
 
-<span class="nc" id="L52">        SentinelServersConfig sentinelServersConfig = config.useSentinelServers();</span>
-<span class="nc" id="L53">        sentinelServersConfig.setMasterName(redisSentinelMaster);</span>
-<span class="nc" id="L54">        sentinelServersConfig.addSentinelAddress(redisSentinelNodes);</span>
-<span class="nc" id="L55">        sentinelServersConfig.setDatabase(redisDatabase);</span>
-<span class="nc bnc" id="L56" title="All 2 branches missed.">        if (redisPassword != null) { //StringUtils.isNotBlank(redisPassword)</span>
+<span class="fc" id="L52">        SentinelServersConfig sentinelServersConfig = config.useSentinelServers();</span>
+<span class="fc" id="L53">        sentinelServersConfig.setMasterName(redisSentinelMaster);</span>
+<span class="fc" id="L54">        sentinelServersConfig.addSentinelAddress(redisSentinelNodes);</span>
+<span class="fc" id="L55">        sentinelServersConfig.setDatabase(redisDatabase);</span>
+<span class="pc bpc" id="L56" title="1 of 2 branches missed.">        if (redisPassword != null) { //StringUtils.isNotBlank(redisPassword)</span>
 <span class="nc" id="L57">            sentinelServersConfig.setPassword(redisPassword);</span>
         }
 
-<span class="nc" id="L60">        return sentinelServersConfig;</span>
+<span class="fc" id="L60">        return sentinelServersConfig;</span>
     }
 
     @Bean
     public RedissonClient redissonClient() {
-<span class="nc" id="L65">        final Config config = new Config();</span>
-<span class="nc" id="L66">        this.sentinelServers(config);</span>
-<span class="nc" id="L67">        return Redisson.create(config);</span>
+<span class="fc" id="L65">        final Config config = new Config();</span>
+<span class="fc" id="L66">        this.sentinelServers(config);</span>
+<span class="fc" id="L67">        return Redisson.create(config);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

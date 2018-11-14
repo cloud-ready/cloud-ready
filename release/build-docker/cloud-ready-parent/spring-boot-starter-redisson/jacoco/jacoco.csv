@@ -1,3 +1,3 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-spring-boot-starter-redisson,top.infra.cloudready.boot,RedissonSentinelAutoConfiguration,101,0,4,0,25,0,10,0,8,0
+spring-boot-starter-redisson,top.infra.cloudready.boot,RedissonSentinelAutoConfiguration,6,95,2,2,1,24,2,8,0,8
 spring-boot-starter-redisson,top.infra.cloudready.boot,RedissonStandaloneAutoConfiguration,6,75,2,2,1,18,2,6,0,6
