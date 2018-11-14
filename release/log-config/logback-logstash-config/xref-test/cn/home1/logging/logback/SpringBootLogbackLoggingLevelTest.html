@@ -68,12 +68,11 @@
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>      @Test
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testReadSpringProperty() {
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>          String applicationName = environment.getProperty(<span class="jxr_string">"spring.application.name"</span>);
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>          assertEquals(logService.getLogProperty(<span class="jxr_string">"application"</span>), applicationName);
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>          assertEquals(applicationName, logService.getLogProperty(<span class="jxr_string">"application"</span>));
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>  
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>          String instanceId = environment.getProperty(<span class="jxr_string">"eureka.instance.instance-id"</span>);
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>          assertEquals(logService.getLogProperty(<span class="jxr_string">"instanceId"</span>), instanceId);
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>      }
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>  }
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>          <em class="jxr_comment">//String instanceId = environment.getProperty("eureka.instance.instance-id");</em>
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>      }
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2018. All rights reserved.</div>
