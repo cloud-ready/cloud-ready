@@ -9,21 +9,8 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// top.infra.cloudready.test.RedissonTestApplication
-	c0 [label=<<table title="top.infra.cloudready.test.RedissonTestApplication" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./RedissonTestApplication.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> RedissonTestApplication </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left">  </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + RedissonTestApplication() </td></tr>
-<tr><td align="left" balign="left"> + main(args : String[]) </td></tr>
-		</table></td></tr>
-		</table>>, URL="./RedissonTestApplication.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// top.infra.cloudready.test.RedisStandaloneTests
-	c1 [label=<<table title="top.infra.cloudready.test.RedisStandaloneTests" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./RedisStandaloneTests.html">
+	c0 [label=<<table title="top.infra.cloudready.test.RedisStandaloneTests" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./RedisStandaloneTests.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RedisStandaloneTests </td></tr>
 		</table></td></tr>
@@ -36,7 +23,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="./RedisStandaloneTests.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// top.infra.cloudready.test.RedisSentinelTests
-	c2 [label=<<table title="top.infra.cloudready.test.RedisSentinelTests" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./RedisSentinelTests.html">
+	c1 [label=<<table title="top.infra.cloudready.test.RedisSentinelTests" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./RedisSentinelTests.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RedisSentinelTests </td></tr>
 		</table></td></tr>
@@ -51,5 +38,18 @@ digraph G {
 <tr><td align="left" balign="left"> + testRedisson() </td></tr>
 		</table></td></tr>
 		</table>>, URL="./RedisSentinelTests.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// top.infra.cloudready.test.RedissonTestApplication
+	c2 [label=<<table title="top.infra.cloudready.test.RedissonTestApplication" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./RedissonTestApplication.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> RedissonTestApplication </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + RedissonTestApplication() </td></tr>
+<tr><td align="left" balign="left"> + main(args : String[]) </td></tr>
+		</table></td></tr>
+		</table>>, URL="./RedissonTestApplication.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

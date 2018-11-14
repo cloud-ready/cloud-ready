@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./RedissonSentinelAutoConfiguration.html" title="top.infra.cloudready.boot.RedissonSentinelAutoConfiguration" alt="" coords="16,11,392,139"/>
-<area shape="rect" id="node1" href="./RedissonSentinelAutoConfiguration.html" title="&lt;TABLE&gt;" alt="" coords="5,5,403,144"/>
-<area shape="rect" id="node2_1" href="./RedissonStandaloneAutoConfiguration.html" title="top.infra.cloudready.boot.RedissonStandaloneAutoConfiguration" alt="" coords="437,11,813,139"/>
-<area shape="rect" id="node2" href="./RedissonStandaloneAutoConfiguration.html" title="&lt;TABLE&gt;" alt="" coords="427,5,824,144"/>
+<area shape="rect" id="node1_0" href="./RedissonStandaloneAutoConfiguration.html" title="top.infra.cloudready.boot.RedissonStandaloneAutoConfiguration" alt="" coords="16,11,360,141"/>
+<area shape="rect" id="node1" href="./RedissonStandaloneAutoConfiguration.html" title="&lt;TABLE&gt;" alt="" coords="5,6,371,146"/>
+<area shape="rect" id="node2_1" href="./RedissonSentinelAutoConfiguration.html" title="top.infra.cloudready.boot.RedissonSentinelAutoConfiguration" alt="" coords="405,11,749,141"/>
+<area shape="rect" id="node2" href="./RedissonSentinelAutoConfiguration.html" title="&lt;TABLE&gt;" alt="" coords="395,6,760,146"/>
 </map>

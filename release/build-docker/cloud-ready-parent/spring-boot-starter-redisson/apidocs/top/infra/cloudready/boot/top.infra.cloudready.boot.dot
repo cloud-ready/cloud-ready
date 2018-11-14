@@ -9,23 +9,8 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// top.infra.cloudready.boot.RedissonSentinelAutoConfiguration
-	c0 [label=<<table title="top.infra.cloudready.boot.RedissonSentinelAutoConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./RedissonSentinelAutoConfiguration.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> RedissonSentinelAutoConfiguration </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left">  </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + RedissonSentinelAutoConfiguration() </td></tr>
-<tr><td align="left" balign="left"> + setRedisProperties(redisProperties : RedisProperties) </td></tr>
-<tr><td align="left" balign="left"> + getRedisSentinelNodes() : String[] </td></tr>
-<tr><td align="left" balign="left"> + redissonClient() : RedissonClient </td></tr>
-		</table></td></tr>
-		</table>>, URL="./RedissonSentinelAutoConfiguration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// top.infra.cloudready.boot.RedissonStandaloneAutoConfiguration
-	c1 [label=<<table title="top.infra.cloudready.boot.RedissonStandaloneAutoConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./RedissonStandaloneAutoConfiguration.html">
+	c0 [label=<<table title="top.infra.cloudready.boot.RedissonStandaloneAutoConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./RedissonStandaloneAutoConfiguration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RedissonStandaloneAutoConfiguration </td></tr>
 		</table></td></tr>
@@ -39,5 +24,20 @@ digraph G {
 <tr><td align="left" balign="left"> + redissonClient() : RedissonClient </td></tr>
 		</table></td></tr>
 		</table>>, URL="./RedissonStandaloneAutoConfiguration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// top.infra.cloudready.boot.RedissonSentinelAutoConfiguration
+	c1 [label=<<table title="top.infra.cloudready.boot.RedissonSentinelAutoConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./RedissonSentinelAutoConfiguration.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> RedissonSentinelAutoConfiguration </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + RedissonSentinelAutoConfiguration() </td></tr>
+<tr><td align="left" balign="left"> + setRedisProperties(redisProperties : RedisProperties) </td></tr>
+<tr><td align="left" balign="left"> + getRedisSentinelNodes() : String[] </td></tr>
+<tr><td align="left" balign="left"> + redissonClient() : RedissonClient </td></tr>
+		</table></td></tr>
+		</table>>, URL="./RedissonSentinelAutoConfiguration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 
