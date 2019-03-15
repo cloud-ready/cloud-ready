@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"cn.home1.logging.log4j2","l":"Log4j2TestConfigTest"},{"p":"cn.home1.logging.log4j2","l":"LoggingTestApplication"},{"p":"cn.home1.logging.log4j2","l":"SpringBootLog4j2LoggingLevelTest"}]
