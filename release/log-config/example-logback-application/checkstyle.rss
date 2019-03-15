@@ -23,7 +23,7 @@ under the License.
     <link>https://github.com/ci-and-cd/maven-build/log-config/example-logback-application</link>
     <description>example-logback-application - Checkstyle report</description>
     <language>en-us</language>
-    <copyright>&#169;2018</copyright>
+    <copyright>&#169;2019</copyright>
     <item>
       <title>File: 1,
              Errors: 0,

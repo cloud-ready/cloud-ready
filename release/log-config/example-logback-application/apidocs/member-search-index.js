@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"org.example","c":"ExampleLogbackApplication","l":"ExampleLogbackApplication()","url":"%3Cinit%3E()"},{"p":"org.example","c":"ExampleLogbackApplication","l":"init()"},{"p":"org.example","c":"ExampleLogbackApplication","l":"main(String[])","url":"main(java.lang.String[])"}]
